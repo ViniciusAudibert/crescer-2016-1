@@ -1,7 +1,9 @@
 public class Dwarf {
+    private String nome;
     private int vida;
-    
-    public Dwarf(){
+
+    public Dwarf(String nome){
+        this.nome = nome;
         this.vida = 110;
     }
     
