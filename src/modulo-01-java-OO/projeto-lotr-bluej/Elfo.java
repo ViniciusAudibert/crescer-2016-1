@@ -4,11 +4,24 @@ public class Elfo {
     
     public Elfo(String nome) {
         this.nome = nome;
+        this.experiencia = 0;
     }
     
     public void atirarFlecha(Dwarf dwarf) {
         experiencia++;
         flechas--;
         dwarf.perdeVida();
+    }
+    
+    public int getFlechas(){
+        return this.flechas;
+    }
+    
+    public int getExperiencia(){
+        return this.experiencia;
+    }
+    
+    public String getNome(){
+        return this.nome;
     }
 }
