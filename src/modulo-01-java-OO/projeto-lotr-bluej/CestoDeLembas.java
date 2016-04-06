@@ -6,9 +6,9 @@ public class CestoDeLembas {
     }
     
     public boolean podeDividirEmPares(){
-        if(lembas >= 4 && lembas >= 100 && lembas % 2 == 0){
-                return true;
-        }
-        return false;
+        return lembas >= 4 && lembas >= 100 && lembas % 2 == 0;
+        /* terneiro
+        boolean isDivisivel = lembas >= 4 && lembas >= 100 && lembas % 2 == 0;
+        return isDivisivel ? true : false; */
     }
 }
