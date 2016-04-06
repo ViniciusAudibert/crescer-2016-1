@@ -22,4 +22,16 @@ public class CestoDeLembasTest
         boolean obtido = cesto.podeDividirEmPares();
         assertEquals(esperado,obtido);
     }
+    
+    @Test
+    public void criarCestoComMenosUmLembas(){
+        CestoDeLembas cesto = new CestoDeLembas(-1);
+        assertEquals(false,cesto.podeDividirEmPares());
+    }
+    
+     @Test
+    public void criarCestoCom101Lembas(){
+        CestoDeLembas cesto = new CestoDeLembas(-1);
+        assertEquals(false,cesto.podeDividirEmPares());
+    }
 }
