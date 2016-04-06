@@ -8,10 +8,17 @@ public class ElfoTest
     @Test
     public void testaConstrutor(){
         Elfo elfo = new Elfo("Guga");
-        boolean esperado = true;
-        boolean obtido = elfo.getExperiencia() == 0;
-        assertEquals(esperado, obtido);
+        assertEquals(42, elfo.getFlechas());
         assertEquals("Guga", elfo.getNome());
+        assertEquals(0, elfo.getExperiencia());
+    }
+    
+    @Test
+    public void testaSobrecargaConstrutor(){
+        Elfo elfo = new Elfo("Guga",77);
+        assertEquals("Guga",elfo.getNome());
+        assertEquals(77, elfo.getFlechas());
+        assertEquals(0, elfo.getExperiencia());
     }
     
     @Test

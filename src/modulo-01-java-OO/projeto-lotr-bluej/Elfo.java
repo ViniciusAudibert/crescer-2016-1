@@ -7,6 +7,11 @@ public class Elfo {
         this.experiencia = 0;
     }
     
+    public Elfo(String nome, int flechas){
+        this(nome);
+        this.flechas = flechas;
+    }
+    
     public void atirarFlecha(Dwarf dwarf) {
         experiencia++;
         flechas--;
