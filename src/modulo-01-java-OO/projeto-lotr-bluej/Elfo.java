@@ -24,4 +24,9 @@ public class Elfo {
     public String getNome(){
         return this.nome;
     }
+    
+    public String toString(){
+        return getNome() + " possui "+ getFlechas() + " flechas e "
+        + getExperiencia() + " níveis de experiência.";
+    }
 }

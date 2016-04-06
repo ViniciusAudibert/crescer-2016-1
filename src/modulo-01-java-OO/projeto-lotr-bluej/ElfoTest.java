@@ -23,4 +23,11 @@ public class ElfoTest
         assertEquals(1, elfo.getExperiencia());
         assertEquals(dwarf.getVida(),100);
     }
+    
+    @Test
+    public void testaToString(){
+        Elfo elfo = new Elfo("Guga");
+        assertEquals(elfo.toString(), elfo.getNome() + " possui "+ elfo.getFlechas() + " flechas e "
+        + elfo.getExperiencia() + " níveis de experiência.");
+    }
 }
