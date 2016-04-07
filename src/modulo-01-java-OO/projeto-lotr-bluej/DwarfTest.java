@@ -32,4 +32,14 @@ public class DwarfTest {
         }
         assertEquals(dwarf.getStatus(), Status.MORTO);
     }
+    
+    @Test
+    public void testaDwarfSeNaoFicaNegativo(){
+        Dwarf dwarf = new Dwarf("Anao");
+        for(int i=0; i<15; i++){
+            dwarf.perdeVida();
+        }
+        assertEquals(dwarf.getStatus(), Status.MORTO);
+        assertTrue(dwarf.getVida() >= 0);
+    }
 }
