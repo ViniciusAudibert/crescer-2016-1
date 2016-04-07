@@ -17,4 +17,19 @@ public class DwarfTest {
         dwarf.perdeVida();
         assertEquals(100, dwarf.getVida()); 
     }
+    
+    @Test
+    public void testaDwarfStatusVivo(){
+        Dwarf dwarf = new Dwarf("Anao");
+        assertEquals(dwarf.getStatus(), Status.VIVO);
+    }
+    
+    @Test
+    public void testaDwarfStatusMorto(){
+        Dwarf dwarf = new Dwarf("Anao");
+        for(int i=0; i<11; i++){
+            dwarf.perdeVida();
+        }
+        assertEquals(dwarf.getStatus(), Status.MORTO);
+    }
 }
