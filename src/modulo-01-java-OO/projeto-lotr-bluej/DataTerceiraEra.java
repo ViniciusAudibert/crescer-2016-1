@@ -10,7 +10,7 @@ public class DataTerceiraEra {
   }
   
   public boolean ehBissexto(){
-    return dia == 29 && mes == 2;
+    return ano % 4 == 0;
   }
   
   public int getDia(){
