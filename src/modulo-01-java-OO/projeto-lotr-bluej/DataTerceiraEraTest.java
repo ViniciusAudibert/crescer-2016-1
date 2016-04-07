@@ -17,14 +17,20 @@ public class DataTerceiraEraTest {
     }
     
     @Test
-    public void testaEhBissexto2017(){
-        DataTerceiraEra d3 = new DataTerceiraEra(31,1,2017);
-        assertEquals(d3.ehBissexto(), false);
+    public void testaEhBissexto2004(){
+        DataTerceiraEra d3 = new DataTerceiraEra(31,1,2004);
+        assertEquals(d3.ehBissexto(), true);
     }
     
     @Test
     public void testaEhBissexto2020(){
         DataTerceiraEra d3 = new DataTerceiraEra(31,1,2020);
         assertEquals(d3.ehBissexto(), true);
+    }
+    
+    @Test
+    public void testaEhBissexto3457(){
+        DataTerceiraEra d3 = new DataTerceiraEra(31,1,3457);
+        assertEquals(d3.ehBissexto(), false);
     }
 }
