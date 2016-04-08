@@ -67,7 +67,7 @@ public class DwarfTest {
     }
     
     @Test
-    public void testaDwarfSeNaoFicaNegativo(){
+    public void testaDwarfVidaNegativa(){
         Dwarf dwarf = new Dwarf("Anao");
         for(int i=0; i<15; i++){
             dwarf.perdeVida();
