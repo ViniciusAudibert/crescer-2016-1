@@ -47,7 +47,7 @@ public class DwarfTest {
     @Test
     public void testaPerdeVida(){
         Dwarf dwarf = new Dwarf("Jumbeto");
-        dwarf.perdeVida();
+        dwarf.receberFlecha();
         assertEquals(100, dwarf.getVida()); 
     }
     
@@ -61,7 +61,7 @@ public class DwarfTest {
     public void testaDwarfStatusMorto(){
         Dwarf dwarf = new Dwarf("Anao");
         for(int i=0; i<11; i++){
-            dwarf.perdeVida();
+            dwarf.receberFlecha();
         }
         assertEquals(dwarf.getStatus(), Status.MORTO);
     }
@@ -70,7 +70,7 @@ public class DwarfTest {
     public void testaDwarfVidaNegativa(){
         Dwarf dwarf = new Dwarf("Anao");
         for(int i=0; i<15; i++){
-            dwarf.perdeVida();
+            dwarf.receberFlecha();
         }
         assertEquals(dwarf.getStatus(), Status.MORTO);
         assertTrue(dwarf.getVida() >= 0);
@@ -86,9 +86,9 @@ public class DwarfTest {
     public void testaNumeroSorteCaso2(){
         DataTerceiraEra dataNascimento = new DataTerceiraEra(5,6,1016);
         Dwarf dwarf = new Dwarf("Anao",dataNascimento);
-        assertTrue(dwarf.getNumeroSorte() == 101.0);
+        assertTrue(dwarf.getNumeroSorte() == 101.0);    
         for(int i = 0; i <= 2; i++){
-            dwarf.perdeVida();
+            dwarf.receberFlecha();
         }
         double retorno = 101.0 * -33;
         assertTrue(dwarf.getNumeroSorte() == retorno);
@@ -99,5 +99,37 @@ public class DwarfTest {
         Dwarf dwarf = new Dwarf("Seixas");
         double retorno = (101.0 * 33) % 100;
         assertTrue(dwarf.getNumeroSorte() == retorno);
+    }
+    
+    @Test
+    public void testaReceberFlechaCaso1(){
+        DataTerceiraEra dataNascimento = new DataTerceiraEra(5,6,1016);
+        Dwarf dwarf = new Dwarf("Anao",dataNascimento);
+        for(int i = 0 ; i <= 6 ; i++){
+            dwarf.receberFlecha();
+        }
+        assertTrue(dwarf.getVida() == 90);
+        assertTrue(dwarf.getExperiencia() == 10);
+    }
+    
+    @Test
+    public void testaReceberFlechaCaso2(){
+        DataTerceiraEra dataNascimento = new DataTerceiraEra(5,6,1021);
+        Dwarf dwarf = new Dwarf("Meireles",dataNascimento);
+        for(int i = 0 ; i <= 6 ; i++){
+            dwarf.receberFlecha();
+        }
+        assertTrue(dwarf.getVida() == 110);
+        assertTrue(dwarf.getExperiencia() == 0);
+    }
+    
+    @Test
+    public void testaReceberFlechaCaso3(){
+        Dwarf dwarf = new Dwarf("joca");
+        for(int i = 0 ; i <= 6 ; i++){
+            dwarf.receberFlecha();
+        }
+        assertTrue(dwarf.getVida() == 40);
+        assertTrue(dwarf.getExperiencia() == 0);
     }
 }

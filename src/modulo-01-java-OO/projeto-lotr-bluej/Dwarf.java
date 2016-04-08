@@ -1,6 +1,6 @@
 public class Dwarf {
     private String nome;
-    private int vida;
+    private int vida, experiencia;
     private Status status;
     private Inventario inventario;
     private DataTerceiraEra dataNascimento;
@@ -8,6 +8,7 @@ public class Dwarf {
     public Dwarf(String nome){
         this.nome = nome;
         this.vida = 110;
+        this.experiencia = 0;
         this.status = Status.VIVO;
         this.inventario = new Inventario();
         this.dataNascimento = new DataTerceiraEra(1,1,1);
@@ -18,7 +19,7 @@ public class Dwarf {
         this.dataNascimento = dataNascimento;
     }
     
-    public void perdeVida(){
+    private void perdeVida(){
         if(vida - 10 < 0){
             this.vida = 0;
             status = status.MORTO;
@@ -28,6 +29,18 @@ public class Dwarf {
             if(vida <= 0){
             status = status.MORTO;
             }
+        }
+    }
+    
+    public void receberFlecha(){
+        if(this.getNumeroSorte() < 0){
+            this.experiencia += 2;
+        }
+        else if(this.getNumeroSorte() >= 0 && this.getNumeroSorte() <= 100){
+            return;
+        }
+        else{
+            this.perdeVida();
         }
     }
     
@@ -73,5 +86,9 @@ public class Dwarf {
     
     public Inventario getInventario(){
         return this.inventario;
+    }
+    
+    public int getExperiencia(){
+        return this.experiencia;
     }
 }
