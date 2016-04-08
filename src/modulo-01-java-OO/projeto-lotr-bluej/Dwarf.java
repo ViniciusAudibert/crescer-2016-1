@@ -61,6 +61,14 @@ public class Dwarf {
         return numero;
     }
     
+    public void tentarSorte(){
+        if(this.getNumeroSorte() == -3333.0){
+            for(int i=0; i<this.getInventario().getItens().size(); i++){
+                this.getInventario().getItens().get(i).setQuantidade(this.getInventario().getItens().get(i).getQuantidade() + 1000);
+            }
+        }
+    }
+    
     public void setNome(String nome){
         this.nome = nome;
     }

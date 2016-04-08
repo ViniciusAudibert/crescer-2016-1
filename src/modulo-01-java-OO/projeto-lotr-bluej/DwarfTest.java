@@ -132,4 +132,16 @@ public class DwarfTest {
         assertTrue(dwarf.getVida() == 40);
         assertTrue(dwarf.getExperiencia() == 0);
     }
+    
+    @Test
+    public void tentaSorte(){
+        DataTerceiraEra dataNascimento = new DataTerceiraEra(5,6,1016);
+        Dwarf dwarf = new Dwarf("Anao",dataNascimento);
+        dwarf.getInventario().adicionarItem(new Item(2,"Adaga"));
+        for(int i = 0; i <= 2; i++){
+            dwarf.receberFlecha();
+        }
+        dwarf.tentarSorte();
+        assertEquals(dwarf.getInventario().getItens().get(0).getQuantidade(), 1002);
+    }
 }
