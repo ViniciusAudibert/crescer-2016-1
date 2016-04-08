@@ -36,10 +36,7 @@ public class Dwarf {
         if(this.getNumeroSorte() < 0){
             this.experiencia += 2;
         }
-        else if(this.getNumeroSorte() >= 0 && this.getNumeroSorte() <= 100){
-            return;
-        }
-        else{
+        else if(this.getNumeroSorte() < 0 || this.getNumeroSorte() > 100){
             this.perdeVida();
         }
     }
