@@ -27,4 +27,18 @@ public class InventarioTest
         inventario.removerItem(item);
         assertTrue(inventario.getItens().isEmpty());
     }
+    
+     @Test
+    public void getDescricoesDosItens(){
+        Dwarf dwarf = new Dwarf("Nome");
+        Item item = new Item(2, "Espada");
+        Item item2 = new Item(2, "Adaga");
+        Item item3 = new Item(2, "Arco");
+        dwarf.getInventario().adicionarItem(item);
+        dwarf.getInventario().adicionarItem(item2);
+        dwarf.getInventario().adicionarItem(item3);
+        String resposta = "Espada,Adaga,Arco";
+        assertEquals(dwarf.getInventario().getDescricoesItens(), resposta);
+    }
+    
 }

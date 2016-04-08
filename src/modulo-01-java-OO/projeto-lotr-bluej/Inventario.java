@@ -19,4 +19,15 @@ public class Inventario
     public ArrayList<Item> getItens(){
         return this.itens;
     }
+    
+    public String getDescricoesItens(){
+        String retorno = "";
+        for(int i=0; i<itens.size(); i++){
+            retorno += itens.get(i).getDescricao();
+            if(i != itens.size()-1){
+                retorno += ",";
+            }
+        }
+        return retorno;
+    }
 }
