@@ -39,6 +39,18 @@ public class Dwarf {
         this.inventario.removerItem(item);
     }
     
+    public double getNumeroSorte(){
+        double numero = 101.0;
+        if(this.getDataNascimento().ehBissexto() && (this.getVida() >= 80 && this.getVida() <= 90)){
+            return numero * -33;
+        }
+        if(!this.getDataNascimento().ehBissexto() && (this.getNome().equalsIgnoreCase("Seixas") ||
+        this.getNome().equalsIgnoreCase("Meireles"))){
+            return (numero * 33) % 100;
+        }
+        return numero;
+    }
+    
     public void setNome(String nome){
         this.nome = nome;
     }
