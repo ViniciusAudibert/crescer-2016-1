@@ -38,7 +38,7 @@ public class InventarioTest
         assertEquals(dwarf.getInventario().getDescricoesItens(), resposta);
     }
     
-      @Test
+     @Test
     public void itemMaiorQuantidade(){
         Dwarf dwarf = new Dwarf("Nome");
         dwarf.getInventario().adicionarItem(new Item(2, "Espada"));
@@ -48,4 +48,17 @@ public class InventarioTest
         assertEquals(maior, dwarf.getInventario().getItens().get(1));
     }
     
+     @Test
+    public void ordenaOsItens(){
+        Dwarf dwarf = new Dwarf("Nome");
+        dwarf.getInventario().adicionarItem(new Item(10, "Espada"));
+        dwarf.getInventario().adicionarItem(new Item(7, "Adaga"));
+        dwarf.getInventario().adicionarItem(new Item(5, "Arco"));
+        dwarf.getInventario().adicionarItem(new Item(1, "Escudo"));
+        dwarf.getInventario().ordenarItens();
+        assertEquals(dwarf.getInventario().getItens().get(0).getDescricao(), "Escudo");
+        assertEquals(dwarf.getInventario().getItens().get(1).getDescricao(), "Arco");
+        assertEquals(dwarf.getInventario().getItens().get(2).getDescricao(), "Adaga");
+        assertEquals(dwarf.getInventario().getItens().get(3).getDescricao(), "Espada");
+    }
 }

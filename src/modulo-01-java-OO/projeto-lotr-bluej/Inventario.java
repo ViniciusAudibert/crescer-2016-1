@@ -40,4 +40,19 @@ public class Inventario
         }
         return maior;
     }
+    
+    public void ordenarItens(){
+        boolean flag = true;
+        while(flag){
+            flag = false;
+            for(int j=1; j<this.itens.size(); j++){
+                if(this.itens.get(j).getQuantidade() < this.itens.get(j - 1).getQuantidade()){
+                    Item temp = this.itens.get(j);
+                    this.itens.set(j, this.itens.get(j - 1));
+                    this.itens.set(j - 1, temp);
+                    flag = true;
+                }
+            }
+        }
+    }
 }
