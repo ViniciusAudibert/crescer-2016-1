@@ -75,4 +75,29 @@ public class DwarfTest {
         assertEquals(dwarf.getStatus(), Status.MORTO);
         assertTrue(dwarf.getVida() >= 0);
     }
+    
+    @Test
+    public void testaNumeroSorteCaso1(){
+        Dwarf dwarf = new Dwarf("Anao");
+        assertTrue(dwarf.getNumeroSorte() == 101.0);
+    }
+    
+    @Test
+    public void testaNumeroSorteCaso2(){
+        DataTerceiraEra dataNascimento = new DataTerceiraEra(5,6,1016);
+        Dwarf dwarf = new Dwarf("Anao",dataNascimento);
+        assertTrue(dwarf.getNumeroSorte() == 101.0);
+        for(int i = 0; i <= 2; i++){
+            dwarf.perdeVida();
+        }
+        double retorno = 101.0 * -33;
+        assertTrue(dwarf.getNumeroSorte() == retorno);
+    }
+    
+    @Test
+    public void testaNumeroSorteCaso3(){
+        Dwarf dwarf = new Dwarf("Seixas");
+        double retorno = (101.0 * 33) % 100;
+        assertTrue(dwarf.getNumeroSorte() == retorno);
+    }
 }
