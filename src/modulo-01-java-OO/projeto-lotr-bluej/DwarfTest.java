@@ -134,7 +134,7 @@ public class DwarfTest {
     }
     
     @Test
-    public void tentaSorte(){
+    public void tentaSorteUmItem(){
         DataTerceiraEra dataNascimento = new DataTerceiraEra(5,6,1016);
         Dwarf dwarf = new Dwarf("Anao",dataNascimento);
         dwarf.getInventario().adicionarItem(new Item(2,"Adaga"));
@@ -143,5 +143,19 @@ public class DwarfTest {
         }
         dwarf.tentarSorte();
         assertEquals(dwarf.getInventario().getItens().get(0).getQuantidade(), 1002);
+    }
+    
+    @Test
+    public void tentaSorteDoisItens(){
+        DataTerceiraEra dataNascimento = new DataTerceiraEra(5,6,1016);
+        Dwarf dwarf = new Dwarf("Anao",dataNascimento);
+        dwarf.getInventario().adicionarItem(new Item(2,"Adaga"));
+        dwarf.getInventario().adicionarItem(new Item(6,"Escudo"));
+        for(int i = 0; i <= 2; i++){
+            dwarf.receberFlecha();
+        }
+        dwarf.tentarSorte();
+        assertEquals(dwarf.getInventario().getItens().get(0).getQuantidade(), 1002);
+        assertEquals(dwarf.getInventario().getItens().get(1).getQuantidade(), 1006);
     }
 }
