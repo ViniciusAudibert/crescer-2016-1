@@ -6,7 +6,7 @@ import org.junit.Test;
 public class ItemTest
 {
     @Test
-    public void testaContrutor(){
+    public void contrutor(){
         Item item = new Item(2, "Sword");
         assertTrue(item.getQuantidade() == 2);
         assertTrue(item.getDescricao() == "Sword");

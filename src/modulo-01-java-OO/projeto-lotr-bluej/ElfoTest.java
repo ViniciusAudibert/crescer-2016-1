@@ -6,7 +6,7 @@ import org.junit.Test;
 public class ElfoTest
 {
     @Test
-    public void testaConstrutor(){
+    public void contrutor(){
         Elfo elfo = new Elfo("Orelha");
         assertEquals(42, elfo.getFlechas());
         assertEquals("Orelha", elfo.getNome());
@@ -14,7 +14,7 @@ public class ElfoTest
     }
     
     @Test
-    public void testaSobrecargaConstrutor(){
+    public void sobrecargaDoConstrutor(){
         Elfo elfo = new Elfo("Orelha",77);
         assertEquals("Orelha",elfo.getNome());
         assertEquals(77, elfo.getFlechas());
@@ -22,7 +22,7 @@ public class ElfoTest
     }
     
     @Test
-    public void testaAtirarUmaFlecha(){
+    public void atiraUmaFlecha(){
         Elfo elfo = new Elfo("Orelha");
         Dwarf dwarf = new Dwarf("Jumbe");
         elfo.atirarFlecha(dwarf);
@@ -32,7 +32,7 @@ public class ElfoTest
     }
     
     @Test
-    public void testaAtirarDuasFlechas(){
+    public void atiraDuasFlechas(){
         Elfo elfo = new Elfo("Orelha");
         Dwarf dwarf = new Dwarf("Jumbe");
         elfo.atirarFlecha(dwarf);
@@ -43,7 +43,7 @@ public class ElfoTest
     }
     
     @Test
-    public void testaAtirarTresFlechas(){
+    public void atirarTresFlechas(){
         // Arrange
         Elfo elfo = new Elfo("Orelha", 120);
         Dwarf dwarf = new Dwarf("Jumbe");
@@ -58,19 +58,20 @@ public class ElfoTest
     }
     
     @Test
-    public void testaToString(){
+    public void toStringComVariaveisNoPlural(){
         Elfo elfo = new Elfo("Orelha");
         assertEquals(elfo.toString(), "Orelha possui 42 flechas e 0 níveis de experiência.");
     }
     
     @Test
-    public void testaToString1(){
+    public void toStringComFlechasNoSingular(){
         Elfo elfo = new Elfo("Orelha", 1);
+        
         assertEquals(elfo.toString(), "Orelha possui 1 flecha e 0 níveis de experiência.");
     }
     
     @Test
-    public void testaToString2(){
+    public void toStringComNiveisNoSingular(){
         Elfo elfo = new Elfo("Orelha", 100);
         elfo.atirarFlecha(new Dwarf("Anao"));
         assertEquals(elfo.toString(), "Orelha possui 99 flechas e 1 nível de experiência.");

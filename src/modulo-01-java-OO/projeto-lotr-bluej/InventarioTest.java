@@ -6,13 +6,13 @@ import org.junit.Test;
 public class InventarioTest
 {
     @Test
-    public void testaConstrutor(){
+    public void construtor(){
         Inventario inventario = new Inventario();
         assertTrue(inventario.getItens().isEmpty());
     }
     
     @Test
-    public void testaAdicionarItem(){
+    public void adicionarUmItem(){
         Inventario inventario = new Inventario();
         Item item = new Item(50, "Sword");
         inventario.adicionarItem(item);
@@ -20,7 +20,7 @@ public class InventarioTest
     }
     
      @Test
-    public void testaRemoveItem(){
+    public void removeUmItem(){
         Inventario inventario = new Inventario();
         Item item = new Item(50, "Sword");
         inventario.adicionarItem(item);
