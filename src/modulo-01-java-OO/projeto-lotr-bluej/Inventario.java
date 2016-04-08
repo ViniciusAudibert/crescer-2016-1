@@ -30,4 +30,14 @@ public class Inventario
         }
         return retorno;
     }
+    
+    public Item itemMaiorQuantia(){
+        Item maior = this.getItens().get(0);
+        for(int i=0; i<this.getItens().size(); i++){
+            if(this.getItens().get(i).getQuantidade() > maior.getQuantidade()){
+                maior = this.getItens().get(i);
+            }
+        }
+        return maior;
+    }
 }

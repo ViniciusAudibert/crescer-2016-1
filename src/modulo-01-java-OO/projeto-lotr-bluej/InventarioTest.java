@@ -31,14 +31,21 @@ public class InventarioTest
      @Test
     public void getDescricoesDosItens(){
         Dwarf dwarf = new Dwarf("Nome");
-        Item item = new Item(2, "Espada");
-        Item item2 = new Item(2, "Adaga");
-        Item item3 = new Item(2, "Arco");
-        dwarf.getInventario().adicionarItem(item);
-        dwarf.getInventario().adicionarItem(item2);
-        dwarf.getInventario().adicionarItem(item3);
+        dwarf.getInventario().adicionarItem(new Item(2, "Espada"));
+        dwarf.getInventario().adicionarItem(new Item(2, "Adaga"));
+        dwarf.getInventario().adicionarItem(new Item(2, "Arco"));
         String resposta = "Espada,Adaga,Arco";
         assertEquals(dwarf.getInventario().getDescricoesItens(), resposta);
+    }
+    
+      @Test
+    public void itemMaiorQuantidade(){
+        Dwarf dwarf = new Dwarf("Nome");
+        dwarf.getInventario().adicionarItem(new Item(2, "Espada"));
+        dwarf.getInventario().adicionarItem(new Item(7, "Adaga"));
+        dwarf.getInventario().adicionarItem(new Item(5, "Arco"));
+        Item maior = dwarf.getInventario().itemMaiorQuantia();
+        assertEquals(maior, dwarf.getInventario().getItens().get(1));
     }
     
 }
