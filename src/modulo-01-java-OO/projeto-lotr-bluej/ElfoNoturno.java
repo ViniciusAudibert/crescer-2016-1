@@ -6,9 +6,14 @@ public class ElfoNoturno extends Elfo {
         super(nome, flechas);
     }
     
-    public void atirarFlecha(Dwarf dwarf){
-        super.atirarFlecha(dwarf);
-        atributos.experiencia += 2;
-        atributos.vida -= atributos.getVida() * 0.05;
+    public void atirarFlecha(Dwarf dwarf){      
+        if(atributos.getStatus() == Status.VIVO){
+            super.atirarFlecha(dwarf);
+            atributos.experiencia += 2;
+            atributos.vida -= atributos.getVida() * 0.05;
+            if(atributos.getVida() <= 0){
+                atributos.setStatus(Status.MORTO);
+            }
+        }
     }
 }
