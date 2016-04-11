@@ -32,4 +32,15 @@ public class HobbitContador {
         }
         return maior;
     }
+    
+    public ArrayList<Integer> retornaArrayListComMultiplosDeTresAte(int numero) { // Nome do metodo errado
+        ArrayList<Integer> multiplos = new ArrayList<>(Arrays.asList(0)); // Variavel limite nao existe, precisa ser trocado pelo parametro
+        for (int i = 1; i <= numero; i++) { // Comando break sai do laço e nao termina de adicionar todos os multiplos
+          if (i % 3 == 0){
+            multiplos.add(i);
+          } 
+        }
+    
+        return multiplos;
+    }
 }

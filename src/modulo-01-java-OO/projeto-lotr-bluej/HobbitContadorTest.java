@@ -43,4 +43,18 @@ public class HobbitContadorTest {
         HobbitContador contador = new HobbitContador();
         assertTrue(contador.obterMaiorMultiploDeTresAte(1012) == 1011);
     }
+    
+    @Test
+    public void retornaArrayListComMultiplosDeTresAte27(){
+        HobbitContador contador = new HobbitContador();
+        ArrayList<Integer> esperado = contador.retornaArrayListComMultiplosDeTresAte(27);
+        assertTrue(esperado.get(esperado.size()-1) == 27);
+    }
+    
+    @Test
+    public void retornaArrayListComMultiplosDeTresAte1012(){
+        HobbitContador contador = new HobbitContador();
+        ArrayList<Integer> esperado = contador.retornaArrayListComMultiplosDeTresAte(1012);
+        assertTrue(esperado.get(esperado.size()-1) == 1011);
+    }
 }
