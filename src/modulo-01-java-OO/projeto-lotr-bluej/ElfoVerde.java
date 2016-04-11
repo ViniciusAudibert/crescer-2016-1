@@ -11,4 +11,10 @@ public class ElfoVerde extends Elfo {
         super.atirarFlecha(dwarf);
         experiencia++;
     }
+    
+    public void adicionarItem(Item item){
+        if(item.getDescricao().equals("Espada de aço valiriano") || item.getDescricao().equals("Arco e Flecha de Vidro")){
+            getInventario().adicionarItem(item);
+        }
+    }
 }
