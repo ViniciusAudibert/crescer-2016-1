@@ -9,16 +9,16 @@ public class ElfoTest
     public void contrutor(){
         Elfo elfo = new Elfo("Orelha");
         assertEquals(42, elfo.getFlechas());
-        assertEquals("Orelha", elfo.getNome());
-        assertEquals(0, elfo.getExperiencia());
+        assertEquals("Orelha", elfo.getAtributos().getNome());
+        assertEquals(0, elfo.getAtributos().getExperiencia());
     }
     
     @Test
     public void sobrecargaDoConstrutor(){
         Elfo elfo = new Elfo("Orelha",77);
-        assertEquals("Orelha",elfo.getNome());
+        assertEquals("Orelha",elfo.getAtributos().getNome());
         assertEquals(77, elfo.getFlechas());
-        assertEquals(0, elfo.getExperiencia());
+        assertEquals(0, elfo.getAtributos().getExperiencia());
     }
     
     @Test
@@ -27,8 +27,8 @@ public class ElfoTest
         Dwarf dwarf = new Dwarf("Jumbe");
         elfo.atirarFlecha(dwarf);
         assertEquals(41, elfo.getFlechas());
-        assertEquals(1, elfo.getExperiencia());
-        assertEquals(dwarf.getVida(),100);
+        assertEquals(1, elfo.getAtributos().getExperiencia());
+        assertEquals(dwarf.getAtributos().getVida(),100);
     }
     
     @Test
@@ -38,8 +38,8 @@ public class ElfoTest
         elfo.atirarFlecha(dwarf);
         elfo.atirarFlecha(dwarf);
         assertEquals(40, elfo.getFlechas());
-        assertEquals(2, elfo.getExperiencia());
-        assertEquals(dwarf.getVida(),90);
+        assertEquals(2, elfo.getAtributos().getExperiencia());
+        assertEquals(dwarf.getAtributos().getVida(),90);
     }
     
     @Test
@@ -53,8 +53,8 @@ public class ElfoTest
         elfo.atirarFlecha(dwarf);
         // Assert
         assertEquals(117, elfo.getFlechas());
-        assertEquals(3, elfo.getExperiencia());
-        assertEquals(dwarf.getVida(),80);
+        assertEquals(3, elfo.getAtributos().getExperiencia());
+        assertEquals(dwarf.getAtributos().getVida(),80);
     }
     
     @Test

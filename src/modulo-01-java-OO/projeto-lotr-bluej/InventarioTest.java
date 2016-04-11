@@ -31,34 +31,34 @@ public class InventarioTest
      @Test
     public void getDescricoesDosItens(){
         Dwarf dwarf = new Dwarf("Nome");
-        dwarf.getInventario().adicionarItem(new Item(2, "Espada"));
-        dwarf.getInventario().adicionarItem(new Item(2, "Adaga"));
-        dwarf.getInventario().adicionarItem(new Item(2, "Arco"));
+        dwarf.getAtributos().getInventario().adicionarItem(new Item(2, "Espada"));
+        dwarf.getAtributos().getInventario().adicionarItem(new Item(2, "Adaga"));
+        dwarf.getAtributos().getInventario().adicionarItem(new Item(2, "Arco"));
         String resposta = "Espada,Adaga,Arco";
-        assertEquals(dwarf.getInventario().getDescricoesItens(), resposta);
+        assertEquals(dwarf.getAtributos().getInventario().getDescricoesItens(), resposta);
     }
     
      @Test
     public void itemMaiorQuantidade(){
         Dwarf dwarf = new Dwarf("Nome");
-        dwarf.getInventario().adicionarItem(new Item(2, "Espada"));
-        dwarf.getInventario().adicionarItem(new Item(7, "Adaga"));
-        dwarf.getInventario().adicionarItem(new Item(5, "Arco"));
-        Item maior = dwarf.getInventario().itemMaiorQuantia();
-        assertEquals(maior, dwarf.getInventario().getItens().get(1));
+        dwarf.getAtributos().getInventario().adicionarItem(new Item(2, "Espada"));
+        dwarf.getAtributos().getInventario().adicionarItem(new Item(7, "Adaga"));
+        dwarf.getAtributos().getInventario().adicionarItem(new Item(5, "Arco"));
+        Item maior = dwarf.getAtributos().getInventario().itemMaiorQuantia();
+        assertEquals(maior, dwarf.getAtributos().getInventario().getItens().get(1));
     }
     
      @Test
     public void ordenaOsItens(){
         Dwarf dwarf = new Dwarf("Nome");
-        dwarf.getInventario().adicionarItem(new Item(10, "Espada"));
-        dwarf.getInventario().adicionarItem(new Item(7, "Adaga"));
-        dwarf.getInventario().adicionarItem(new Item(5, "Arco"));
-        dwarf.getInventario().adicionarItem(new Item(1, "Escudo"));
-        dwarf.getInventario().ordenarItens();
-        assertEquals(dwarf.getInventario().getItens().get(0).getDescricao(), "Escudo");
-        assertEquals(dwarf.getInventario().getItens().get(1).getDescricao(), "Arco");
-        assertEquals(dwarf.getInventario().getItens().get(2).getDescricao(), "Adaga");
-        assertEquals(dwarf.getInventario().getItens().get(3).getDescricao(), "Espada");
+        dwarf.getAtributos().getInventario().adicionarItem(new Item(10, "Espada"));
+        dwarf.getAtributos().getInventario().adicionarItem(new Item(7, "Adaga"));
+        dwarf.getAtributos().getInventario().adicionarItem(new Item(5, "Arco"));
+        dwarf.getAtributos().getInventario().adicionarItem(new Item(1, "Escudo"));
+        dwarf.getAtributos().getInventario().ordenarItens();
+        assertEquals(dwarf.getAtributos().getInventario().getItens().get(0).getDescricao(), "Escudo");
+        assertEquals(dwarf.getAtributos().getInventario().getItens().get(1).getDescricao(), "Arco");
+        assertEquals(dwarf.getAtributos().getInventario().getItens().get(2).getDescricao(), "Adaga");
+        assertEquals(dwarf.getAtributos().getInventario().getItens().get(3).getDescricao(), "Espada");
     }
 }

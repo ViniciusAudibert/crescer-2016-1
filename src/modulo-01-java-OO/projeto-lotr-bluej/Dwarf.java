@@ -1,12 +1,8 @@
-public class Dwarf extends Atributos {
-    private int vida;
-    private Status status;
+public class Dwarf {
     private DataTerceiraEra dataNascimento;
-
+    protected Atributos atributos;
     public Dwarf(String nome){
-        super(nome);
-        this.vida = 110;
-        this.status = Status.VIVO;
+        this.atributos = new Atributos(nome, 110);
         this.dataNascimento = new DataTerceiraEra(1,1,1);
     }
     
@@ -16,21 +12,21 @@ public class Dwarf extends Atributos {
     }
     
     private void perdeVida(){
-        if(vida - 10 < 0){
-            this.vida = 0;
-            status = status.MORTO;
+        if(atributos.vida - 10 < 0){
+            atributos.vida = 0;
+            atributos.setStatus(Status.MORTO);
         }
         else{
-            this.vida -= 10;
-            if(vida <= 0){
-            status = status.MORTO;
+            atributos.vida -= 10;
+            if(atributos.getVida() <= 0){
+            atributos.setStatus(Status.MORTO);
             }
         }
     }
     
     public void receberFlecha(){
         if(this.getNumeroSorte() < 0){
-            this.experiencia += 2;
+            atributos.experiencia += 2;
         }
         else if(this.getNumeroSorte() < 0 || this.getNumeroSorte() > 100){
             this.perdeVida();
@@ -38,20 +34,20 @@ public class Dwarf extends Atributos {
     }
     
     public void adicionarItem(Item item){
-        getInventario().adicionarItem(item);
+        atributos.getInventario().adicionarItem(item);
     }
     
     public void perderItem(Item item){
-        getInventario().removerItem(item);
+        atributos.getInventario().removerItem(item);
     }
     
     public double getNumeroSorte(){
         double numero = 101.0;
-        if(this.getDataNascimento().ehBissexto() && (this.getVida() >= 80 && this.getVida() <= 90)){
+        if(this.getDataNascimento().ehBissexto() && (atributos.getVida() >= 80 && atributos.getVida() <= 90)){
             return numero * -33;
         }
-        if(!this.getDataNascimento().ehBissexto() && (this.getNome().equalsIgnoreCase("Seixas") ||
-        this.getNome().equalsIgnoreCase("Meireles"))){
+        if(!this.getDataNascimento().ehBissexto() && (atributos.getNome().equalsIgnoreCase("Seixas") ||
+        atributos.getNome().equalsIgnoreCase("Meireles"))){
             return (numero * 33) % 100;
         }
         return numero;
@@ -59,21 +55,17 @@ public class Dwarf extends Atributos {
     
     public void tentarSorte(){
         if(this.getNumeroSorte() == -3333.0){
-            for(int i=0; i<this.getInventario().getItens().size(); i++){
-                this.getInventario().getItens().get(i).setQuantidade(this.getInventario().getItens().get(i).getQuantidade() + 1000);
+            for(int i=0; i<atributos.getInventario().getItens().size(); i++){
+                atributos.getInventario().getItens().get(i).setQuantidade(atributos.getInventario().getItens().get(i).getQuantidade() + 1000);
             }
         }
     }
     
-    public int getVida(){
-        return this.vida;
-    }
-    
-    public Status getStatus(){
-        return this.status;
-    }
-    
     public DataTerceiraEra getDataNascimento(){
         return this.dataNascimento;
+    }
+    
+    public Atributos getAtributos(){
+        return this.atributos;
     }
 }

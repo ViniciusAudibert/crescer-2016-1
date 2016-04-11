@@ -1,8 +1,9 @@
-public class Elfo extends Atributos {
+public class Elfo {
     private int flechas;
+    protected Atributos atributos;
     
     public Elfo(String nome) {
-        super(nome);
+        this.atributos = new Atributos(nome,100);
         this.flechas = 42;
     }
     
@@ -12,7 +13,7 @@ public class Elfo extends Atributos {
     }
     
     public void atirarFlecha(Dwarf dwarf) {
-        experiencia++;
+        atributos.experiencia++;
         flechas--;
         dwarf.receberFlecha();
     }
@@ -23,12 +24,16 @@ public class Elfo extends Atributos {
     
     public String toString(){
         boolean flechaNoSingular = Math.abs(this.flechas) == 1;
-        boolean experienciaNoSingular = Math.abs(this.experiencia) == 1;
+        boolean experienciaNoSingular = Math.abs(atributos.experiencia) == 1;
         return String.format("%s possui %d %s e %d %s de experiência.",
-        getNome(),
-        getFlechas(),
+        atributos.getNome(),
+        this.getFlechas(),
         flechaNoSingular ? "flecha" : "flechas",
-        getExperiencia(),
+        atributos.getExperiencia(),
         experienciaNoSingular ? "nível" : "níveis");
+    }
+    
+    public Atributos getAtributos(){
+        return this.atributos;
     }
 }
