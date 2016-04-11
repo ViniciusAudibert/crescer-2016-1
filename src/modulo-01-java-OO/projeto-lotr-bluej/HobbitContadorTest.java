@@ -31,4 +31,16 @@ public class HobbitContadorTest {
         int diferenca = contador.calcularDiferenca(arrayDePares);
         assertTrue(diferenca == 1748);
     }
+    
+    @Test
+    public void obterMaiorMultiploDeTresAte27(){
+        HobbitContador contador = new HobbitContador();
+        assertTrue(contador.obterMaiorMultiploDeTresAte(27) == 27);
+    }
+    
+    @Test
+    public void obterMaiorMultiploDeTresAte1012(){
+        HobbitContador contador = new HobbitContador();
+        assertTrue(contador.obterMaiorMultiploDeTresAte(1012) == 1011);
+    }
 }
