@@ -1,8 +1,9 @@
 public class Elfo extends Atributos {
-    private int flechas = 42;
+    private int flechas;
     
     public Elfo(String nome) {
         super(nome);
+        this.flechas = 42;
     }
     
     public Elfo(String nome, int flechas){
@@ -18,10 +19,6 @@ public class Elfo extends Atributos {
     
     public int getFlechas(){
         return this.flechas;
-    }
-    
-    public int getExperiencia(){
-        return this.experiencia;
     }
     
     public String toString(){
