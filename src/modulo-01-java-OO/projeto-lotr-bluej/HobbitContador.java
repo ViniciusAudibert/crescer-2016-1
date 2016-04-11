@@ -18,10 +18,11 @@ public class HobbitContador {
     }
     
     public int obterMaiorMultiploDeTresAte(int numero){ // Estava errado pois retornava um ArrayList e nao o maior numero multiplo de tres.
-        int maior = Integer.MIN_VALUE;
-        for(int i=0; i<=numero; i++){
+        int maior = 0;
+        for(int i=numero; i>=0; i--){
             if((i%3 == 0) && (maior < i)){
                 maior = i;
+                break;
             }
         }
         return maior;
