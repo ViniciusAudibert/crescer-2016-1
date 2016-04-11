@@ -1,16 +1,12 @@
-public class Dwarf {
-    private String nome;
-    private int vida, experiencia;
+public class Dwarf extends Atributos {
+    private int vida;
     private Status status;
-    private Inventario inventario;
     private DataTerceiraEra dataNascimento;
 
     public Dwarf(String nome){
-        this.nome = nome;
+        super(nome);
         this.vida = 110;
-        this.experiencia = 0;
         this.status = Status.VIVO;
-        this.inventario = new Inventario();
         this.dataNascimento = new DataTerceiraEra(1,1,1);
     }
     
@@ -42,11 +38,11 @@ public class Dwarf {
     }
     
     public void adicionarItem(Item item){
-        this.inventario.adicionarItem(item);
+        getInventario().adicionarItem(item);
     }
     
     public void perderItem(Item item){
-        this.inventario.removerItem(item);
+        getInventario().removerItem(item);
     }
     
     public double getNumeroSorte(){
@@ -69,14 +65,6 @@ public class Dwarf {
         }
     }
     
-    public void setNome(String nome){
-        this.nome = nome;
-    }
-    
-    public String getNome(){
-        return this.nome;
-    }
-    
     public int getVida(){
         return this.vida;
     }
@@ -87,13 +75,5 @@ public class Dwarf {
     
     public DataTerceiraEra getDataNascimento(){
         return this.dataNascimento;
-    }
-    
-    public Inventario getInventario(){
-        return this.inventario;
-    }
-    
-    public int getExperiencia(){
-        return this.experiencia;
     }
 }

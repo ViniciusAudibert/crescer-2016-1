@@ -1,12 +1,8 @@
-public class Elfo {
-    private String nome;
-    private int experiencia, flechas = 42;
-    private Inventario inventario;
+public class Elfo extends Atributos {
+    private int flechas = 42;
     
     public Elfo(String nome) {
-        this.nome = nome;
-        this.experiencia = 0;
-        this.inventario = new Inventario();
+        super(nome);
     }
     
     public Elfo(String nome, int flechas){
@@ -28,24 +24,14 @@ public class Elfo {
         return this.experiencia;
     }
     
-    public String getNome(){
-        return this.nome;
-    }
-    
-    public Inventario getInventario(){
-        return this.inventario;
-    }
-    
     public String toString(){
         boolean flechaNoSingular = Math.abs(this.flechas) == 1;
         boolean experienciaNoSingular = Math.abs(this.experiencia) == 1;
         return String.format("%s possui %d %s e %d %s de experiência.",
-        this.nome,
-        this.flechas,
+        getNome(),
+        getFlechas(),
         flechaNoSingular ? "flecha" : "flechas",
-        this.experiencia,
+        getExperiencia(),
         experienciaNoSingular ? "nível" : "níveis");
-        /* return getNome() + " possui "+ getFlechas() + " flechas e "
-        + getExperiencia() + " níveis de experiência."; */
     }
 }
