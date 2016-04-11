@@ -1,10 +1,12 @@
 public class Elfo {
     private String nome;
     private int experiencia, flechas = 42;
+    private Inventario inventario;
     
     public Elfo(String nome) {
         this.nome = nome;
         this.experiencia = 0;
+        this.inventario = new Inventario();
     }
     
     public Elfo(String nome, int flechas){
@@ -28,6 +30,10 @@ public class Elfo {
     
     public String getNome(){
         return this.nome;
+    }
+    
+    public Inventario getInventario(){
+        return this.inventario;
     }
     
     public String toString(){
