@@ -1,14 +1,17 @@
 public class Elfo extends Personagem {
     protected int flechas;
+    private static int contadorDeElfos;
     
     public Elfo(String nome) {
         super(nome,100);
         this.flechas = 42;
+        this.contadorDeElfos++;
     }
     
     public Elfo(String nome, int flechas){
         super(nome,100);
         this.flechas = flechas;
+        this.contadorDeElfos++;
     }
     
     public void atirarFlecha(Dwarf dwarf) {
@@ -32,5 +35,9 @@ public class Elfo extends Personagem {
         flechaNoSingular ? "flecha" : "flechas",
         getExperiencia(),
         experienciaNoSingular ? "nível" : "níveis");
+    }
+    
+    public static int getContadorDeElfos(){
+        return contadorDeElfos;
     }
 }
