@@ -9,9 +9,8 @@ public class Elfo extends Personagem {
     }
     
     public Elfo(String nome, int flechas){
-        super(nome,100);
+        this(nome);
         this.flechas = flechas;
-        this.contadorDeElfos++;
     }
     
     public void atirarFlecha(Dwarf dwarf) {
