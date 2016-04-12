@@ -76,4 +76,12 @@ public class ElfoTest
         elfo.atirarFlecha(new Dwarf("Anao"));
         assertEquals(elfo.toString(), "Orelha possui 99 flechas e 1 nível de experiência.");
     }
+    
+    @Test
+    public void contaQuantosElfosExistem(){
+        Elfo elfo1 = new Elfo("Ranger");
+        Elfo elfo2 = new ElfoNoturno("Ranger");
+        Elfo elfo3 = new ElfoVerde("Ranger");
+        assertTrue(Elfo.getContadorDeElfos() == 3);
+    }
 }
