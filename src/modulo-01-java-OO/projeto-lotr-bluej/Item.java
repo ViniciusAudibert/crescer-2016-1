@@ -7,6 +7,10 @@ public class Item{
         this.descricao = descricao;
     }
     
+    public boolean equals(Object obj){
+        return this.quantidade == ((Item)obj).getQuantidade() && this.descricao.equals(((Item)obj).getDescricao());
+    }
+    
     public int getQuantidade(){
         return this.quantidade;
     }
