@@ -9,13 +9,13 @@ public class IrishDwarf extends Dwarf {
     
     public void tentarSorte(){
         if(getNumeroSorte() == -3333.0){
-            for(int i=0; i<getAtributos().getInventario().getItens().size(); i++){
+            for(int i=0; i< getInventario().getItens().size(); i++){
                 int soma = 0;
-                for(int j=1; j <= getAtributos().getInventario().getItens().get(i).getQuantidade(); j++){
+                for(int j=1; j <= getInventario().getItens().get(i).getQuantidade(); j++){
                     soma += j;
                 }
-                int quantidade = getAtributos().getInventario().getItens().get(i).getQuantidade();
-                getAtributos().getInventario().getItens().get(i).setQuantidade((1000 * soma) + quantidade);
+                int quantidade = getInventario().getItens().get(i).getQuantidade();
+                getInventario().getItens().get(i).setQuantidade((1000 * soma) + quantidade);
             }
         }
     }

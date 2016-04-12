@@ -1,10 +1,11 @@
-public class Atributos {
+public class Personagem {
     private String nome;
-    protected int experiencia, vida;
+    protected int experiencia;
+    protected double vida;
     private Inventario inventario;
     private Status status;
     
-    public Atributos(String nome,int vida){
+    public Personagem(String nome,int vida){
         this.nome = nome;
         this.vida = vida;
         this.experiencia = 0;
@@ -12,7 +13,15 @@ public class Atributos {
         this.status = Status.VIVO;
     }
     
-    public int getVida(){
+    public Personagem(String nome){
+        this.nome = nome;
+        this.vida = 0;
+        this.experiencia = 0;
+        this.inventario = new Inventario();
+        this.status = Status.VIVO;
+    }
+    
+    public double getVida(){
         return this.vida;
     }
     

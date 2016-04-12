@@ -1,23 +1,19 @@
 public class ElfoNoturno extends Elfo {
-    private double vidaReal;
     public ElfoNoturno(String nome){
         super(nome);
-        this.vidaReal = atributos.getVida();
     }
     public ElfoNoturno(String nome, int flechas){
-        super(nome, flechas);
-        this.vidaReal = atributos.getVida();
+        super(nome,flechas);
     }
     
     public void atirarFlecha(Dwarf dwarf){ // Elfos Noturnos nao morrem pois nao existe um parametro que cheque se sua vida está zerada, pois entao ele poderia continuar até suas flechas acabarem.
-        if(atributos.getStatus() == Status.VIVO){
+        if(( getStatus() == Status.VIVO ) && ( getFlechas() > 0 )){
             super.atirarFlecha(dwarf);
-            atributos.experiencia += 2;
-            this.vidaReal -= this.vidaReal * 0.05;
-            atributos.vida = (int) this.vidaReal;
-            if(atributos.vida < 1){
-                atributos.setStatus(Status.MORTO);
-                atributos.vida = 0;
+            experiencia += 2;
+            vida -= vida * 0.05;
+            if(vida < 1){
+                setStatus(Status.MORTO);
+                vida = 0;
             }
         }
     }   

@@ -7,9 +7,9 @@ public class DwarfTest {
     @Test
     public void Construtor(){
         Dwarf dwarf = new Dwarf("Jumbeto");
-        assertEquals(110, dwarf.getAtributos().getVida());
-        assertEquals("Jumbeto", dwarf.getAtributos().getNome());
-        assertTrue(dwarf.getAtributos().getStatus() == Status.VIVO);
+        assertTrue(110 == dwarf.getVida());
+        assertEquals("Jumbeto", dwarf.getNome());
+        assertTrue(dwarf.getStatus() == Status.VIVO);
         assertTrue(dwarf.getDataNascimento().getDia() == 1);
         assertTrue(dwarf.getDataNascimento().getMes() == 1);
         assertTrue(dwarf.getDataNascimento().getAno() == 1);
@@ -19,9 +19,9 @@ public class DwarfTest {
      public void segundoConstrutor(){
         DataTerceiraEra dataNascimento = new DataTerceiraEra(12,7,2015);
         Dwarf dwarf = new Dwarf("Jumbeto", dataNascimento);
-        assertEquals(110, dwarf.getAtributos().getVida());
-        assertEquals("Jumbeto", dwarf.getAtributos().getNome());
-        assertTrue(dwarf.getAtributos().getStatus() == Status.VIVO);
+        assertTrue(110 == dwarf.getVida());
+        assertEquals("Jumbeto", dwarf.getNome());
+        assertTrue(dwarf.getStatus() == Status.VIVO);
         assertTrue(dwarf.getDataNascimento().getDia() == 12);
         assertTrue(dwarf.getDataNascimento().getMes() == 7);
         assertTrue(dwarf.getDataNascimento().getAno() == 2015);
@@ -32,7 +32,7 @@ public class DwarfTest {
         Dwarf dwarf = new Dwarf("Jumbeto");
         Item item = new Item(1,"Sword");
         dwarf.adicionarItem(item);
-        assertTrue(dwarf.getAtributos().getInventario().getItens().get(0) == item);
+        assertTrue(dwarf.getInventario().getItens().get(0) == item);
     }
     
     @Test
@@ -41,20 +41,20 @@ public class DwarfTest {
         Item item = new Item(1,"Sword");
         dwarf.adicionarItem(item);
         dwarf.perderItem(item);
-        assertTrue(dwarf.getAtributos().getInventario().getItens().isEmpty());
+        assertTrue(dwarf.getInventario().getItens().isEmpty());
     }
     
     @Test
     public void perdeVida(){
         Dwarf dwarf = new Dwarf("Jumbeto");
         dwarf.receberFlecha();
-        assertEquals(100, dwarf.getAtributos().getVida()); 
+        assertTrue(100 == dwarf.getVida()); 
     }
     
     @Test
     public void dwarfStatusVivo(){
         Dwarf dwarf = new Dwarf("Anao");
-        assertEquals(dwarf.getAtributos().getStatus(), Status.VIVO);
+        assertEquals(dwarf.getStatus(), Status.VIVO);
     }
     
     @Test
@@ -63,7 +63,7 @@ public class DwarfTest {
         for(int i=0; i<11; i++){
             dwarf.receberFlecha();
         }
-        assertEquals(dwarf.getAtributos().getStatus(), Status.MORTO);
+        assertEquals(dwarf.getStatus(), Status.MORTO);
     }
     
     @Test
@@ -72,8 +72,8 @@ public class DwarfTest {
         for(int i=0; i<15; i++){
             dwarf.receberFlecha();
         }
-        assertEquals(dwarf.getAtributos().getStatus(), Status.MORTO);
-        assertTrue(dwarf.getAtributos().getVida() >= 0);
+        assertEquals(dwarf.getStatus(), Status.MORTO);
+        assertTrue(dwarf.getVida() >= 0);
     }
     
     @Test
@@ -108,8 +108,8 @@ public class DwarfTest {
         for(int i = 0 ; i <= 6 ; i++){
             dwarf.receberFlecha();
         }
-        assertTrue(dwarf.getAtributos().getVida() == 90);
-        assertTrue(dwarf.getAtributos().getExperiencia() == 10);
+        assertTrue(dwarf.getVida() == 90);
+        assertTrue(dwarf.getExperiencia() == 10);
     }
     
     @Test
@@ -119,8 +119,8 @@ public class DwarfTest {
         for(int i = 0 ; i <= 6 ; i++){
             dwarf.receberFlecha();
         }
-        assertTrue(dwarf.getAtributos().getVida() == 110);
-        assertTrue(dwarf.getAtributos().getExperiencia() == 0);
+        assertTrue(dwarf.getVida() == 110);
+        assertTrue(dwarf.getExperiencia() == 0);
     }
     
     @Test
@@ -129,33 +129,33 @@ public class DwarfTest {
         for(int i = 0 ; i <= 6 ; i++){
             dwarf.receberFlecha();
         }
-        assertTrue(dwarf.getAtributos().getVida() == 40);
-        assertTrue(dwarf.getAtributos().getExperiencia() == 0);
+        assertTrue(dwarf.getVida() == 40);
+        assertTrue(dwarf.getExperiencia() == 0);
     }
     
     @Test
     public void tentaSorteUmItem(){
         DataTerceiraEra dataNascimento = new DataTerceiraEra(5,6,1016);
         Dwarf dwarf = new Dwarf("Anao",dataNascimento);
-        dwarf.getAtributos().getInventario().adicionarItem(new Item(2,"Adaga"));
+        dwarf.getInventario().adicionarItem(new Item(2,"Adaga"));
         for(int i = 0; i <= 2; i++){
             dwarf.receberFlecha();
         }
         dwarf.tentarSorte();
-        assertEquals(dwarf.getAtributos().getInventario().getItens().get(0).getQuantidade(), 1002);
+        assertEquals(dwarf.getInventario().getItens().get(0).getQuantidade(), 1002);
     }
     
     @Test
     public void tentaSorteDoisItens(){
         DataTerceiraEra dataNascimento = new DataTerceiraEra(5,6,1016);
         Dwarf dwarf = new Dwarf("Anao",dataNascimento);
-        dwarf.getAtributos().getInventario().adicionarItem(new Item(2,"Adaga"));
-        dwarf.getAtributos().getInventario().adicionarItem(new Item(6,"Escudo"));
+        dwarf.getInventario().adicionarItem(new Item(2,"Adaga"));
+        dwarf.getInventario().adicionarItem(new Item(6,"Escudo"));
         for(int i = 0; i <= 2; i++){
             dwarf.receberFlecha();
         }
         dwarf.tentarSorte();
-        assertEquals(dwarf.getAtributos().getInventario().getItens().get(0).getQuantidade(), 1002);
-        assertEquals(dwarf.getAtributos().getInventario().getItens().get(1).getQuantidade(), 1006);
+        assertEquals(dwarf.getInventario().getItens().get(0).getQuantidade(), 1002);
+        assertEquals(dwarf.getInventario().getItens().get(1).getQuantidade(), 1006);
     }
 }

@@ -9,10 +9,10 @@ public class ElfoNoturnoTest {
         ElfoNoturno elfo = new ElfoNoturno("NightOne");
         Dwarf dwarf = new Dwarf("Jumbe");
         elfo.atirarFlecha(dwarf);
-        assertEquals(41, elfo.getFlechas());
-        assertEquals(3, elfo.getAtributos().getExperiencia());
-        assertEquals(dwarf.getAtributos().getVida(),100);
-        assertTrue(elfo.atributos.getVida() == 95);
+        assertTrue(41 == elfo.getFlechas());
+        assertTrue(3 == elfo.getExperiencia());
+        assertTrue(dwarf.getVida() == 100);
+        assertTrue(elfo.getVida() == 95);
     }
     
     @Test
@@ -21,10 +21,10 @@ public class ElfoNoturnoTest {
         Dwarf dwarf = new Dwarf("Jumbe");
         elfo.atirarFlecha(dwarf);
         elfo.atirarFlecha(dwarf);
-        assertEquals(40, elfo.getFlechas());
-        assertEquals(6, elfo.getAtributos().getExperiencia());
-        assertEquals(dwarf.getAtributos().getVida(),90);
-        assertTrue(elfo.atributos.getVida() == 90);
+        assertTrue(40 == elfo.getFlechas());
+        assertTrue(6 == elfo.getExperiencia());
+        assertTrue(dwarf.getVida() == 90);
+        assertTrue((int)elfo.getVida() == 90);
     }
     
     @Test
@@ -34,10 +34,10 @@ public class ElfoNoturnoTest {
         elfo.atirarFlecha(dwarf);
         elfo.atirarFlecha(dwarf);
         elfo.atirarFlecha(dwarf);
-        assertEquals(117, elfo.getFlechas());
-        assertEquals(9, elfo.getAtributos().getExperiencia());
-        assertEquals(dwarf.getAtributos().getVida(),80);
-        assertTrue(elfo.atributos.getVida() == 85);
+        assertTrue(117 == elfo.getFlechas());
+        assertTrue(9 == elfo.getExperiencia());
+        assertTrue(dwarf.getVida() == 80);
+        assertTrue((int)elfo.getVida() == 85);
     }
     
     @Test
@@ -47,9 +47,9 @@ public class ElfoNoturnoTest {
         for(int i= 0; i<100; i++){
             elfo.atirarFlecha(dwarf);
         }
-        assertEquals(30, elfo.getFlechas());
-        assertEquals(270, elfo.getAtributos().getExperiencia());
-        assertTrue(elfo.atributos.getVida() == 0);
-        assertTrue(elfo.atributos.getStatus() == Status.MORTO);
+        assertTrue(30 == elfo.getFlechas());
+        assertTrue(270 == elfo.getExperiencia());
+        assertTrue(elfo.getVida() == 0);
+        assertTrue(elfo.getStatus() == Status.MORTO);
     }
 }
