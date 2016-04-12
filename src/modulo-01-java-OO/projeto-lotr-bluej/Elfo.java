@@ -13,9 +13,11 @@ public class Elfo {
     }
     
     public void atirarFlecha(Dwarf dwarf) {
-        atributos.experiencia++;
-        flechas--;
-        dwarf.receberFlecha();
+        if(this.flechas > 0){
+            atributos.experiencia++;
+            flechas--;
+            dwarf.receberFlecha();
+        }
     }
     
     public int getFlechas(){
