@@ -12,7 +12,7 @@ public class ElfoNoturnoTest {
         assertEquals(41, elfo.getFlechas());
         assertEquals(3, elfo.getAtributos().getExperiencia());
         assertEquals(dwarf.getAtributos().getVida(),100);
-        assertTrue(elfo.getVida() == 95);
+        assertTrue(elfo.atributos.getVida() == 95);
     }
     
     @Test
@@ -24,7 +24,7 @@ public class ElfoNoturnoTest {
         assertEquals(40, elfo.getFlechas());
         assertEquals(6, elfo.getAtributos().getExperiencia());
         assertEquals(dwarf.getAtributos().getVida(),90);
-        assertTrue(elfo.getVida() == 90.25);
+        assertTrue(elfo.atributos.getVida() == 90);
     }
     
     @Test
@@ -37,6 +37,19 @@ public class ElfoNoturnoTest {
         assertEquals(117, elfo.getFlechas());
         assertEquals(9, elfo.getAtributos().getExperiencia());
         assertEquals(dwarf.getAtributos().getVida(),80);
-        assertTrue(elfo.getVida() == 85.7375);
+        assertTrue(elfo.atributos.getVida() == 85);
+    }
+    
+    @Test
+    public void atirarFlechasAteMorrer(){
+        ElfoNoturno elfo = new ElfoNoturno("NightOne", 120);
+        Dwarf dwarf = new Dwarf("Jumbe");
+        for(int i= 0; i<100; i++){
+            elfo.atirarFlecha(dwarf);
+        }
+        assertEquals(30, elfo.getFlechas());
+        assertEquals(270, elfo.getAtributos().getExperiencia());
+        assertTrue(elfo.atributos.getVida() == 0);
+        assertTrue(elfo.atributos.getStatus() == Status.MORTO);
     }
 }
