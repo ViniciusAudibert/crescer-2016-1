@@ -6,7 +6,7 @@ public class ElfoNoturno extends Elfo {
         super(nome, flechas);
     }
     
-    public void atirarFlecha(Dwarf dwarf){      
+    public void atirarFlecha(Dwarf dwarf){ // Elfos Noturnos nao morrem pois nao existe um parametro que cheque se sua vida está zerada, pois entao ele poderia continuar até suas flechas acabarem.
         if(atributos.getStatus() == Status.VIVO){
             super.atirarFlecha(dwarf);
             atributos.experiencia += 2;
