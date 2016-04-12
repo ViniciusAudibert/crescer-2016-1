@@ -10,6 +10,13 @@ public class Dwarf extends Personagem {
         this.dataNascimento = dataNascimento;
     }
     
+    public static Dwarf retornaDwarfMenorVida(Dwarf dwarf1, Dwarf dwarf2){
+        if(dwarf1 != null && dwarf2 != null){
+            return dwarf1.getVida() < dwarf2.getVida() ? dwarf1 : dwarf2;
+        }
+        return null;
+    }
+    
     private void perdeVida(){
         if(vida - 10 < 0){
             vida = 0;
