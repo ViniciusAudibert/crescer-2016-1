@@ -6,30 +6,30 @@ import org.junit.Test;
 public class ElfoNoturnoTest {
     @Test
     public void atiraUmaFlecha(){
-        Elfo elfo = new ElfoNoturno("NightOne");
+        ElfoNoturno elfo = new ElfoNoturno("NightOne");
         Dwarf dwarf = new Dwarf("Jumbe");
         elfo.atirarFlecha(dwarf);
         assertEquals(41, elfo.getFlechas());
         assertEquals(3, elfo.getAtributos().getExperiencia());
         assertEquals(dwarf.getAtributos().getVida(),100);
-        assertTrue(elfo.atributos.getVida() == 95);
+        assertTrue(elfo.getVida() == 95);
     }
     
     @Test
     public void atiraDuasFlechas(){
-        Elfo elfo = new ElfoNoturno("NightOne");
+        ElfoNoturno elfo = new ElfoNoturno("NightOne");
         Dwarf dwarf = new Dwarf("Jumbe");
         elfo.atirarFlecha(dwarf);
         elfo.atirarFlecha(dwarf);
         assertEquals(40, elfo.getFlechas());
         assertEquals(6, elfo.getAtributos().getExperiencia());
         assertEquals(dwarf.getAtributos().getVida(),90);
-        assertTrue(elfo.atributos.getVida() == 90);
+        assertTrue(elfo.getVida() == 90.25);
     }
     
     @Test
     public void atirarTresFlechas(){
-        Elfo elfo = new ElfoNoturno("NightOne", 120);
+        ElfoNoturno elfo = new ElfoNoturno("NightOne", 120);
         Dwarf dwarf = new Dwarf("Jumbe");
         elfo.atirarFlecha(dwarf);
         elfo.atirarFlecha(dwarf);
@@ -37,19 +37,6 @@ public class ElfoNoturnoTest {
         assertEquals(117, elfo.getFlechas());
         assertEquals(9, elfo.getAtributos().getExperiencia());
         assertEquals(dwarf.getAtributos().getVida(),80);
-        assertTrue(elfo.atributos.getVida() == 85);
-    }
-    
-    @Test
-    public void atiraFlechasAteMorrer(){
-        Elfo elfo = new ElfoNoturno("NightOne", 120);
-        Dwarf dwarf = new Dwarf("Jumbe");
-        for(int i=0; i<45; i++){
-            elfo.atirarFlecha(dwarf);
-        }
-        assertEquals(75, elfo.getFlechas());
-        assertEquals(135, elfo.getAtributos().getExperiencia());
-        assertEquals(elfo.atributos.getVida(), 0);
-        assertEquals(elfo.atributos.getStatus(), Status.MORTO);
+        assertTrue(elfo.getVida() == 85.7375);
     }
 }
