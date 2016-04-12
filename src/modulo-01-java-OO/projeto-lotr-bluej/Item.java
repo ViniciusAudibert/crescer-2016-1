@@ -8,7 +8,10 @@ public class Item{
     }
     
     public boolean equals(Object obj){
-        return this.quantidade == ((Item)obj).getQuantidade() && this.descricao.equals(((Item)obj).getDescricao());
+        return ((Item)obj).getDescricao() != null &&
+        this.descricao != null &&
+        this.quantidade == ((Item)obj).getQuantidade() && 
+        this.descricao.equals(((Item)obj).getDescricao());
     }
     
     public int getQuantidade(){
