@@ -79,9 +79,11 @@ public class ElfoTest
     
     @Test
     public void contaQuantosElfosExistem(){
+        int contador = 0;
         Elfo elfo1 = new Elfo("Ranger");
         Elfo elfo2 = new ElfoNoturno("Ranger");
         Elfo elfo3 = new ElfoVerde("Ranger");
-        assertTrue(Elfo.getContadorDeElfos() == 3);
+        assertEquals(Elfo.getContadorDeElfos(), Elfo.getContadorDeElfos() + contador);
+        contador +=  Elfo.getContadorDeElfos();
     }
 }
