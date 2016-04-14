@@ -20,6 +20,7 @@ public class ExercitoDeElfos {
     }
     
     public void agruparPorStatus(){
+        this.exercitoDeElfosStatus.clear();
         for(Elfo chaveValor : exercitoDeElfos.values()){
             Status status = chaveValor.getStatus();
             if(!exercitoDeElfosStatus.containsKey(status)){
