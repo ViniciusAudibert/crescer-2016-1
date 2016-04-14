@@ -2,7 +2,7 @@ import java.util.*;
 
 public class ExercitoDeElfos {
     private HashMap<String,Elfo> exercitoDeElfos;
-    private HashMap<Status,Elfo> exercitoDeElfosStatus;
+    private HashMap<Status,ArrayList<Elfo>> exercitoDeElfosStatus;
         
     public ExercitoDeElfos(){
         this.exercitoDeElfos = new HashMap<>();
@@ -20,16 +20,20 @@ public class ExercitoDeElfos {
     }
     
     public void agruparPorStatus(){
-        for(Map.Entry<String, Elfo> chaveValor : exercitoDeElfos.entrySet()){
-            exercitoDeElfosStatus.put(chaveValor.getValue().getStatus(),chaveValor.getValue());
+        for(Elfo chaveValor : exercitoDeElfos.values()){
+            Status status = chaveValor.getStatus();
+            if(!exercitoDeElfosStatus.containsKey(status)){
+                exercitoDeElfosStatus.put(status,new ArrayList<Elfo>());
+            }
+            exercitoDeElfosStatus.get(status).add(chaveValor);
         }
     }
     
     public ArrayList<Elfo> buscaPeloStatus(Status status){
         ArrayList<Elfo> listaDeElfosPorStatus = new ArrayList<>();
-        for(Map.Entry<String, Elfo> chaveValor : exercitoDeElfos.entrySet()){
-            if(chaveValor.getValue().getStatus() == status){
-                listaDeElfosPorStatus.add(chaveValor.getValue());
+        for(Elfo chaveValor : exercitoDeElfos.values()){
+            if(chaveValor.getStatus() == status){
+                listaDeElfosPorStatus.add(chaveValor);
             }
         }
         return listaDeElfosPorStatus;
@@ -39,7 +43,7 @@ public class ExercitoDeElfos {
         return this.exercitoDeElfos;
     }
     
-    public HashMap<Status,Elfo> getExercitoDeElfosStatus(){
+    public HashMap<Status,ArrayList<Elfo>> getExercitoDeElfosStatus(){
         return this.exercitoDeElfosStatus;
     }
 }
