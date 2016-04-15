@@ -3,10 +3,12 @@ import java.util.*;
 public class ExercitoDeElfos {
     private HashMap<String,Elfo> exercitoDeElfos;
     private HashMap<Status,ArrayList<Elfo>> exercitoDeElfosStatus;
+    private Estrategia estrategia;
         
     public ExercitoDeElfos(){
         this.exercitoDeElfos = new HashMap<>();
         this.exercitoDeElfosStatus = new HashMap<>();
+        this.estrategia = new AtaqueNoturnoPorUltimo();
     }
     
     public void alistaElfo(Elfo elfo){
@@ -38,6 +40,14 @@ public class ExercitoDeElfos {
             }
         }
         return listaDeElfosPorStatus;
+    }
+    
+    public void atacar(ArrayList<Dwarf> dwarf){
+        estrategia.atacar(this,dwarf);
+    }
+    
+    public ArrayList<Elfo> getOrdemDoUltimoAtaque(){     
+        return estrategia.getOrdemDoUltimoAtaque();
     }
     
     public void ordenaArrayDeElfosVivos(ArrayList<Elfo> elfoList){
