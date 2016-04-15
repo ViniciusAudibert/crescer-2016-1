@@ -34,4 +34,15 @@ public class AtaqueNoturnoPorUltimoTest {
         assertEquals(exercitoElfos.getExercitoDeElfosStatus().get(Status.VIVO).get(3).getNome(),"Ranger");
         assertEquals(exercitoElfos.getExercitoDeElfosStatus().get(Status.VIVO).get(4).getNome(),"Gorroko");
     }
+    
+    @Test
+    public void exercitoAtacaDwarfsEstrategiNoturnoPorUltimoGetOrdem(){
+        ExercitoDeElfos exercitoElfos = new ExercitoDeElfos();
+        ArrayList<Dwarf> exercitoDwarfs = exercitoDeDwarfs();
+        Estrategia estrategia = new AtaqueNoturnoPorUltimo();
+        alistaElfos(exercitoElfos);
+        estrategia.atacar(exercitoElfos,exercitoDwarfs); 
+        assertEquals(estrategia.getOrdemDoUltimoAtaque().get(3).getNome(), "Ranger");
+        assertEquals(estrategia.getOrdemDoUltimoAtaque().get(4).getNome(), "Gorroko");
+    }
 }
