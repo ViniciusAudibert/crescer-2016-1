@@ -6,7 +6,7 @@ public class AtaqueIntercalado implements Estrategia {
         exercito.agruparPorStatus();
         ArrayList<Elfo> elfosVivos = exercito.getExercitoDeElfosStatus().get(Status.VIVO);
         if(this.igualdadeDeElfos(elfosVivos)){
-            exercito.ordenaArrayDeElfosVivos(elfosVivos);
+            elfosVivos = this.ordenaNoturnosPorUltimo(elfosVivos);
             for(int i=0; i<elfosVivos.size()/2; i++){
                 this.tiraVidaDosDwarfs(dwarfList,elfosVivos.get(i));
                 ordemDeAtaque.add(elfosVivos.get(i));
@@ -36,5 +36,24 @@ public class AtaqueIntercalado implements Estrategia {
     @Override
     public ArrayList<Elfo> getOrdemDoUltimoAtaque(){     
         return ordemDeAtaque;
+    }
+    
+    public ArrayList<Elfo> ordenaNoturnosPorUltimo(ArrayList<Elfo> elfosList){
+        ArrayList<Elfo> arrayOrdenado = new ArrayList<>();
+        ArrayList<Integer> indicesNoturnos = new ArrayList<>();
+        for(int i=0; i<elfosList.size(); i++){
+            Elfo elfo = elfosList.get(i);
+            if(elfo instanceof ElfoVerde){
+                arrayOrdenado.add(elfo);
+            }
+            else{
+                indicesNoturnos.add(i);
+            }
+        }
+        for(int i=0; i<indicesNoturnos.size(); i++){
+            Elfo elfo = elfosList.get(indicesNoturnos.get(i));
+            arrayOrdenado.add(elfo);
+        }
+        return arrayOrdenado;
     }
 }
