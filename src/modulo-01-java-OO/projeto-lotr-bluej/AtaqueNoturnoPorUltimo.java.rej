@@ -1,0 +1,11 @@
+diff a/src/modulo-01-java-OO/projeto-lotr-bluej/AtaqueNoturnoPorUltimo.java b/src/modulo-01-java-OO/projeto-lotr-bluej/AtaqueNoturnoPorUltimo.java	(rejected hunks)
+@@ -12,8 +12,7 @@
+         }
+     }
+     
+-    @Override
+-    public void tiraVidaDosDwarfs(ArrayList<Dwarf> dwarfList, Elfo elfo){
++    private void tiraVidaDosDwarfs(ArrayList<Dwarf> dwarfList, Elfo elfo){
+         for(Dwarf dwarf : dwarfList){
+             elfo.atirarFlecha(dwarf);
+         }
