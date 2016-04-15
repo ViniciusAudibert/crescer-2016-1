@@ -40,29 +40,6 @@ public class ExercitoDeElfos {
         return listaDeElfosPorStatus;
     }
     
-    private void tiraVidaDosDwarfs(ArrayList<Dwarf> dwarfList, Elfo elfo){
-        for(Dwarf dwarf : dwarfList){
-            elfo.atirarFlecha(dwarf);
-        }
-    }
-    
-    public void atacarDwarfsEstrategiaPorIntencoes(ArrayList<Dwarf> dwarfList){
-        this.agruparPorStatus();
-        ArrayList<Elfo> elfosVivos = exercitoDeElfosStatus.get(Status.VIVO);
-        int intencaoDeAtaque = elfosVivos.size() * dwarfList.size();
-        intencaoDeAtaque *= 0.3;
-        int contagemDosAtaques = 0;
-        for(Elfo elfo : elfosVivos){
-            if(elfo instanceof ElfoVerde){
-                this.tiraVidaDosDwarfs(dwarfList,elfo);
-            }
-            else if((contagemDosAtaques < intencaoDeAtaque)&& elfo instanceof ElfoNoturno){
-                this.tiraVidaDosDwarfs(dwarfList,elfo);
-                contagemDosAtaques++;
-            }
-        }
-    }
-    
     public HashMap<String,Elfo> getExercitoDeElfos(){
         return this.exercitoDeElfos;
     }
