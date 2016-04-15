@@ -40,6 +40,22 @@ public class ExercitoDeElfos {
         return listaDeElfosPorStatus;
     }
     
+    public void ordenaArrayDeElfosVivos(ArrayList<Elfo> elfoList){
+        if(elfoList != null){
+            for(int i=0; i<elfoList.size()-1; i++){
+                    for(int j=1; j<elfoList.size(); j++){
+                        if(elfoList.get(j-1) instanceof ElfoNoturno){
+                            Elfo temp = elfoList.get(j);
+                            elfoList.remove(j);
+                            elfoList.add(j, elfoList.get(j-1));
+                            elfoList.remove(j-1);
+                            elfoList.add(j-1,temp);
+                        }
+                    }
+            }
+        }
+    }
+    
     public HashMap<String,Elfo> getExercitoDeElfos(){
         return this.exercitoDeElfos;
     }
