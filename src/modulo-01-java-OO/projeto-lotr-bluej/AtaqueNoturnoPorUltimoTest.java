@@ -31,8 +31,6 @@ public class AtaqueNoturnoPorUltimoTest {
         for(Dwarf dwarf : exercitoDwarfs){
             assertTrue(dwarf.getVida() == 60);
         }
-        assertEquals(exercitoElfos.getExercitoDeElfosStatus().get(Status.VIVO).get(3).getNome(),"Ranger");
-        assertEquals(exercitoElfos.getExercitoDeElfosStatus().get(Status.VIVO).get(4).getNome(),"Gorroko");
     }
     
     @Test

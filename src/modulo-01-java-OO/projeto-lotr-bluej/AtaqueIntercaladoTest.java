@@ -61,8 +61,8 @@ public class AtaqueIntercaladoTest {
         alistaElfosMisturadosComIgualdade(exercitoElfos);
         estrategia.atacar(exercitoElfos,exercitoDwarfs); 
         assertEquals(estrategia.getOrdemDoUltimoAtaque().get(0).getNome(), "Ranger");
-        assertEquals(estrategia.getOrdemDoUltimoAtaque().get(1).getNome(), "Gorroko");
+        assertEquals(estrategia.getOrdemDoUltimoAtaque().get(1).getNome(), "Fredyl");
         assertEquals(estrategia.getOrdemDoUltimoAtaque().get(2).getNome(), "Nephil");
-        assertEquals(estrategia.getOrdemDoUltimoAtaque().get(3).getNome(), "Fredyl");
+        assertEquals(estrategia.getOrdemDoUltimoAtaque().get(3).getNome(), "Gorroko");
     }
 }
