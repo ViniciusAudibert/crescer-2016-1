@@ -100,4 +100,32 @@ public class ExercitoDeElfosTest {
         assertFalse(exercito.getExercitoDeElfosStatus().get(Status.VIVO).contains(e2));
         assertFalse(exercito.getExercitoDeElfosStatus().get(Status.MORTO).contains(e3));
     }
+    
+    private ArrayList<Dwarf> exercitoDeDwarfs(){
+        ArrayList<Dwarf> dwarfList = new ArrayList<>();
+        dwarfList.add(new Dwarf("Jimle"));
+        dwarfList.add(new Dwarf("Kanuzi"));
+        dwarfList.add(new Dwarf("Onyotto"));
+        return dwarfList;
+    }
+    
+    private void alistaElfos(ExercitoDeElfos exercito){
+        exercito.alistaElfo(new ElfoNoturno("Ranger"));
+        exercito.alistaElfo(new ElfoNoturno("Fredyl"));
+        exercito.alistaElfo(new ElfoNoturno("Nephil"));
+        exercito.alistaElfo(new ElfoNoturno("Gorroko"));
+        exercito.alistaElfo(new ElfoNoturno("Jardan"));
+    }
+    
+    @Test
+    public void exercitoAtacaDwarfsEstrategiPorIntencoes(){
+        ExercitoDeElfos exercitoElfos = new ExercitoDeElfos();
+        ArrayList<Dwarf> exercitoDwarfs = exercitoDeDwarfs();
+        alistaElfos(exercitoElfos);
+        exercitoElfos.atacarDwarfsEstrategiaPorIntencoes(exercitoDwarfs);
+        for(Dwarf dwarf : exercitoDwarfs){
+            assertTrue(dwarf.getVida() == 70);
+        }
+        assertTrue(exercitoElfos.getExercitoDeElfosStatus().get(Status.VIVO).get(4).getVida() == 100); // Ultimo elfo nao ataca e nao perde a vida.
+    }
 }
