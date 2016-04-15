@@ -9,16 +9,14 @@ public class AtaquePorIntencaoTest {
         ArrayList<Dwarf> dwarfList = new ArrayList<>();
         dwarfList.add(new Dwarf("Jimle"));
         dwarfList.add(new Dwarf("Kanuzi"));
-        dwarfList.add(new Dwarf("Onyotto"));
         return dwarfList;
     }
     
     private void alistaElfos(ExercitoDeElfos exercito){
         exercito.alistaElfo(new ElfoNoturno("Ranger"));
-        exercito.alistaElfo(new ElfoNoturno("Fredyl"));
+        exercito.alistaElfo(new ElfoVerde("Fredyl"));
         exercito.alistaElfo(new ElfoNoturno("Nephil"));
         exercito.alistaElfo(new ElfoNoturno("Gorroko"));
-        exercito.alistaElfo(new ElfoNoturno("Jardan"));
     }
     
     @Test
@@ -27,10 +25,22 @@ public class AtaquePorIntencaoTest {
         ArrayList<Dwarf> exercitoDwarfs = exercitoDeDwarfs();
         Estrategia estrategia = new AtaquePorIntencao();
         alistaElfos(exercitoElfos);
-    estrategia.atacar(exercitoElfos,exercitoDwarfs); 
+        estrategia.atacar(exercitoElfos,exercitoDwarfs); 
         for(Dwarf dwarf : exercitoDwarfs){
-            assertTrue(dwarf.getVida() == 70);
+            assertTrue(dwarf.getVida() == 90);
         }
-        assertTrue(exercitoElfos.getExercitoDeElfosStatus().get(Status.VIVO).get(4).getVida() == 100); // Ultimo elfo nao ataca e nao perde a vida.
+        assertTrue(exercitoElfos.getExercitoDeElfosStatus().get(Status.VIVO).get(2).getVida() == 100); // Penultimo elfo nao ataca e nao perde a vida.
+        assertTrue(exercitoElfos.getExercitoDeElfosStatus().get(Status.VIVO).get(3).getVida() == 100); // Ultimo elfo nao ataca e nao perde a vida.
+    }
+    
+    @Test
+    public void exercitoAtacaDwarfsEstrategiPorIntencoesGetOrdem(){
+        ExercitoDeElfos exercitoElfos = new ExercitoDeElfos();
+        ArrayList<Dwarf> exercitoDwarfs = exercitoDeDwarfs();
+        Estrategia estrategia = new AtaquePorIntencao();
+        alistaElfos(exercitoElfos);
+        estrategia.atacar(exercitoElfos,exercitoDwarfs); 
+        assertEquals(estrategia.getOrdemDoUltimoAtaque().get(0).getNome(), "Ranger");
+        assertEquals(estrategia.getOrdemDoUltimoAtaque().get(1).getNome(), "Fredyl");
     }
 }
