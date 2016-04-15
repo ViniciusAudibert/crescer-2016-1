@@ -12,8 +12,7 @@ public class AtaqueNoturnoPorUltimo implements Estrategia {
         }
     }
     
-    @Override
-    public void tiraVidaDosDwarfs(ArrayList<Dwarf> dwarfList, Elfo elfo){
+    private void tiraVidaDosDwarfs(ArrayList<Dwarf> dwarfList, Elfo elfo){
         for(Dwarf dwarf : dwarfList){
             elfo.atirarFlecha(dwarf);
         }
