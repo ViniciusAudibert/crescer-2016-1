@@ -20,12 +20,12 @@ public class Dwarf extends Personagem {
     private void perdeVida(){
         if(vida - 10 < 0){
             vida = 0;
-            setStatus(Status.MORTO);
+            status = Status.MORTO;
         }
         else{
             vida -= 10;
             if(getVida() <= 0){
-            setStatus(Status.MORTO);
+                status = Status.MORTO;
             }
         }
     }

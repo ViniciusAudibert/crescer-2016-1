@@ -12,7 +12,7 @@ public class ElfoNoturno extends Elfo {
             experiencia += 2;
             vida -= vida * 0.05;
             if(vida < 1){
-                setStatus(Status.MORTO);
+                status = Status.MORTO;
                 vida = 0;
             }
         }
