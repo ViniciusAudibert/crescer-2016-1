@@ -21,7 +21,7 @@ public class AtaquePorIntencao implements Estrategia {
         }
     }
    
-    public void tiraVidaDosDwarfs(ArrayList<Dwarf> dwarfList, Elfo elfo){
+    private void tiraVidaDosDwarfs(ArrayList<Dwarf> dwarfList, Elfo elfo){
         for(Dwarf dwarf : dwarfList){
             elfo.atirarFlecha(dwarf);
             contagemDosAtaques++;
