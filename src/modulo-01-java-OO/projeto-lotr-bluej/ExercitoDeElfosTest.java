@@ -70,8 +70,8 @@ public class ExercitoDeElfosTest {
             e4.atirarFlecha(new Dwarf("Morto"));
         }
         exercito.agruparPorStatus();
-        assertTrue(exercito.buscaPeloStatus(Status.MORTO).contains(e4));
-        assertTrue(exercito.buscaPeloStatus(Status.VIVO).contains(e1));
+        assertTrue(exercito.busca(Status.MORTO).contains(e4));
+        assertTrue(exercito.busca(Status.VIVO).contains(e1));
     }
     
     @Test

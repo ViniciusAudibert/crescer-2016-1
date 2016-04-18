@@ -32,14 +32,9 @@ public class ExercitoDeElfos {
         }
     }
     
-    public ArrayList<Elfo> buscaPeloStatus(Status status){
-        ArrayList<Elfo> listaDeElfosPorStatus = new ArrayList<>();
-        for(Elfo chaveValor : exercitoDeElfos.values()){
-            if(chaveValor.getStatus() == status){
-                listaDeElfosPorStatus.add(chaveValor);
-            }
-        }
-        return listaDeElfosPorStatus;
+    public ArrayList<Elfo> busca(Status status){
+        this.agruparPorStatus();
+        return this.getExercitoDeElfosStatus().get(status);
     }
     
     public void atacar(ArrayList<Dwarf> dwarf){
