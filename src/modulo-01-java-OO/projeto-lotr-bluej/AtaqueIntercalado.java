@@ -30,7 +30,7 @@ public class AtaqueIntercalado implements Estrategia {
             if(elfo instanceof ElfoVerde){contElfoVerde++;}
             else if(elfo instanceof ElfoNoturno){contElfoNoturno++;}
         }
-        return contElfoVerde - contElfoNoturno == 0;
+        return contElfoVerde == contElfoNoturno;
     }
     
     @Override
