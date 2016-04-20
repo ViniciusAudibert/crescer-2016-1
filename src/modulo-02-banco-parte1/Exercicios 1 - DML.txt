@@ -1,0 +1,37 @@
+-- 1)Faça o registro (insert) dos associados exibidos no slide 12 (DDL);
+INSERT INTO Associado (IDAssociado,Nome,DataNascimento,Sexo,CPF)
+	VALUES(3,'Julio de Castilhos',CONVERT(DATETIME,'14/12/1947',103),'M','21234567895');
+
+INSERT INTO Associado (IDAssociado,Nome,DataNascimento,Sexo,CPF)
+	VALUES(4,'Antonio Augusto Borges de Medeiros',CONVERT(DATETIME,'19/03/1942',103),'M','81234567891');
+
+INSERT INTO Associado (IDAssociado,Nome,DataNascimento,Sexo,CPF)
+	VALUES(5,'Osvaldo Aranha',CONVERT(DATETIME,'08/02/1958',103),'M','01234567893');
+
+-- 2)Crie a tabela CidadeAux a partir de uma cópia da tabela Cidade. Considere todos os registros existentes.
+SELECT * INTO CidadeAux FROM Cidade;
+
+-- 3)Limpe a tabela CidadeAux(TruncatetableCidadeAux). 
+--       E em seguida insira todas os registros da tabela Cidade nesta auxiliar.
+TRUNCATE TABLE CidadeAux;
+
+-- 4)Crie uma tabela para armazenar informações de produtos Devem ter os seguintes atributos:
+--   •Código de identificação; Nome curto, Nome descritivo, Data da criação, Local no estoque, Quantidade e Preço.
+CREATE TABLE Produto(
+	IDProduto int IDENTITY,
+	NomeCurto VARCHAR(20) NOT NULL,
+	NomeDescritivo VARCHAR(40) NOT NULL,
+	DataDeCriação DATETIME DEFAULT GETDATE(),
+	LocalNoEstoque VARCHAR(40) NOT NULL,
+	Quantidade int NOT NULL,
+	Preço DECIMAL(8,2) NOT NULL,
+		CONSTRAINT PK_IDProduto PRIMARY KEY(IDProduto),
+		CONSTRAINT UK_NomeCurto UNIQUE(NomeCurto)
+);
+-- 5)Cadastre 2 produtos nesta tabela.
+INSERT INTO Produto 
+	VALUES ('Coca Cola','Refrigerante',CONVERT(DATETIME,'15/03/2016',103),'A3-42',582,2.54);
+INSERT INTO Produto (NomeCurto,NomeDescritivo,LocalNoEstoque,Quantidade,Preço)
+	VALUES ('Nescau em Pó','Achocolatado','H5-54',2065,6.23);
+
+SELECT * FROM Produto;
