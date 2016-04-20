@@ -1,12 +1,12 @@
-Exercicio 1:
+-- Retornar nome dos empregados em ordem de admissao:
 	SELECT NomeEmpregado FROM Empregado ORDER BY DataAdmissao ASC;
 
-Exercicio 2:
+-- Retornar o nome e o salario anual onde o cargo é atendente ou salario anual é inferior a 18500:
 	SELECT NomeEmpregado,(Salario*12) AS SalarioAnual FROM Empregado 
 					WHERE Cargo IN ('Atendente') OR (Salario*12) < 18500;
 
-Exercicio 3:
+-- Retorna o ID da cidade Uberlândia:
 	SELECT IDCidade FROM Cidade WHERE Nome IN ('Uberlândia');
 
-Exercicio 4:
+-- Retorna o ID e o nome das cidades no Rio Grande do Sul: 
 	SELECT IDCidade,Nome FROM Cidade WHERE UF IN ('RS'); 
