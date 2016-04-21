@@ -1,0 +1,52 @@
+-- 1)Faça uma consulta (query) que retorne apenas o primeiro nome do Associado (tabela associado) –verifique as funções SQL Server.
+	SELECT TOP 1 SUBSTRING(nome,0,CHARINDEX(' ',Nome)) AS Nome FROM Associado;
+
+-- 2)Faça uma consulta que retorne o nome dos associados e a idade de cada um (em anos, exibir um número inteiro).
+	SELECT Nome,DATEDIFF(YEAR,DataNascimento,GETDATE()) AS Idade FROM Associado;
+
+-- 3)Faça uma consulta que liste os empregados admitidos entre 01/05/1980 e 20/01/1982. Exibir também o total de meses de trabalho até a data de 31/12/2000.
+	SELECT NomeEmpregado,DATEDIFF(MONTH,CONVERT(DATETIME,DataAdmissao,103),CONVERT(DATETIME,'31/12/2000',103)) AS MesesTrabalhados FROM Empregado 
+		WHERE CONVERT(DATETIME,DataAdmissao,103) BETWEEN CONVERT(DATETIME,'01/05/1980',103) AND CONVERT(DATETIME,'20/01/1982',103);
+
+-- 4)Qual o cargo (tabela empregado) possuir mais empregados?
+	SELECT TOP 1 Cargo,COUNT(Cargo) AS Total FROM Empregado GROUP BY Cargo ORDER BY Total DESC;
+
+-- 6)Faça uma consulta que retorne o nome do associado e a data de quando cada completará (ou completou) 50 anos, liste também o dia da semana.
+	SELECT Nome, CONVERT(DATE,DATEADD(YEAR,50,CONVERT(DATETIME,DataNascimento,103)),103) AS Completa50Anos FROM Associado;
+
+-- 7)Liste a quantidade de cidades agrupando por UF –quantas cidades cada estado possuí ?
+	SELECT UF,COUNT(Nome) AS QuantidadeDeCidade FROM Cidade GROUP BY UF;
+
+-- 8)Liste as cidades que possuem o mesmo nome e UF –cidades duplicadas.
+	SELECT Nome,UF FROM Cidade GROUP BY Nome,UF HAVING COUNT(1)>1;
+
+-- 9)Identifique qual deve ser o próximo ID para a criação de um novo registro na tabela Associado (maior + 1).
+	SELECT MAX(IDAssociado)+1 AS ProximoID FROM Associado;
+
+-- 10)Limpe a tabela CidadeAux, e insira somente as cidades com nomes e UF’s distintos, considere somente o menor código ID das cidades duplicadas.
+	DELETE FROM CidadeAux;
+	INSERT INTO CidadeAux (IDCidade,Nome,UF) SELECT MIN(IDCidade),Nome,UF FROM Cidade GROUP BY Nome,UF;
+
+-- 11)Altere todas cidades duplicadas (nome e uf iguais), acrescente no ínicio do nome um asterisco (*).
+	SELECT Nome,UF FROM Cidade GROUP BY Nome,UF;
+
+-- 12)Faça uma consulta que liste o nome do Associado e a descrição da coluna Sexo, informando: Masculino ou Feminino.
+	SELECT Nome,
+			CASE Sexo WHEN 'F' THEN 'Feminino'
+					  WHEN 'M' THEN 'Masculino'
+					  ELSE 'Desconhecido' END AS Sexo FROM Associado;
+
+-- 13)Faça uma consulta que mostre o nome do empregado, o Salario e percentual a ser descontado do Imposto de Renda, considerando a tabela abaixo: 
+--		Até R$ 1.164,00 = 0%De R$ 1.164,00 a R$ 2.326,00 = 15% Acima de R$ 2.326,00 = 27,5%.
+	SELECT NomeEmpregado,Salario, CASE WHEN Salario <= 1164 THEN '0%'
+								   WHEN Salario BETWEEN 1165 AND 2326 THEN '15%'
+								   WHEN Salario > 2326 THEN '27,5%' END AS ImpostoDeRenda FROM Empregado;
+
+-- 14)Elimine as cidades duplicadas (mantendo 1 registro para cada –com menor IDCidade).
+	--BEGIN TRANSACTION;
+	DELETE FROM Cidade WHERE IDCidade NOT IN (SELECT MIN(IDCidade) FROM Cidade GROUP BY Nome,UF);
+	--COMMIT;
+        --ROLLBACK;
+
+-- 15)Adicione uma regra que impeça exista mais de uma cidade com o mesmo nome em um estado.
+	ALTER TABLE Cidade ADD CONSTRAINT UK_Nome UNIQUE(Nome,UF);
