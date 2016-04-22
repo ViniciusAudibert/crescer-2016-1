@@ -28,8 +28,9 @@
 	INSERT INTO CidadeAux (IDCidade,Nome,UF) SELECT MIN(IDCidade),Nome,UF FROM Cidade GROUP BY Nome,UF;
 
 -- 11)Altere todas cidades duplicadas (nome e uf iguais), acrescente no ínicio do nome um asterisco (*).
-	UPDATE Cidade SET Nome = (CASE  WHEN Nome IN (SELECT Nome FROM Cidade GROUP BY Nome,UF HAVING COUNT(1)>1) THEN CONCAT('*',Nome)
-				 ELSE Nome END);
+	UPDATE Cidade SET Nome = CONCAT('*',Nome) WHERE Nome IN (SELECT Nome FROM Cidade GROUP BY Nome,UF HAVING COUNT(1)>1) AND
+							  UF IN (SELECT UF FROM Cidade GROUP BY Nome,UF HAVING COUNT(1)>1);
+
 
 -- 12)Faça uma consulta que liste o nome do Associado e a descrição da coluna Sexo, informando: Masculino ou Feminino.
 	SELECT Nome,
