@@ -1,0 +1,36 @@
+-- 1)Selecione o nome do empregado e nome do departamento que cada um está relacionado.
+	SELECT E.NomeEmpregado,D.NomeDepartamento FROM Empregado E INNER JOIN Departamento D ON D.IDDepartamento = E.IDDepartamento;
+
+-- 2)Exibir o nome do associado e sua cidade, exibir também associados sem Cidade relacionada.
+	SELECT A.Nome,C.Nome FROM Associado A LEFT JOIN Cidade C ON C.IDCidade = A.IDCidade;
+
+-- 3)Lista os estados (UF) e total de cidades, exibir apenas as cidades que não possuem associados relacionados.
+	SELECT C.UF,COUNT(C.Nome) AS QuantidadeCidade FROM Cidade C LEFT JOIN Associado A ON A.IDCidade = C.IDCidade WHERE A.IDCidade IS NULL GROUP BY UF; 
+
+-- 4)Faça uma consulta que liste o nome do associado, o nome da cidade, e uma coluna que indique se a cidade é da região SUL (RS, SC, PR), se for imprimir *** (3 asteriscos), senão imprimir nulo.
+	SELECT A.Nome,C.Nome,CASE WHEN C.UF IN ('RS','SC','PR') THEN '***'
+				  ELSE NULL END AS Regiao_Sul FROM Associado A INNER JOIN Cidade C ON A.IDCidade = C.IDCidade;
+
+-- 5)Liste o nome do empregado, o nome do gerente, e o departamento de cada um.
+	SELECT E.NomeEmpregado,E2.NomeEmpregado,D.NomeDepartamento FROM Empregado E INNER JOIN Empregado E2 ON E.IDGerente = E2.IDEmpregado 
+										     LEFT JOIN Departamento D ON D.IDDepartamento = E.IDDepartamento;
+ 
+-- 6)Faça uma cópia da tabela Empregado e altere o salário de todos os empregados (Empregado) que o departamento fique na localidade de SAO PAULO, faça um reajuste de 14,5%
+	SELECT * INTO EmpregadoAux FROM Empregado 
+	UPDATE EmpregadoAux SET Salario = (Salario * 1.145) WHERE IDEmpregado IN (SELECT E.IDEmpregado From EmpregadoAux E INNER JOIN Departamento D 
+								                                                                      ON E.IDDepartamento = D.IDDepartamento WHERE D.Localizacao = 'SAO PAULO');
+															
+-- 7)Liste a diferença que representará o reajuste aplicado no item anterior no somatório dos salários de todos os empregados.
+	SELECT SUM(Ex.Salario - E.Salario) As Reajuste FROM Empregado AS E INNER JOIN EmpregadoAux AS Ex ON Ex.IDEmpregado = E.IDEmpregado;
+
+-- 8)Liste o departamento com o empregado de maior salário.
+	SELECT DISTINCT D.NomeDepartamento AS Departamento_EpregadoMaiorSalario FROM Departamento AS D LEFT JOIN Empregado E ON E.IDDepartamento = D.IDDepartamento 
+										WHERE E.Salario IN (SELECT MAX(E.Salario) FROM Empregado AS E INNER JOIN Departamento AS D ON E.IDDepartamento = D.IDDepartamento);
+
+-- 9)Faça uma consulta para exibir o nome de cada associado e sua cidade e juntamente com os empregados (nome) e a cidade (localidade) de seu departamento, isto deve ser exibido em uma consulta.
+	SELECT A.Nome,C.Nome AS Cidade FROM Associado AS A LEFT JOIN Cidade AS C ON C.IDCidade = A.IDCidade
+	UNION ALL
+	SELECT E.NomeEmpregado,D.Localizacao FROM Empregado AS E LEFT JOIN Departamento AS D ON E.IDDepartamento = D.IDDepartamento;
+
+-- 10)Lista as cidades que tenham associado relacionados. Exibr: Nome e UF apenas
+	SELECT C.Nome AS Cidade,C.UF FROM Cidade AS C INNER JOIN Associado A ON A.IDCidade = C.IDCidade;
