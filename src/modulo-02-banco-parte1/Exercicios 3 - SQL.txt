@@ -21,7 +21,7 @@
 								                                                                      ON E.IDDepartamento = D.IDDepartamento WHERE D.Localizacao = 'SAO PAULO');
 															
 -- 7)Liste a diferença que representará o reajuste aplicado no item anterior no somatório dos salários de todos os empregados.
-	SELECT SUM(Ex.Salario - E.Salario) As Reajuste FROM Empregado AS E INNER JOIN EmpregadoAux AS Ex ON Ex.IDEmpregado = E.IDEmpregado;
+	SELECT (Ex.Salario - E.Salario) As Reajuste FROM Empregado AS E INNER JOIN EmpregadoAux AS Ex ON Ex.IDEmpregado = E.IDEmpregado;
 
 -- 8)Liste o departamento com o empregado de maior salário.
 	SELECT DISTINCT D.NomeDepartamento AS Departamento_EpregadoMaiorSalario FROM Departamento AS D LEFT JOIN Empregado E ON E.IDDepartamento = D.IDDepartamento 
