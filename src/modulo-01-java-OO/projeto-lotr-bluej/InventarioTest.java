@@ -61,4 +61,87 @@ public class InventarioTest
         assertEquals(dwarf.getInventario().getItens().get(2).getDescricao(), "Adaga");
         assertEquals(dwarf.getInventario().getItens().get(3).getDescricao(), "Espada");
     }
+    
+    @Test
+    public void getDescricoesItensVazio() {
+        Inventario inventario = new Inventario();
+        String obtido = inventario.getDescricoesItens();
+        assertEquals("", obtido);
+    }
+
+    @Test
+    public void getDescricoesComUmItem() {
+        Inventario inventario = new Inventario();
+        inventario.adicionarItem(new Item(1, "Espada"));
+        String obtido = inventario.getDescricoesItens();
+        assertEquals("Espada", obtido);
+    }
+
+    @Test
+    public void getDescricoesComDoisItens() {
+        Inventario inventario = new Inventario();
+        inventario.adicionarItem(new Item(1, "Espada"));
+        inventario.adicionarItem(new Item(1, "Escudo"));
+        String obtido = inventario.getDescricoesItens();
+        assertEquals("Espada,Escudo", obtido);
+    }
+
+    @Test
+    public void getItemComMaiorQuantidadeComInventarioVazio() {
+        Inventario inventario = new Inventario();
+        assertNull(inventario.itemMaiorQuantia());
+    }
+
+    @Test
+    public void getItemComMaiorQuantidadeComApenasUmItem() {
+        Inventario inventario = new Inventario();
+        inventario.adicionarItem(new Item(2, "Semente dos Deuses"));
+        assertEquals(2, inventario.itemMaiorQuantia().getQuantidade());
+    }
+
+    @Test
+    public void getItemComMaiorQuantidadeComTresItens() {
+        Inventario inventario = new Inventario();
+        inventario.adicionarItem(new Item(15, "Flechas de gelo"));
+        inventario.adicionarItem(new Item(20, "Lembas"));
+        inventario.adicionarItem(new Item(2, "Semente dos Deuses"));
+        assertEquals(20, inventario.itemMaiorQuantia().getQuantidade());
+    }
+
+    @Test
+    public void ordenarItensMisturados() {
+        Inventario mochila = new Inventario();
+        Item elderScroll = new Item(9, "Elder Scroll");
+        Item escudo = new Item(99, "Escudo");
+        Item canivete = new Item(2, "Canivete suíço");
+        mochila.adicionarItem(elderScroll);
+        mochila.adicionarItem(escudo);
+        mochila.adicionarItem(canivete);
+        mochila.ordenarItens();
+        assertEquals(canivete, mochila.getItens().get(0));
+        assertEquals(elderScroll, mochila.getItens().get(1));
+        assertEquals(escudo, mochila.getItens().get(2));
+    }
+    
+    @Test
+    public void ordenarItensComMesmaQuantidade() {
+        Inventario mochila = new Inventario();
+        Item elderScroll = new Item(9, "Elder Scroll");
+        Item escudo = new Item(9, "Escudo");
+        Item canivete = new Item(9, "Canivete suíço");
+        mochila.adicionarItem(elderScroll);
+        mochila.adicionarItem(escudo);
+        mochila.adicionarItem(canivete);
+        mochila.ordenarItens();
+        assertEquals(elderScroll, mochila.getItens().get(0));
+        assertEquals(escudo, mochila.getItens().get(1));
+        assertEquals(canivete, mochila.getItens().get(2));
+    }
+    
+    @Test
+    public void ordenarItensVazio() {
+        Inventario mochila = new Inventario();
+        mochila.ordenarItens();
+        assertEquals(0, mochila.getItens().size());
+    }
 }
