@@ -32,6 +32,7 @@ public class Inventario
     }
     
     public Item itemMaiorQuantia(){
+        if(this.itens.isEmpty()){return null;}
         Item maior = this.getItens().get(0);
         for(int i=0; i<this.getItens().size(); i++){
             if(this.getItens().get(i).getQuantidade() > maior.getQuantidade()){
