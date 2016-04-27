@@ -34,18 +34,19 @@
 					}
 					#content{
 						background-color: #DCDCDC;
-						margin: 0 auto;
 						padding: 14px;
-						box-sizing: border-box;
+
 					}
 					#Sumario{
 						margin-top: 0px;
 						padding-top: 32px;
 					}
-					.content{
+					.container{
 						width: 800px;
+						margin: 0 auto;
+						box-sizing: border-box;
 					}
-					#perfil{
+					.perfil{
 						float: left;
 						height: 342px;
 						padding-right: 28px;
