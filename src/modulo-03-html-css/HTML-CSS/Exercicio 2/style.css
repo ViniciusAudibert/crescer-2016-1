@@ -1,0 +1,52 @@
+		body{
+						background-image: url(https://jovemnerd.com.br/wp-content/uploads/Ryu-Street-Fighter-V-Promotional-Artwork.jpg);
+						background-repeat: no-repeat;
+						background-position: center top;
+						background-size:121em;
+					}
+					#menu{
+						padding-top: 347px;
+					}
+					#menu-bar{
+						background-color: rgba(116, 116, 116, 0.66);
+						margin: 0 auto;
+						width: 690px;
+						border-radius: 5px;
+						padding: 16px 0px;
+						border: 1px white solid;
+						text-align: center;
+					}
+					#menu-bar a{
+						color: white;
+						margin: 0px 33px;
+						font-size: 26px;
+						font-weight: 600;
+						text-decoration: none;
+					}
+					#title-header{
+						margin: 167px auto 0px;
+					}
+					#title-header h1{
+						background-color: #454545;
+						color: white;
+						padding: 25px 16px;
+						margin-bottom: 0px;
+					}
+					#content{
+						background-color: #DCDCDC;
+						margin: 0 auto;
+						padding: 14px;
+						box-sizing: border-box;
+					}
+					#Sumario{
+						margin-top: 0px;
+						padding-top: 32px;
+					}
+					.content{
+						width: 800px;
+					}
+					#perfil{
+						float: left;
+						height: 342px;
+						padding-right: 28px;
+					}
