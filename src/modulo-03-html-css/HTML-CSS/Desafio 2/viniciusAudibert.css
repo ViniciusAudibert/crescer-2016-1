@@ -813,7 +813,157 @@ header>nav>a:hover{
   background-position-x: 160px;
 }
 
+.personagens>ul>li:nth-of-type(70){
+  background-image: url(http://vignette2.wikia.nocookie.net/pokemon/images/8/8d/070Weepinbell_AG_anime.png/revision/latest?cb=20141128162631);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
 
-.personagens>ul>li:nth-of-type(n+70){
+.personagens>ul>li:nth-of-type(71){
+  background-image: url(http://vignette1.wikia.nocookie.net/pokemon/images/2/29/071Victreebel_AG_anime.png/revision/latest?cb=20140904184107);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+.personagens>ul>li:nth-of-type(72){
+  background-image: url(http://vignette1.wikia.nocookie.net/pokemon/images/4/4e/072Tentacool.png/revision/latest?cb=20140328203939);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+.personagens>ul>li:nth-of-type(73){
+  background-image: url(http://vignette2.wikia.nocookie.net/pokemon/images/e/eb/073Tentacruel_AG_anime.png/revision/latest?cb=20140829052301);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+.personagens>ul>li:nth-of-type(74){
+  background-image: url(http://vignette2.wikia.nocookie.net/pokemon/images/8/8e/074Geodude_OS_anime.png/revision/latest?cb=20141014222742);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+.personagens>ul>li:nth-of-type(75){
+  background-image: url(http://pldh.net/media/dreamworld/075.png);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+.personagens>ul>li:nth-of-type(76){
+  background-image: url(http://vignette2.wikia.nocookie.net/pokemon/images/b/be/076Golem_Dream.png/revision/latest?cb=20141014232505);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+.personagens>ul>li:nth-of-type(77){
+  background-image: url(http://img06.deviantart.net/9004/i/2012/357/5/7/007__ponyta_by_gaghiel1987-d54pcdq.png);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+.personagens>ul>li:nth-of-type(78){
+  background-image: url(http://vignette3.wikia.nocookie.net/pokemon/images/7/70/078Rapidash_AG_anime.png/revision/latest?cb=20140126101147);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+.personagens>ul>li:nth-of-type(79){
+  background-image: url(http://vignette3.wikia.nocookie.net/dragonball/images/9/9b/Slowpoke.png/revision/latest?cb=20150731213044);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(80){
+  background-image: url(http://pldh.net/media/dreamworld/080.png);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(81){
+  background-image: url(http://vignette1.wikia.nocookie.net/pokemon/images/a/a7/081Magnemite_AG_anime.png/revision/latest?cb=20140924230502);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(82){
+  background-image: url(http://vignette2.wikia.nocookie.net/pokemon/images/1/15/082Magneton_OS_anime_2.png/revision/latest?cb=20140905125612);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(83){
+  background-image: url(http://www.dltk-kids.com/pokemon/adoptions/083.gif);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(84){
+  background-image: url(http://vignette2.wikia.nocookie.net/pokemon/images/9/94/084Doduo_OS_anime_2.png/revision/latest?cb=20140822215759);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(85){
+  background-image: url(http://vignette4.wikia.nocookie.net/pokemon/images/f/f2/085Dodrio_Dream.png/revision/latest?cb=20140822220914);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(86){
+  background-image: url(http://static.api6.studiobebop.net/pokemon_data/pokemon_images/Seel.png);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(87){
+  background-image: url(http://www.thepokemasters.net/pokedex/images/pokemon/87000.png);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(88){
+  background-image: url(http://vignette4.wikia.nocookie.net/pokemon/images/b/bd/088Grimer_AG_anime.png/revision/latest?cb=20140925222102);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(89){
+  background-image: url(http://2.bp.blogspot.com/-xrgy_6oJNmE/VWGyR0D_4KI/AAAAAAAAW5Y/Ut7wSzQfyWI/s1600/Muk_%2528anime_AG%2529.png);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+.personagens>ul>li:nth-of-type(n+90){
   display: none;
 }
