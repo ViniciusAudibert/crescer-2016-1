@@ -63,7 +63,7 @@ header>h1{
   padding: 93px 0;
 }
 
-.content article{
+.content article ul{
   overflow-y: scroll;
   height: 800px;
 }
@@ -138,6 +138,13 @@ header>nav>a:hover{
   padding-right: 30px;
 }
 
+.content>article:first-of-type>h2::after{
+  color: red;
+  padding-left: 22px;
+  font-size: 47%;
+  content: "Lista em fase BETA";
+  text-shadow: 0px 0 #000, 0 0px #000, 1px 0 #000, 0 1px #000;
+}
 
 
 
@@ -374,7 +381,7 @@ header>nav>a:hover{
 }
 
 .personagens>ul>li:nth-of-type(15){
-  background-image: url(http://www.pokemonrubysapphire.com/_ui/img/_en/october/art/Mega_beedrill.png);
+  background-image: url(http://orig07.deviantart.net/ca6d/f/2012/235/7/b/015_beedrill_shiny_dream_by_lightmike-d5c68fh.png);
   background-size: 93px;
   background-repeat: no-repeat;
   background-position-y: 3px;
@@ -687,7 +694,7 @@ header>nav>a:hover{
 }
 
 .personagens>ul>li:nth-of-type(55){
-  background-image: url(https://pbs.twimg.com/media/CfNrttdUsAAmFTk.png);
+  background-image: url(http://vignette4.wikia.nocookie.net/pokemon/images/0/04/055Golduck_Dream.png/revision/latest?cb=20140828004434);
   background-size: 95px;
   background-repeat: no-repeat;
   background-position-y: 3px;
@@ -775,7 +782,7 @@ header>nav>a:hover{
 }
 
 .personagens>ul>li:nth-of-type(66){
-  background-image: url(http://vignette4.wikia.nocookie.net/pokemon/images/a/a8/059Arcanine_AG_anime.png/revision/latest?cb=20140902043233);
+  background-image: url(http://vignette3.wikia.nocookie.net/pokemon/images/8/85/066Machop.png/revision/latest?cb=20140328203356);
   background-size: 95px;
   background-repeat: no-repeat;
   background-position-y: 3px;
@@ -783,23 +790,23 @@ header>nav>a:hover{
 }
 
 .personagens>ul>li:nth-of-type(67){
-  background-image: url(http://vignette4.wikia.nocookie.net/pokemon/images/a/a8/059Arcanine_AG_anime.png/revision/latest?cb=20140902043233);
-  background-size: 95px;
+  background-image: url(http://vignette2.wikia.nocookie.net/pokemon/images/6/6d/067Machoke_AG_anime.png/revision/latest?cb=20140930011150);
+  background-size: 87px;
   background-repeat: no-repeat;
   background-position-y: 3px;
   background-position-x: 160px;
 }
 
 .personagens>ul>li:nth-of-type(68){
-  background-image: url(http://vignette4.wikia.nocookie.net/pokemon/images/a/a8/059Arcanine_AG_anime.png/revision/latest?cb=20140902043233);
-  background-size: 95px;
+  background-image: url(http://vignette1.wikia.nocookie.net/vsbattles/images/a/ae/068.png/revision/latest?cb=20150605161419);
+  background-size: 81px;
   background-repeat: no-repeat;
   background-position-y: 3px;
   background-position-x: 160px;
 }
 
 .personagens>ul>li:nth-of-type(69){
-  background-image: url(http://vignette4.wikia.nocookie.net/pokemon/images/a/a8/059Arcanine_AG_anime.png/revision/latest?cb=20140902043233);
+  background-image: url(http://vignette1.wikia.nocookie.net/pokemon/images/1/16/069Bellsprout_AG_anime.png/revision/latest?cb=20140702032030);
   background-size: 95px;
   background-repeat: no-repeat;
   background-position-y: 3px;
@@ -807,6 +814,6 @@ header>nav>a:hover{
 }
 
 
-.personagens>ul>li:nth-of-type(n+66){
+.personagens>ul>li:nth-of-type(n+70){
   display: none;
 }
