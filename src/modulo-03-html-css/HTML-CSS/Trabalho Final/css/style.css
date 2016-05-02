@@ -254,7 +254,11 @@ form>.row:nth-of-type(n+2) {
 }
 .graphic{
   height: auto;
-  width: 600px;
+  width: 100%;
+}
+.graphic img{
+  width: 100%;
+  height: auto;
 }
 .red{
   color: red;
@@ -273,9 +277,28 @@ table {
   background-color: #F5F5F5;
   padding: 10px;
 }
-.grafic-mundi{
-  height: 300px;
+.no-top-padding{
+  padding-top: 0px !important;
 }
-.grafic-mundi>img{
-  height: 400px;
+.orange{
+  color: rgb(240, 173, 78);;
+}
+.red{
+  color:red;
+}
+.table-striped .progress,label{
+  height: 5px;
+}
+.cicle-icon{
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  padding-top: 9px;
+  margin-right: 5px;
+}
+.cicle-icon a{
+  border-radius: 50%;
+  padding: 12px 14px;
+  border: 1px gray solid;
+  color: gray;
 }
