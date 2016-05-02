@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Final HTML/CSS Project</title>
+
+  <!-- My Style -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <nav class="navbar navbar-default">   <!--NavHeader-->
+    <div>
+      <a href="#" class="navbar-brand">Projeto Crescer</a>
+      <ul class="nav navbar-nav pull-right">
+        <li class="hidden-xs"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+        <li class="hidden-xs"><a href="#"><i class="fa fa-th" aria-hidden="true"></i></a></li>
+        <li class="hidden-xs"><a href="#"><i class="fa fa-globe" aria-hidden="true"></i></a></li>
+        <li class="dropdown dropdown-navbar hidden-xs">
+          <button class="btn dropdown-toggle btn-transparent" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Logout <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Entrar em outra conta</a></li>
+            <li><a href="#">Ajuda</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Sair</a></li>
+          </ul>
+        </li>
+        <li class="hidden-xs perfil"><img src="https://goo.gl/EEo1WZ" alt="Perfil"></li>
+      </ul>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-bar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+    </div>
+    <div class="collpase navbar-collapse" id="menu-bar">
+      <ul class="nav navbar-nav hidden-icon">
+        <li class="hidden-lg hidden-md hidden-sm"><a href="#"><i class="fa fa-search" aria-hidden="true"></i>Search</a></li>
+        <li class="hidden-lg hidden-md hidden-sm"><a href="#"><i class="fa fa-globe" aria-hidden="true"></i>Notificações</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid">   <!--Body-->
+    <div class="row">
+      <div class="hidden-xs col-sm-3 col-md-3 col-lg-2 sidebar">    <!--SideBar-->
+        <div class="container-fluid">
+          <div class="row">
+            <div class="container-fluid nav-header">
+              <div class="row">
+                  <div class="perfil-sidebar"><img src="https://goo.gl/EEo1WZ" alt="Imagem"></div>
+                  <div id="user-name">
+                    <label>Vinicius Audibert</label>
+                    <label>vinicius.audibert@cwi.com.br</label>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 icon-sidebar text-center">
+                  <ul>
+                    <li class="col-md-3 col-sm-3"><a href="#"><i class="fa fa-power-off" aria-hidden="true"></i></a></li>
+                    <li class="col-md-3 col-sm-3"><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                    <li class="col-md-3 col-sm-3"><a href="#"><i class="fa fa-key" aria-hidden="true"></i></a></li>
+                    <li class="col-md-3 col-sm-3"><a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <ul class="nav nav-pills nav-stacked">
+              <li class="text-muted menu-title">Dashboards</li>
+              <li role="presentation"><a href="#"  class="active border-bottom border-top"><i class="fa fa-archive" aria-hidden="true"></i>Administrativo<i class="glyphicon glyphicon-menu-right pull-right"></i></a></li>
+              <li class="text-muted menu-title">Cadastros</li>
+              <li role="presentation" class="border-bottom border-top"><a href="#"><i class="glyphicon glyphicon-list-alt"></i>Contato<i class="glyphicon glyphicon-menu-right pull-right"></i></a></li>
+              <li role="presentation" class="border-bottom"><a href="#"><i class="fa fa-user" aria-hidden="true"></i>Usuário<i class="glyphicon glyphicon-menu-right pull-right"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10 content">      <!--Content-->
+        <div class="container-fluid">
+          <div class="row header">
+            <header class="col-md-12">
+              <h1>Cadastro</h1>
+              <h4 class="line">Usuário</h4>
+              <nav class="nav-pages pull-right line">
+                <a href="#" class="line">Home</a>
+                <p class="line">></p>
+                <a href="#" class="line">Cadastro</a>
+                <p class="line">></p>
+                <a href="#" class="line gray">Usuário</a>
+              </nav>
+            </header>
+          </div>
+          <form>
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="gray">Cadastro de Usuário</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h5 class="line form-name">NOME<small class="gray small-add">PESSOA FÍSICA</small></h5>
+                <div class="input-group">
+                  <input type="text" class="form-control" aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>CPF</label>
+                  <input type="text" class="form-control" placeholder="000.000.000-00" aria-describedby="basic-addon1">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-name">EMAIL</label>
+                  <input type="text" class="form-control" placeholder="readonly value" aria-describedby="basic-addon1">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-name">DISABLED</label>
+                  <input type="text" class="form-control" placeholder="disable value" aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-name">HELP BLOCK</label>
+                  <input type="text" class="form-control" aria-describedby="basic-addon1">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-name">TEXT AREA<small class="gray small-add">WRITE SOME TEXT</small></label>
+                  <textarea type="text" style="resize:vertical;" class="form-control" placeholder="placeholder" aria-describedby="basic-addon1">
+                  </textarea>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-name">SELECT<small class="gray small-add">LIST OF ITEMS</small></label>
+                  <input type="text" class="form-control" placeholder="First Value" aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-name">DEFAULT</label>
+                  <select class="form-control" name="default">
+                    <option selected>OPTION</option>
+                    <option value="option1">Option1</option>
+                    <option value="option2">Option2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-name">MULTIPLE</label>
+                  <select class="form-control" name="multiple">
+                    <option selected>OPTION</option>
+                    <option value="option1">Option1</option>
+                    <option value="option2">Option2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-name">GROUP</label>
+                  <select class="form-control" name="group">
+                    <option selected>OPTION</option>
+                    <option value="option1">Option1</option>
+                    <option value="option2">Option2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-name">SEARCH</label>
+                  <select class="form-control" name="search">
+                    <option selected>OPTION</option>
+                    <option value="option1">Option1</option>
+                    <option value="option2">Option2</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
