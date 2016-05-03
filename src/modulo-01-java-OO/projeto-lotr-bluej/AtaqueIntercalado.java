@@ -3,15 +3,17 @@ public class AtaqueIntercalado implements Estrategia {
     private ArrayList<Elfo> ordemDeAtaque = new ArrayList<Elfo>();
     
     public void atacar(ExercitoDeElfos exercito, ArrayList<Dwarf> dwarfList){
-        exercito.agruparPorStatus();
-        ArrayList<Elfo> elfosVivos = exercito.getExercitoDeElfosStatus().get(Status.VIVO);
-        if(this.igualdadeDeElfos(elfosVivos)){
-            elfosVivos = this.ordenaParaIntercalar(elfosVivos);
-            for(int i=0; i<elfosVivos.size()/2; i++){
-                this.tiraVidaDosDwarfs(dwarfList,elfosVivos.get(i));
-                ordemDeAtaque.add(elfosVivos.get(i));
-                this.tiraVidaDosDwarfs(dwarfList,elfosVivos.get(i + elfosVivos.size()/2));
-                ordemDeAtaque.add(elfosVivos.get(i + elfosVivos.size()/2));
+        if(!exercito.getExercitoDeElfos().isEmpty()){
+            exercito.agruparPorStatus();
+            ArrayList<Elfo> elfosVivos = exercito.getExercitoDeElfosStatus().get(Status.VIVO);
+            if(this.igualdadeDeElfos(elfosVivos)){
+                elfosVivos = this.ordenaParaIntercalar(elfosVivos);
+                for(int i=0; i<elfosVivos.size()/2; i++){
+                    this.tiraVidaDosDwarfs(dwarfList,elfosVivos.get(i));
+                    ordemDeAtaque.add(elfosVivos.get(i));
+                    this.tiraVidaDosDwarfs(dwarfList,elfosVivos.get(i + elfosVivos.size()/2));
+                    ordemDeAtaque.add(elfosVivos.get(i + elfosVivos.size()/2));
+                }
             }
         }
     }
