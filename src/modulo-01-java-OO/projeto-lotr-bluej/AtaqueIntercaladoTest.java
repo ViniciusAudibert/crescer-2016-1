@@ -13,7 +13,7 @@ public class AtaqueIntercaladoTest {
         return dwarfList;
     }
     
-    private void alistaElfosMisturadosDesigual(ExercitoDeElfos exercito){
+    private void alistaElfosMisturadosDesigual(ExercitoDeElfos exercito) throws NaoPodeAlistarException{
         exercito.alistaElfo(new ElfoNoturno("Ranger"));
         exercito.alistaElfo(new ElfoNoturno("Fredyl"));
         exercito.alistaElfo(new ElfoNoturno("Nephil"));
@@ -21,7 +21,7 @@ public class AtaqueIntercaladoTest {
         exercito.alistaElfo(new ElfoNoturno("Jardan"));
     }
     
-    private void alistaElfosMisturadosComIgualdade(ExercitoDeElfos exercito){
+    private void alistaElfosMisturadosComIgualdade(ExercitoDeElfos exercito) throws NaoPodeAlistarException{
         exercito.alistaElfo(new ElfoVerde("Ranger"));
         exercito.alistaElfo(new ElfoNoturno("Fredyl"));
         exercito.alistaElfo(new ElfoNoturno("Gorroko"));
@@ -29,7 +29,7 @@ public class AtaqueIntercaladoTest {
         
     }
     
-    private void alistaUmElfoVerdePrimeiro(ExercitoDeElfos exercito){
+    private void alistaUmElfoVerdePrimeiro(ExercitoDeElfos exercito) throws NaoPodeAlistarException{
         exercito.alistaElfo(new ElfoNoturno("Fredyl"));
         exercito.alistaElfo(new ElfoNoturno("Gorroko"));
         exercito.alistaElfo(new ElfoNoturno("Nephil"));
@@ -41,7 +41,7 @@ public class AtaqueIntercaladoTest {
         
     }
     
-    private void alistaUmElfoNoturnoPrimeiro(ExercitoDeElfos exercito){
+    private void alistaUmElfoNoturnoPrimeiro(ExercitoDeElfos exercito) throws NaoPodeAlistarException{
         exercito.alistaElfo(new ElfoVerde("Fredyl"));
         exercito.alistaElfo(new ElfoNoturno("Gorroko"));
         exercito.alistaElfo(new ElfoVerde("Nephil"));
@@ -54,7 +54,7 @@ public class AtaqueIntercaladoTest {
     }
     
     @Test
-    public void exercitoAtacaDwarfsEstrategiaPorIntercalacaoSemIgualdade(){
+    public void exercitoAtacaDwarfsEstrategiaPorIntercalacaoSemIgualdade() throws NaoPodeAlistarException{
         ExercitoDeElfos exercitoElfos = new ExercitoDeElfos();
         ArrayList<Dwarf> exercitoDwarfs = exercitoDeDwarfs();
         Estrategia estrategia = new AtaqueIntercalado();
@@ -66,7 +66,7 @@ public class AtaqueIntercaladoTest {
     }
     
     @Test
-    public void exercitoAtacaDwarfsEstrategiaPorIntercalacaoComIgualdade(){
+    public void exercitoAtacaDwarfsEstrategiaPorIntercalacaoComIgualdade() throws NaoPodeAlistarException{
         ExercitoDeElfos exercitoElfos = new ExercitoDeElfos();
         ArrayList<Dwarf> exercitoDwarfs = exercitoDeDwarfs();
         Estrategia estrategia = new AtaqueIntercalado();
@@ -78,7 +78,7 @@ public class AtaqueIntercaladoTest {
     }
     
     @Test
-    public void atacaDwarfsEstrategiaPorIntercalacaoGetOrdemVerdePrimeiro(){
+    public void atacaDwarfsEstrategiaPorIntercalacaoGetOrdemVerdePrimeiro() throws NaoPodeAlistarException{
         ExercitoDeElfos exercitoElfos = new ExercitoDeElfos();
         ArrayList<Dwarf> exercitoDwarfs = exercitoDeDwarfs();
         Estrategia estrategia = new AtaqueIntercalado();
@@ -94,7 +94,7 @@ public class AtaqueIntercaladoTest {
     }
     
     @Test
-    public void atacaDwarfsEstrategiaPorIntercalacaoGetOrdemNoturnoPrimeiro(){
+    public void atacaDwarfsEstrategiaPorIntercalacaoGetOrdemNoturnoPrimeiro() throws NaoPodeAlistarException{
         ExercitoDeElfos exercitoElfos = new ExercitoDeElfos();
         ArrayList<Dwarf> exercitoDwarfs = exercitoDeDwarfs();
         Estrategia estrategia = new AtaqueIntercalado();
@@ -107,5 +107,53 @@ public class AtaqueIntercaladoTest {
             assertTrue(elfoNoturno instanceof ElfoNoturno);
             assertTrue(elfoVerde instanceof ElfoVerde);
         }
+    }
+    
+    @Test
+    public void exercitoSoDeUmTipoNãoAtaca() throws NaoPodeAlistarException {
+        // Arrange
+        ExercitoDeElfos exercito = new ExercitoDeElfos();  
+        exercito.mudarEstrategia(new AtaqueIntercalado());
+        Elfo night1 = new ElfoNoturno("Noturno 1");
+        Elfo night2 = new ElfoNoturno("Elfo Noturno 2");
+        exercito.alistaElfo(night1);
+        exercito.alistaElfo(night2);
+        // Act
+        exercito.atacar(new ArrayList<>(Arrays.asList(new Dwarf("D1"), new Dwarf("D2"), new Dwarf("D3"))));
+        // Assert
+        ArrayList<Elfo> resultado = exercito.getOrdemDoUltimoAtaque();
+        assertTrue(resultado.isEmpty());
+    }
+
+    @Test
+    public void ataqueComExercitoVazio() throws NaoPodeAlistarException {
+        ExercitoDeElfos exercito = new ExercitoDeElfos();
+        exercito.mudarEstrategia(new AtaqueIntercalado());
+        exercito.atacar(new ArrayList<>(Arrays.asList(new Dwarf("D1"), new Dwarf("D2"))));
+        List<Elfo> ordemAtaque = exercito.getOrdemDoUltimoAtaque();
+        assertTrue(ordemAtaque.isEmpty());
+    }
+
+    @Test
+    public void exercitoIntercaladoComElfoNoturnoMorto() throws NaoPodeAlistarException {
+        // Arrange
+        ExercitoDeElfos exercito = new ExercitoDeElfos();
+        exercito.mudarEstrategia(new AtaqueIntercalado());
+        Elfo night1 = new ElfoNoturno("EN1",100);
+        for (int i = 0; i < 90; i++) night1.atirarFlecha(new Dwarf("D1"));
+        Elfo night2 = new ElfoNoturno("EN2");
+        Elfo night3 = new ElfoNoturno("EN3");
+        Elfo green1 = new ElfoVerde("EV1");
+        Elfo green2 = new ElfoVerde("EV2");
+        exercito.alistaElfo(night1);
+        exercito.alistaElfo(night2);
+        exercito.alistaElfo(night3);
+        exercito.alistaElfo(green1);
+        exercito.alistaElfo(green2);
+        List<Elfo> esperado = new ArrayList<>(Arrays.asList(green2, night2, green1, night3));
+        // Act
+        exercito.atacar(new ArrayList<>(Arrays.asList(new Dwarf("D1"), new Dwarf("D2"), new Dwarf("D3"))));
+        // Assert
+        assertEquals(esperado, exercito.getOrdemDoUltimoAtaque());
     }
 }
