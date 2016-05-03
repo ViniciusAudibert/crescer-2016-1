@@ -58,6 +58,7 @@ function queroCafe(mascada,precos){
     if (precos[i] <= mascada) precosValidos.push(precos[i]);
   }
   return precosValidos.sort().toString();
+}
 
 // Exercicio 7 - Vários tipos
 function contarPorTipo (objeto, tipo) {
