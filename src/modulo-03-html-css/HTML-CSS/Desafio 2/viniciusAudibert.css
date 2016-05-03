@@ -53,8 +53,8 @@ header>h1{
 }
 .content{
   margin: 50px auto;
-  width: 1230px;
-  height: 800px;
+  width: 1050px;
+  height: 500px;
   background: -webkit-linear-gradient(white, #BFBFBF);
   background: -o-linear-gradient(white, #BFBFBF);
   background: linear-gradient(white, #BFBFBF);
@@ -65,7 +65,7 @@ header>h1{
 
 .content article ul{
   overflow-y: scroll;
-  height: 800px;
+  height: 440px;
 }
 
 ::-webkit-scrollbar {
@@ -264,7 +264,8 @@ header>nav>a:hover{
 }
 
 .personagens li::before{
-  content: url(http://www.serebii.net/games/balls/pokeball.png);
+  /* content: url(http://www.serebii.net/games/balls/pokeball.png); */
+  content: url(http://i193.photobucket.com/albums/z153/bananahead175/pokemon/pokeball.gif);
   padding-right: 25px;
 }
 
@@ -964,6 +965,167 @@ header>nav>a:hover{
   background-position-y: 3px;
   background-position-x: 160px;
 }
-.personagens>ul>li:nth-of-type(n+90){
+
+.personagens>ul>li:nth-of-type(90){
+  background-image: url(http://vignette4.wikia.nocookie.net/pokemon/images/d/d9/090Shellder_AG_anime.png/revision/latest?cb=20140918013639);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(91){
+  background-image: url(http://vignette1.wikia.nocookie.net/pokemon/images/a/af/091Cloyster_AG_anime.png/revision/latest?cb=20140510073057);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(92){
+  background-image: url(http://vignette3.wikia.nocookie.net/pokemon/images/7/76/092Gastly_AG_anime.png/revision/latest?cb=20140831221251);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(93){
+  background-image: url(http://orig04.deviantart.net/7c0e/f/2014/019/0/c/haunter_by_pokemonmaster88888-d72xsxz.png);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(94){
+  background-image: url(http://vignette4.wikia.nocookie.net/pokemon/images/a/a8/094Gengar_OS_anime_3.png/revision/latest?cb=20150716055813);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(95){
+  background-image: url(http://vignette2.wikia.nocookie.net/pokemon/images/7/7a/095Onix_Dream.png/revision/latest?cb=20140509022441);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(96){
+  background-image: url(http://www.dltk-kids.com/pokemon/adoptions/096.gif);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(97){
+  background-image: url(http://pldh.net/media/dreamworld/097.png);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(98){
+  background-image: url(http://clipart.toonarific.com/data/media/11/pokemon098.gif);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(99){
+  background-image: url(http://vignette2.wikia.nocookie.net/pokemon/images/1/1f/099Kingler_Dream.png/revision/latest?cb=20140909035422);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(100){
+  background-image: url(http://www.dltk-kids.com/pokemon/adoptions/100.gif);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(101){
+  background-image: url(http://orig01.deviantart.net/d8e5/f/2013/140/c/8/electrode_by_dburch01-d65ynz2.png);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(102){
+  background-image: url(http://www.dltk-kids.com/pokemon/adoptions/102.gif);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(103){
+  background-image: url(http://orig15.deviantart.net/9767/f/2011/119/b/e/103___exeggutor_by_meriimerodii-d3f6lmy.png);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(104){
+  background-image: url(http://vignette2.wikia.nocookie.net/pokemon/images/6/6e/104Cubone_Pokemon_Mystery_Dungeon_Red_and_Blue_Rescue_Teams.png/revision/latest?cb=20150106010418);
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(105){
+  background-image: url();
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(106){
+  background-image: url();
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(107){
+  background-image: url();
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(108){
+  background-image: url();
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(109){
+  background-image: url();
+  background-size: 95px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 160px;
+}
+
+.personagens>ul>li:nth-of-type(n+105){
   display: none;
 }
