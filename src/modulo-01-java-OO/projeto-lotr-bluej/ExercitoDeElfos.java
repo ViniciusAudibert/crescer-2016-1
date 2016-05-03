@@ -5,16 +5,17 @@ public class ExercitoDeElfos {
     private HashMap<Status,ArrayList<Elfo>> exercitoDeElfosStatus;
     private Estrategia estrategia;
         
-    public ExercitoDeElfos(){
+    public ExercitoDeElfos() {
         this.exercitoDeElfos = new HashMap<>();
         this.exercitoDeElfosStatus = new HashMap<>();
         this.estrategia = new AtaqueNoturnoPorUltimo();
     }
     
-    public void alistaElfo(Elfo elfo){
-        if(elfo instanceof ElfoVerde || elfo instanceof ElfoNoturno){
-            exercitoDeElfos.put(elfo.getNome(),elfo);
+    public void alistaElfo(Elfo elfo) throws NaoPodeAlistarException{
+        if(!(elfo instanceof ElfoVerde || elfo instanceof ElfoNoturno)){
+            throw new NaoPodeAlistarException();
         }
+        exercitoDeElfos.put(elfo.getNome(),elfo);
     }
     
     public Elfo buscaElfo(String nome){
@@ -51,5 +52,9 @@ public class ExercitoDeElfos {
     
     public HashMap<Status,ArrayList<Elfo>> getExercitoDeElfosStatus(){
         return this.exercitoDeElfosStatus;
+    }
+    
+    public void mudarEstrategia(Estrategia estrategia) {
+        this.estrategia = estrategia;
     }
 }
