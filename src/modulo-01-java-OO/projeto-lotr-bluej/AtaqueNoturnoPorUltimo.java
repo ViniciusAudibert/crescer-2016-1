@@ -4,23 +4,25 @@ public class AtaqueNoturnoPorUltimo implements Estrategia {
     
     @Override
     public void atacar(ExercitoDeElfos exercito, ArrayList<Dwarf> dwarfList){
-        exercito.agruparPorStatus();
-        ArrayList<Elfo> elfosVivos = exercito.getExercitoDeElfosStatus().get(Status.VIVO);
-        ArrayList<Integer> indicesNoturnos = new ArrayList<>();
-        for(int i=0; i<elfosVivos.size(); i++){
-            Elfo elfo = elfosVivos.get(i);
-            if(elfo instanceof ElfoVerde){
+        if(!exercito.getExercitoDeElfos().isEmpty()){
+            exercito.agruparPorStatus();
+            ArrayList<Elfo> elfosVivos = exercito.getExercitoDeElfosStatus().get(Status.VIVO);
+            ArrayList<Integer> indicesNoturnos = new ArrayList<>();
+            for(int i=0; i<elfosVivos.size(); i++){
+                Elfo elfo = elfosVivos.get(i);
+                if(elfo instanceof ElfoVerde){
+                    this.tiraVidaDosDwarfs(dwarfList,elfo);
+                    this.ordemDeAtaque.add(elfo);
+                }
+                else{
+                    indicesNoturnos.add(i);
+                }
+            }
+            for(int i=0; i<indicesNoturnos.size(); i++){
+                Elfo elfo = elfosVivos.get(indicesNoturnos.get(i));
                 this.tiraVidaDosDwarfs(dwarfList,elfo);
                 this.ordemDeAtaque.add(elfo);
             }
-            else{
-                indicesNoturnos.add(i);
-            }
-        }
-        for(int i=0; i<indicesNoturnos.size(); i++){
-            Elfo elfo = elfosVivos.get(indicesNoturnos.get(i));
-            this.tiraVidaDosDwarfs(dwarfList,elfo);
-            this.ordemDeAtaque.add(elfo);
         }
     }
     

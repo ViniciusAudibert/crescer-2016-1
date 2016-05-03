@@ -5,18 +5,20 @@ public class AtaquePorIntencao implements Estrategia {
     
     @Override
     public void atacar(ExercitoDeElfos exercito, ArrayList<Dwarf> dwarfList){
-        exercito.agruparPorStatus();
-        ArrayList<Elfo> elfosVivos = exercito.getExercitoDeElfosStatus().get(Status.VIVO);
-        int intencaoDeAtaque = elfosVivos.size() * dwarfList.size();
-        intencaoDeAtaque *= 0.3;
-        for(Elfo elfo : elfosVivos){
-            if(elfo instanceof ElfoVerde){
-                this.tiraVidaDosDwarfs(dwarfList,elfo);
-                ordemDeAtaque.add(elfo);
-            }
-            else if((contagemDosAtaques < intencaoDeAtaque)&& elfo instanceof ElfoNoturno){
-                this.tiraVidaDosDwarfs(dwarfList,elfo);
-                ordemDeAtaque.add(elfo);
+        if(!exercito.getExercitoDeElfos().isEmpty()){
+            exercito.agruparPorStatus();
+            ArrayList<Elfo> elfosVivos = exercito.getExercitoDeElfosStatus().get(Status.VIVO);
+            int intencaoDeAtaque = elfosVivos.size() * dwarfList.size();
+            intencaoDeAtaque *= 0.3;
+            for(Elfo elfo : elfosVivos){
+                if(elfo instanceof ElfoVerde){
+                    this.tiraVidaDosDwarfs(dwarfList,elfo);
+                    ordemDeAtaque.add(elfo);
+                }
+                else if((contagemDosAtaques < intencaoDeAtaque)&& elfo instanceof ElfoNoturno){
+                    this.tiraVidaDosDwarfs(dwarfList,elfo);
+                    ordemDeAtaque.add(elfo);
+                }
             }
         }
     }
