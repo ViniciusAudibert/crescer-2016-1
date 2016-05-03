@@ -28,13 +28,12 @@ function imprime(array,fn){
   }
 }
 
-imprime(['Bernardo','Fabricio','Nunes'],function(imprime){
-  console.log('Olá querido instrutor: ' + imprime);
-});
-
 // Exercicio 4 - Soma diferentona
-var soma = 0;
-function adicionar(a){ return soma += a;}
+function adicionar(numero1) {
+  return function(numero2) {
+    return numero1 + numero2;
+  }
+};
 
 // Exercicio 5  - Fibona
 function fiboSum(n){
@@ -54,39 +53,26 @@ function fiboSum(n){
 
 // Exercicio 6 - Quero café
 function queroCafe(mascada,precos){
-  if(typeof mascada === 'number' && precos.constructor === Array){
-      lastFlipped = true;
-      while(lastFlipped){
-        lastFlipped = false;
-        for(var i=0; i<precos.length-1; i++){
-          if(precos[i] > precos[i+1]){
-            temp = precos[i];
-            precos[i] = precos[i+1];
-            precos[i+1] = temp;
-            lastFlipped = true;
-          }
-        }
-      }
-      var frase = '';
-      for(var i=0; i<precos.length && precos[i] <= mascada; i++){
-        frase += precos[i] + ',';
-      }
-      return frase.substring(0,frase.length-1);
+  var precosValidos = [];
+  for (var i = 0; i < precos.length; i++) {
+    if (precos[i] <= mascada) precosValidos.push(precos[i]);
   }
-  else{return 'Parametro invalido';}
-};
+  return precosValidos.sort().toString();
 
 // Exercicio 7 - Vários tipos
-function contarPorTipo(obj,valor){
-  var arrayProperty = Object.getOwnPropertyNames(obj);
-  var cont = 0;
-  for(var i in arrayProperty){
-    var tipo = obj[arrayProperty[i]];
-    if(typeof tipo === valor || tipo + '' === valor || (tipo != null && valor === 'array' && tipo.constructor === Array)){
-      cont++;
-    }
+function contarPorTipo (objeto, tipo) {
+
+  // inspirado em http://stackoverflow.com/a/13467007/5194966
+  function getType(v) {
+    return v === null ? 'null' : typeof v !== 'undefined' && v.constructor === Array ? 'array' : typeof v;
   }
-  return cont;
+
+  var count = 0;
+  for (var campo in objeto) {
+    if (getType(objeto[campo]) === tipo) count++;
+  }
+
+  return count;
 }
 
 // Exercicio 8 - Reflexões
