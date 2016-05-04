@@ -126,8 +126,8 @@ function obterMesesComMaisAniversarios(){
   function obterSobrepeso(){
     var acimaDoPeso = [];
     for(var key in obterIMC()){
-      if(obterIMC()[key] >= 25){
-        acimaDoPeso.push(obterIMC()[key]);
+      if(arredondamento((goldSaints[key].pesoLb * 0.453592) / Math.pow(goldSaints[key].alturaCm / 100,2)) >= 25){
+        acimaDoPeso.push(goldSaints[key]);
       }
     }
     return acimaDoPeso;
