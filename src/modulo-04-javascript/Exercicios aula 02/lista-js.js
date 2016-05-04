@@ -28,7 +28,9 @@ function obterCavaleiroComMaisGolpes(){
 
 // Exercicio 3 - Aniversários
 function obterMesesComMaisAniversarios(){
+  nomeMeses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro']
   meses = [];
+  mesesMaisAniversario = [];
   for(var key in goldSaints){
       var cavaleiroData = new Date(goldSaints[key].dataNascimento);
       cavaleiroData = cavaleiroData.getMonth();
@@ -40,11 +42,93 @@ function obterMesesComMaisAniversarios(){
           position = mes;
         }
       }
-      if(jaExiste){
-        meses[position].qtd++;
-      }
-      else{
-        meses.push({mes:cavaleiroData,qtd:1});
+      if(jaExiste){ meses[position].qtd++; }
+      else{ meses.push({mes:cavaleiroData,qtd:1}); }
+    }
+    var maiorQtd = 0;
+    for(var key in meses){
+      if(meses[key].qtd > maiorQtd){ maiorQtd = meses[key].qtd; }
+    }
+    for(var key in meses){
+      if(meses[key].qtd === maiorQtd){mesesMaisAniversario.push(nomeMeses[meses[key].mes])}
+    }
+    return mesesMaisAniversario;
+  }
+
+  // Aredondamento
+  function arredondamento(n){
+    return Math.round(n * 100) / 100;
+  }
+
+  //Exercicio 4 - Altura média
+  function obterAlturaMedia(){
+    var somaAlturas = 0;
+    for(var key in goldSaints){
+      somaAlturas += goldSaints[key].alturaCm;
+    }
+    return arredondamento((somaAlturas/goldSaints.length)/100);
+  }
+
+  // Exercicio 5 - Altura mediana
+  function obterAlturaMediana(){
+    var alturas = [];
+    for(var key in goldSaints){
+      alturas.push(goldSaints[key].alturaCm);
+    }
+    alturas.sort(function(a, b) {
+      return a > b;
+    });
+    var mediana = -1;
+    if(alturas.length % 2 === 0){ mediana = (alturas[alturas.length/2 - 1] + alturas[alturas.length/2])/2 }
+    else{mediana = alturas[(alturas.length - 1) / 2];}
+    return arredondamento(mediana/100);
+  }
+
+  // Exercicio 6 - Peso médio
+  function obterPesoMedio(){
+    var pesoTotal = 0;
+    var qtdCanvaleiros = 0;
+    for(var key in goldSaints){
+      if(typeof goldSaints[key].pesoLb !== 'undefined'){
+        pesoTotal += goldSaints[key].pesoLb;
+        qtdCanvaleiros++;
       }
     }
+    return arredondamento((pesoTotal/qtdCanvaleiros) * 0.453592);
+  }
+
+  function obterPesoMedioDoadores(){
+    var pesoTotal = 0;
+    var qtdCanvaleiros = 0;
+    var cavaleiros = obterDoadores();
+    for(var key in cavaleiros){
+      if(typeof cavaleiros[key].pesoLb !== 'undefined'){
+        pesoTotal += cavaleiros[key].pesoLb;
+        qtdCanvaleiros++;
+      }
+    }
+    return arredondamento((pesoTotal/qtdCanvaleiros) * 0.453592);
+  }
+
+  // Exercicio 7 - IMC
+  function obterIMC (){
+    var imc = [];
+    var qtdCanvaleiros = 0;
+    for(var key in goldSaints){
+      if(typeof goldSaints[key].pesoLb !== 'undefined'){
+        imc.push(arredondamento((goldSaints[key].pesoLb * 0.453592) / Math.pow(goldSaints[key].alturaCm / 100,2)));
+      }
+    }
+    return imc;
+  }
+
+  // Exercicio 8 - Sobrepeso
+  function obterSobrepeso(){
+    var acimaDoPeso = [];
+    for(var key in obterIMC()){
+      if(obterIMC()[key] >= 25){
+        acimaDoPeso.push(obterIMC()[key]);
+      }
+    }
+    return acimaDoPeso;
   }
