@@ -5,8 +5,8 @@ console.log(goldSaints);
 // Exercicio 1 - Doadores de sangue
 function obterDoadores(){
   var doadoresUniversal = [];
-  for(var key in goldSaints){
-    var cavaleiro = goldSaints[key];
+  for(var i=0; i<goldSaints.length; i++){
+    var cavaleiro = goldSaints[i];
     if(cavaleiro.tipoSanguineo === 'O'){
       doadoresUniversal.push(cavaleiro);
     }
@@ -17,8 +17,8 @@ function obterDoadores(){
 // Exercicio 2 - Canivete suíço
 function obterCavaleiroComMaisGolpes(){
   var maisGolpes = goldSaints[0];
-  for(var key in goldSaints){
-    var cavaleiro = goldSaints[key];
+  for(var i=0; i<goldSaints.length; i++){
+    var cavaleiro = goldSaints[i];
     if(cavaleiro.golpes.length > maisGolpes.golpes.length){
       maisGolpes = cavaleiro;
     }
@@ -31,26 +31,24 @@ function obterMesesComMaisAniversarios(){
   nomeMeses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro']
   meses = [];
   mesesMaisAniversario = [];
-  for(var key in goldSaints){
-      var cavaleiroData = new Date(goldSaints[key].dataNascimento);
+  var maiorQtd = 0;
+  for(var i=0; i<goldSaints.length; i++){
+      var cavaleiroData = new Date(goldSaints[i].dataNascimento);
       cavaleiroData = cavaleiroData.getMonth();
       var jaExiste = false;
       var position = 0;
-      for(var mes in meses){
-        if(meses[mes].mes === cavaleiroData){
+      for(var j=0; j<meses.length; j++){
+        if(meses[j].mes === cavaleiroData){
           jaExiste = true;
-          position = mes;
+          position = j;
         }
       }
       if(jaExiste){ meses[position].qtd++; }
       else{ meses.push({mes:cavaleiroData,qtd:1}); }
+      if(meses[position].qtd > maiorQtd){ maiorQtd = meses[position].qtd; }
     }
-    var maiorQtd = 0;
-    for(var key in meses){
-      if(meses[key].qtd > maiorQtd){ maiorQtd = meses[key].qtd; }
-    }
-    for(var key in meses){
-      if(meses[key].qtd === maiorQtd){mesesMaisAniversario.push(nomeMeses[meses[key].mes])}
+    for(var i=0; i<meses.length; i++){
+      if(meses[i].qtd === maiorQtd){mesesMaisAniversario.push(nomeMeses[meses[i].mes])}
     }
     return mesesMaisAniversario;
   }
@@ -63,8 +61,8 @@ function obterMesesComMaisAniversarios(){
   //Exercicio 4 - Altura média
   function obterAlturaMedia(){
     var somaAlturas = 0;
-    for(var key in goldSaints){
-      somaAlturas += goldSaints[key].alturaCm;
+    for(var i=0; i<goldSaints.length; i++){
+      somaAlturas += goldSaints[i].alturaCm;
     }
     return arredondamento((somaAlturas/goldSaints.length)/100);
   }
@@ -72,8 +70,8 @@ function obterMesesComMaisAniversarios(){
   // Exercicio 5 - Altura mediana
   function obterAlturaMediana(){
     var alturas = [];
-    for(var key in goldSaints){
-      alturas.push(goldSaints[key].alturaCm);
+    for(var i=0; i<goldSaints.length; i++){
+      alturas.push(goldSaints[i].alturaCm);
     }
     alturas.sort(function(a, b) {
       return a > b;
@@ -88,9 +86,9 @@ function obterMesesComMaisAniversarios(){
   function obterPesoMedio(){
     var pesoTotal = 0;
     var qtdCanvaleiros = 0;
-    for(var key in goldSaints){
-      if(typeof goldSaints[key].pesoLb !== 'undefined'){
-        pesoTotal += goldSaints[key].pesoLb;
+    for(var i=0; i<goldSaints.length; i++){
+      if(typeof goldSaints[i].pesoLb !== 'undefined'){
+        pesoTotal += goldSaints[i].pesoLb;
         qtdCanvaleiros++;
       }
     }
@@ -101,9 +99,9 @@ function obterMesesComMaisAniversarios(){
     var pesoTotal = 0;
     var qtdCanvaleiros = 0;
     var cavaleiros = obterDoadores();
-    for(var key in cavaleiros){
-      if(typeof cavaleiros[key].pesoLb !== 'undefined'){
-        pesoTotal += cavaleiros[key].pesoLb;
+    for(var i=0; i<cavaleiros.length; i++){
+      if(typeof cavaleiros[i].pesoLb !== 'undefined'){
+        pesoTotal += cavaleiros[i].pesoLb;
         qtdCanvaleiros++;
       }
     }
@@ -114,9 +112,9 @@ function obterMesesComMaisAniversarios(){
   function obterIMC (){
     var imc = [];
     var qtdCanvaleiros = 0;
-    for(var key in goldSaints){
-      if(typeof goldSaints[key].pesoLb !== 'undefined'){
-        imc.push(arredondamento((goldSaints[key].pesoLb * 0.453592) / Math.pow(goldSaints[key].alturaCm / 100,2)));
+    for(var i=0; i<goldSaints.length; i++){
+      if(typeof goldSaints[i].pesoLb !== 'undefined'){
+        imc.push(arredondamento((goldSaints[i].pesoLb * 0.453592) / Math.pow(goldSaints[i].alturaCm / 100,2)));
       }
     }
     return imc;
@@ -125,9 +123,9 @@ function obterMesesComMaisAniversarios(){
   // Exercicio 8 - Sobrepeso
   function obterSobrepeso(){
     var acimaDoPeso = [];
-    for(var key in obterIMC()){
-      if(arredondamento((goldSaints[key].pesoLb * 0.453592) / Math.pow(goldSaints[key].alturaCm / 100,2)) >= 25){
-        acimaDoPeso.push(goldSaints[key]);
+    for(var i=0; i<obterIMC().length; i++){
+      if(arredondamento((goldSaints[i].pesoLb * 0.453592) / Math.pow(goldSaints[i].alturaCm / 100,2)) >= 25){
+        acimaDoPeso.push(goldSaints[i]);
       }
     }
     return acimaDoPeso;
