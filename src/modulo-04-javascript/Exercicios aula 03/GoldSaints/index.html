@@ -6,12 +6,47 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<button id="exibe-cavaleiros"> EXIBIR! </button>
-    <ul id="imagem-cavaleiros">
-    </ul>
-    <div id="informacoes-cavaleiros">
+  <form id="frm-novo-cavaleiro">
+    <label for="text-nome-cavaleiro">Nome</label>
+    <input id="text-nome-cavaleiro" type="text" placeholder="Digite o nome do cavaleiro" name="nome"></input><br>
+    <label for="text-tipo-sanguineo">Tipo Sanguineo</label>
+    <select id="text-tipo-sanguineo" name="tipo-sanguineo">
+      <option>Select</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="AB">AB</option>
+      <option value="O">O</option>
+    </select><br>
+    <label for="text-data-cavaleiro">Data de nascimento</label>
+    <input id="text-data-cavaleiro" type="date" name="data"></input><br>
+    <label for="text-altura-cavaleiro">Altura em metros</label>
+    <input id="text-altura-cavaleiro" type="number" min="0" placeholder="Digite a altura do cavaleiro" name="altura"></input><br>
+    <label for="text-peso-cavaleiro">Peso em kilos</label>
+    <input id="text-peso-cavaleiro" type="number" min="0" placeholder="Digite o peso do cavaleiro" name="kilos"></input><br>
+    <label for="text-signo-cavaleiro">Signo</label>
+    <select id="text-signo-sanguineo" name="signo" name="signo">
+      <option>Select</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="AB">AB</option>
+      <option value="O">O</option>
+    </select><br>
+    <label for="text-nascimento-cavaleiro">Local de Nascimento</label>
+    <input id="text-nascimento-cavaleiro" type="text" placeholder="Digite o local de nascimento" name="nascimento"></input><br>
+    <label for="text-treinamento-cavaleiro">Local de Treinamento</label>
+    <input id="text-treinamento-cavaleiro" type="text" placeholder="Digite o local de treinamento" name="treinamento"></input><br>
+    <label for="text-golpes-cavaleiro">Golpes</label>
+    <input id="text-golpes-cavaleiro" type="text" placeholder="Adicione um golpe" name="golpes"><button type="button">ADD</button></input><br>
+    <label for="text-url-cavaleiro">URL</label>
+    <input id="text-url-cavaleiro" type="text" placeholder="Digite a URL da imagem" name="url"></input><br><br>
+    <button type="submit" name="submit-frm-novo-cavaleiro">Submit</button>
+  </form>
+  <button id="exibe-cavaleiros"> EXIBIR!</button>
+  <ul id="imagem-cavaleiros">
+  </ul>
+  <div id="informacoes-cavaleiros">
+  </div>
 
-    </div>
   <script type="text/javascript" src="lib/jquery-2.2.3.min.js"></script>
   <script type="text/javascript" src="lista-js.js"></script>
 </body>

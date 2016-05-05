@@ -1,0 +1,22 @@
+#imagem-cavaleiros>li{
+  display: inline-block;
+  margin: 10px;
+}
+#imagem-cavaleiros{
+  width: 50%;
+  display: inline-block;
+  position: absolute;
+  float: left;;
+}
+#informacoes-cavaleiros{
+  float: right;;
+  width: 300px;
+}
+#exibe-cavaleiros{
+  margin-top: 30px;
+}
+#frm-novo-cavaleiro label{
+}
+#frm-novo-cavaleiro input,select{
+  margin: 10px 0px;
+}
