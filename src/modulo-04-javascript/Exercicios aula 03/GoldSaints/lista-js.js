@@ -12,12 +12,21 @@ function informacoesCavaleiros(i){
         var yyyy = date.getFullYear();
         if(dd<10){ dd = '0' + dd }
         if(mm<10){ mm = '0' + mm }
-        var info = document.createTextNode(key + ': ' + dd+'/'+mm+'/'+yyyy);
+        var info = document.createTextNode(dd+'/'+mm+'/'+yyyy);
+      }
+      else if(key === 'pesoLb'){
+        var peso = Math.round(goldSaints[i][key]*100)/100;
+        var info = document.createTextNode(peso);
       }
       else{
-        var info = document.createTextNode(key + ': ' + goldSaints[i][key]);
+        var info = document.createTextNode(goldSaints[i][key]);
       }
-      var newLine = document.createElement("br");
+      var key = document.createTextNode(key + ': ')
+      var newLine = document.createElement('br');
+      var strong = document.createElement('strong');
+      strong.appendChild(key);
+      content.appendChild(strong);
+      //content.appendChild(key);
       content.appendChild(info);
       content.appendChild(newLine);
 
@@ -30,14 +39,16 @@ function informacoesCavaleiros(i){
 function exibirCavaleiros(){
   $(this).hide();
   goldSaints.forEach(function(value,i){
-    var $imagem = $('<img>')
-    .attr('src',value.imagens[0].url).attr('alt',value.nome);
-    $('#imagemCavaleiros').append($('<li style="display:inline-block;">').append($('<div class="cavaleiroInfo">').attr('id',i).append($imagem)));
-  })
+    var $imagem = $('<img>').attr('src',value.imagens[0].url).attr('alt',value.nome);
+    $('#imagem-cavaleiros').append($('<li style="display:inline-block;">').append((($imagem).attr('id',i).attr('class','cavaleiro-info'))))
+})
 }
 
 
-$('#exibeCavaleiros').click(exibirCavaleiros);
-$('#cavaleiroInfo').hover(function(){
-  $(this).after('<div class="informacoes">').append(informacoesCavaleiros(this.attr('id')));
-})
+$('#exibe-cavaleiros').click(exibirCavaleiros);
+
+$('body').on('mouseover','.cavaleiro-info',(function(){
+  var self = $(this);
+  $('#informacoes-cavaleiros').append(informacoesCavaleiros(self.attr('id')));
+}))
+$('body').on('mouseout','.cavaleiro-info',(function(){$('#informacoes-cavaleiros').empty()}));
