@@ -31,7 +31,7 @@ $(function() {
       $img.on('mouseover', function() {
         $('#informacoes-cavaleiros').append(informacoesCavaleiros(indice));
       });
-      $img.on('mouseleave','.cavaleiro-info', function(){
+      $img.on('mouseout','.cavaleiro-info', function(){
         $('#informacoes-cavaleiros').empty();
       });
       setTimeout(function() {
@@ -52,7 +52,8 @@ function converterFormParaCavaleiro($form) {
     signo: formData.get('signo'),
     localNascimento: formData.get('nascimento'),
     localTreinamento: formData.get('treinamento'),
-    golpes: [formData.get('golpes')],
+    golpes: $("input[id='golpes']")
+             .map(function(){return $(this).val();}).get(),
     imagens: [
       { url: formData.get('url'), isThumb: $('#checkbox-image').is(':checked') }
     ]
@@ -60,7 +61,7 @@ function converterFormParaCavaleiro($form) {
 };
 
 $('#campo-golpes-cavaleiro').click(function(){
-      var $input = $('<input name="golpes">').attr('placeholder','Digite o nome do golpe');
+      var $input = $('<input id="golpes">').attr('placeholder','Digite o nome do golpe');
       $('#campo-golpes-cavaleiro').after($input);
   });
 
