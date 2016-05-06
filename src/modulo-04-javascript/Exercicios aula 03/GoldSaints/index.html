@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form id="frm-novo-cavaleiro">
+  <form id="frm-novo-cavaleiro" method="POST">
     <label for="text-nome-cavaleiro">Nome</label>
     <input id="text-nome-cavaleiro" type="text" placeholder="Digite o nome do cavaleiro" name="nome"></input><br>
     <label for="text-tipo-sanguineo">Tipo Sanguineo</label>
@@ -20,28 +20,35 @@
     <label for="text-data-cavaleiro">Data de nascimento</label>
     <input id="text-data-cavaleiro" type="date" name="data"></input><br>
     <label for="text-altura-cavaleiro">Altura em metros</label>
-    <input id="text-altura-cavaleiro" type="number" min="0" placeholder="Digite a altura do cavaleiro" name="altura"></input><br>
+    <input id="text-altura-cavaleiro" type="number" step="0.01" min="0" placeholder="Digite a altura do cavaleiro" name="altura"></input><br>
     <label for="text-peso-cavaleiro">Peso em kilos</label>
-    <input id="text-peso-cavaleiro" type="number" min="0" placeholder="Digite o peso do cavaleiro" name="kilos"></input><br>
+    <input id="text-peso-cavaleiro" type="number" step="0.1" min="0" placeholder="Digite o peso do cavaleiro" name="kilos"></input><br>
     <label for="text-signo-cavaleiro">Signo</label>
     <select id="text-signo-sanguineo" name="signo" name="signo">
       <option>Select</option>
-      <option value="A">A</option>
-      <option value="B">B</option>
-      <option value="AB">AB</option>
-      <option value="O">O</option>
+      <option value="Áries">Áries</option>
+      <option value="Touro">Touro</option>
+      <option value="Gêmeos">Gêmeos</option>
+      <option value="Câncer">Câncer</option>
+      <option value="Leão">Leão</option>
+      <option value="Virgem">Virgem</option>
+      <option value="Libra">Libra</option>
+      <option value="Escorpião">Escorpião</option>
+      <option value="Sagitário">Sagitário</option>
+      <option value="Capricórnio">Capricórnio</option>
+      <option value="Aquário">Aquário</option>
+      <option value="Peixes">Peixes</option>
     </select><br>
     <label for="text-nascimento-cavaleiro">Local de Nascimento</label>
     <input id="text-nascimento-cavaleiro" type="text" placeholder="Digite o local de nascimento" name="nascimento"></input><br>
     <label for="text-treinamento-cavaleiro">Local de Treinamento</label>
     <input id="text-treinamento-cavaleiro" type="text" placeholder="Digite o local de treinamento" name="treinamento"></input><br>
-    <label for="text-golpes-cavaleiro">Golpes</label>
-    <input id="text-golpes-cavaleiro" type="text" placeholder="Adicione um golpe" name="golpes"><button type="button">ADD</button></input><br>
-    <label for="text-url-cavaleiro">URL</label>
-    <input id="text-url-cavaleiro" type="text" placeholder="Digite a URL da imagem" name="url"></input><br><br>
+    <button id="campo-golpes-cavaleiro" type="button" name="golpes">Adicionar golpe</button>
+    <button id="campo-url-cavaleiro" type="button" name="url">Adicionar imagem</button><br><br>
     <button type="submit" name="submit-frm-novo-cavaleiro">Submit</button>
   </form>
-  <button id="exibe-cavaleiros"> EXIBIR!</button>
+  <hr>
+  <button id="exibe-cavaleiros" onclick="carregaImg()"> EXIBIR!</button>
   <ul id="imagem-cavaleiros">
   </ul>
   <div id="informacoes-cavaleiros">

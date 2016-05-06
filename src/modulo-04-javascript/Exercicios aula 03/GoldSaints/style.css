@@ -20,3 +20,7 @@
 #frm-novo-cavaleiro input,select{
   margin: 10px 0px;
 }
+.remove-img{
+  height: 20px;
+  width: 20px;
+}
