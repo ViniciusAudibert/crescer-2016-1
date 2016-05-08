@@ -20,7 +20,18 @@
 #frm-novo-cavaleiro input,select{
   margin: 10px 0px;
 }
-.remove-img{
+.remove-img {
+  position: absolute;
+  padding: 10px;
   height: 20px;
   width: 20px;
+}
+
+.remove-img > img{
+  width: 100%;
+  height: auto;
+}
+.cavaleiro-info{
+  width: auto;
+  height: 208px;
 }

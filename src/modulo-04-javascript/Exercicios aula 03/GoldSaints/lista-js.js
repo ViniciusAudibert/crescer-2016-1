@@ -11,34 +11,6 @@ $(function() {
 
     return e.preventDefault();
   });
-
-  (function carregaImg(indice) {
-    var $detalhesCavaleiro = $('#detalhes-cavaleiro');
-    var cavaleiro = goldSaints[indice];
-    var imgCavaleiro = new Image();
-    var remove = new Image();
-    remove.src = 'https://cdn3.iconfinder.com/data/icons/3d-printing-icon-set/512/Delete.png';
-    remove.alt = 'Remover item';
-    remove.class = 'remove-img';
-    imgCavaleiro.src = cavaleiro.imagens[0].url;
-    imgCavaleiro.alt = cavaleiro.nome;
-    imgCavaleiro.id = cavaleiro.id;
-    imgCavaleiro.class = 'cavaleiro-info';
-    imgCavaleiro.onload = function() {
-      var $img = $(imgCavaleiro);
-      var $remove = $(remove);
-      $remove.appendTo($img.appendTo($('<li>').appendTo($('#imagem-cavaleiros')))).fadeIn();
-      $img.on('mouseover', function() {
-        $('#informacoes-cavaleiros').append(informacoesCavaleiros(indice));
-      });
-      $img.on('mouseout','.cavaleiro-info', function(){
-        $('#informacoes-cavaleiros').empty();
-      });
-      setTimeout(function() {
-      }, 5000);
-      if (indice < goldSaints.length - 1) carregaImg(indice + 1);
-    };
-  })(0);
 });
 
 function converterFormParaCavaleiro($form) {
@@ -46,30 +18,35 @@ function converterFormParaCavaleiro($form) {
   return {
     id: goldSaints.length,
     pesoLb: parseFloat(formData.get('kilos'))*0.453592,
+    dataNasc: formData.get('data'),
     alturaCm: parseFloat(formData.get('altura'))*100,
     nome: formData.get('nome'),
     tipoSanguineo: formData.get('tipo-sanguineo'),
     signo: formData.get('signo'),
     localNascimento: formData.get('nascimento'),
     localTreinamento: formData.get('treinamento'),
-    golpes: $("input[id='golpes']")
+    golpes: $('input[name="golpes"]')
              .map(function(){return $(this).val();}).get(),
     imagens: [
-      { url: formData.get('url'), isThumb: $('#checkbox-image').is(':checked') }
+      { url: $('input[name="url"]')
+               .map(function(){return $(this).val();}).get(),
+        isThumb: $('input[name="checkbox-image"]')
+                 .map(function(){return $(this).is(':checked');}).get()
+       }
     ]
   };
 };
 
-$('#campo-golpes-cavaleiro').click(function(){
-      var $input = $('<input id="golpes">').attr('placeholder','Digite o nome do golpe');
-      $('#campo-golpes-cavaleiro').after($input);
+$('#btn-golpes-cavaleiro').click(function(){
+      var $input = $('<input name="golpes">').attr('placeholder','Digite o nome do golpe');
+      $('#btn-golpes-cavaleiro').after($input);
   });
 
-  $('#campo-url-cavaleiro').click(function(){
+  $('#btn-url-cavaleiro').click(function(){
       var $input = $('<input name="url">').attr('placeholder','Digite a URL da imagem');
       var $checkbox = $('<label />').html('É Thumbnail?')
-                          .prepend($('<input/>').attr({ type: 'checkbox', id: 'checkbox-image'}));
-      $('#campo-url-cavaleiro').after($input, $checkbox);
+                          .prepend($('<input/>').attr({ type: 'checkbox', name: 'checkbox-image'}));
+      $('#btn-url-cavaleiro').after($input, $checkbox);
   });
 
   function informacoesCavaleiros(i){
@@ -103,4 +80,38 @@ $('#campo-golpes-cavaleiro').click(function(){
       }
     }
     return content;
+  };
+
+  function carregaImg(indice) {
+    $('#exibe-cavaleiros').hide();
+    var cavaleiro = goldSaints[indice];
+    var imgCavaleiro = new Image();
+    var remove = new Image();
+    remove.src = 'https://cdn3.iconfinder.com/data/icons/3d-printing-icon-set/512/Delete.png';
+    remove.alt = 'Remover item';
+    remove.id = indice;
+    imgCavaleiro.src = cavaleiro.imagens[0].url;
+    imgCavaleiro.alt = cavaleiro.nome;
+    imgCavaleiro.id = indice+1;
+    imgCavaleiro.className = 'cavaleiro-info';
+    imgCavaleiro.onload = function() {
+      var $img = $(imgCavaleiro);
+      var $remove = $(remove);
+      $img.appendTo(($('<li>').append($('<div class="remove-img">').append($remove)).appendTo($('#imagem-cavaleiros'))));
+      $img.on('mouseover', function() {
+        $('#informacoes-cavaleiros').append(informacoesCavaleiros(indice));
+      });
+      $img.on('mouseout', function(){
+        $('#informacoes-cavaleiros').empty();
+      });
+      $remove.on('click', function(){
+        self = $(this);
+        goldSaints.splice(self.attr('id'),1);
+        localStorage['cavaleiros'] = JSON.stringify(goldSaints);
+        location.reload();
+      })
+      setTimeout(function() {
+      }, 5000);
+      if (indice < goldSaints.length - 1) carregaImg(indice + 1);
+    };
   };

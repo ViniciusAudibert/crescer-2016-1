@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Aula 03</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="css/datepicker.css" rel="stylesheet" type="text/css">
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <form id="frm-novo-cavaleiro" method="POST">
@@ -43,12 +45,12 @@
     <input id="text-nascimento-cavaleiro" type="text" placeholder="Digite o local de nascimento" name="nascimento"></input><br>
     <label for="text-treinamento-cavaleiro">Local de Treinamento</label>
     <input id="text-treinamento-cavaleiro" type="text" placeholder="Digite o local de treinamento" name="treinamento"></input><br>
-    <button id="campo-golpes-cavaleiro" type="button" name="golpes">Adicionar golpe</button>
-    <button id="campo-url-cavaleiro" type="button" name="url">Adicionar imagem</button><br><br>
+    <button id="btn-golpes-cavaleiro" type="button" name="golpes">Adicionar golpe</button>
+    <button id="btn-url-cavaleiro" type="button" name="url">Adicionar imagem</button><br><br>
     <button type="submit" name="submit-frm-novo-cavaleiro">Submit</button>
   </form>
   <hr>
-  <button id="exibe-cavaleiros" onclick="carregaImg()"> EXIBIR!</button>
+  <button id="exibe-cavaleiros" onclick="carregaImg(0)"> EXIBIR!</button>
   <ul id="imagem-cavaleiros">
   </ul>
   <div id="informacoes-cavaleiros">
@@ -56,5 +58,11 @@
 
   <script type="text/javascript" src="lib/jquery-2.2.3.min.js"></script>
   <script type="text/javascript" src="lista-js.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script>
+      $(function() {
+        $( "#text-data-cavaleiro" ).datepicker({dateFormat: 'dd/mm/yy'});
+      });
+    </script>
 </body>
 </html>
