@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ExercicioMegaman
 {
-    class Program
+    public interface IUpgrade
     {
-        static void Main(string[] args)
-        {
-        }
+        int UpgradeDefesa { get; }
+        int UpgradeAtaque { get; }
     }
 }

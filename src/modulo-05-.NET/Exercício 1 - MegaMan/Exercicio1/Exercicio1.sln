@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercicio1", "Exercicio1\Exercicio1.csproj", "{71AF287D-F7D9-4209-81AD-BFC21CBC1347}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExercicioMegaman", "Exercicio1\ExercicioMegaman.csproj", "{71AF287D-F7D9-4209-81AD-BFC21CBC1347}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExercicioMegamanTest", "MegamenTest\ExercicioMegamanTest.csproj", "{2051008C-34F4-4C7F-95C8-5E86E65902E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{71AF287D-F7D9-4209-81AD-BFC21CBC1347}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71AF287D-F7D9-4209-81AD-BFC21CBC1347}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71AF287D-F7D9-4209-81AD-BFC21CBC1347}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2051008C-34F4-4C7F-95C8-5E86E65902E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2051008C-34F4-4C7F-95C8-5E86E65902E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2051008C-34F4-4C7F-95C8-5E86E65902E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2051008C-34F4-4C7F-95C8-5E86E65902E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

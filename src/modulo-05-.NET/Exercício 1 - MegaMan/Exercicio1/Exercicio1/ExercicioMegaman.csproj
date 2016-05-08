@@ -43,9 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BotasDeSuperVelocidade.cs" />
+    <Compile Include="CanhaoDePlasma.cs" />
+    <Compile Include="EscudoDeEnergia.cs" />
+    <Compile Include="IUpgrade.cs" />
+    <Compile Include="Megaman.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protoman.cs" />
     <Compile Include="Robo.cs" />
+    <Compile Include="Rush.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

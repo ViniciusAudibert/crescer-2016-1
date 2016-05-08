@@ -4,24 +4,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercicio1
+namespace ExercicioMegaman
 {
     public abstract class Robo
     {
-        public abstract String Nome { get; }
-        public int Vida { get; private set; }
-        protected int Ataque;
-        protected int Defesa;
-
         public Robo()
         {
             Vida = 100;
             Ataque = 5;
             Defesa = 0;
+            Upgrade = 3;
         }
-        public void Atacar(Robo robo)
+
+        public int Vida { get; protected set; }
+
+        protected virtual int Ataque { get; set; }
+
+        protected virtual int Defesa { get; set; }
+
+        protected int Upgrade { get; set; }
+
+        public virtual void Atacar(Robo _robo)
         {
-            robo.Vida -= Ataque - Defesa;
+            _robo.ReceberAtaque(Ataque);
+        }
+
+        public virtual void ReceberAtaque(int _ataque)
+        {
+            int _dano = _ataque - Defesa;
+            if (_dano > 0)
+            {
+                Vida -= _dano;
+            }
+            if(Vida < 0)
+            {
+                Vida = 0;
+            }
+        }
+        public override String ToString()
+        {
+            return "Nome: Vida: " + Vida + ", Ataque: " + Ataque + ", Defesa: " + Defesa;
+        }
+        public void EquiparUpgrade(IUpgrade upgrade)
+        {
+            if(Upgrade >= 0)
+            {
+                Ataque += upgrade.UpgradeAtaque;
+                Defesa += upgrade.UpgradeDefesa;
+            }
         }
     }
 }
