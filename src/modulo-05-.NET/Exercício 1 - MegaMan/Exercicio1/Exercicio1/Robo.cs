@@ -14,7 +14,16 @@ namespace ExercicioMegaman
             Ataque = 5;
             Defesa = 0;
             Upgrade = 3;
+            ChipNivel = Chip.Nivel2;
         }
+        public Robo(Chip nivel) : this()
+        {
+            ChipNivel = nivel;
+            Nivel();
+            
+        }
+
+        public Chip ChipNivel { get; }
 
         public int Vida { get; protected set; }
 
@@ -51,6 +60,19 @@ namespace ExercicioMegaman
             {
                 Ataque += upgrade.UpgradeAtaque;
                 Defesa += upgrade.UpgradeDefesa;
+            }
+        }
+
+        private void Nivel()
+        {
+            if(ChipNivel.Equals(Chip.Nivel1))
+            {
+                Ataque--;
+            }
+            if (ChipNivel.Equals(Chip.Nivel3))
+            {
+                Defesa++;
+                Ataque += 2;
             }
         }
     }

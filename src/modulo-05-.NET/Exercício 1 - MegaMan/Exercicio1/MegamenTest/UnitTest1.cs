@@ -224,5 +224,38 @@ namespace MegamanTest
             Assert.AreEqual(Bot.ToString(), "Nome: Vida: 82, Ataque: 6, Defesa: 0");
             Assert.AreEqual(Bot2.ToString(), "Nome: Vida: 28, Ataque: 6, Defesa: 0");
         }
+        [TestMethod]
+        public void ChipNivel1Megaman()
+        {
+            Robo Bot = new Megaman(Chip.Nivel1);
+            Assert.AreEqual(Bot.ToString(), "Nome: Vida: 100, Ataque: 5, Defesa: 0");
+        }
+        public void ChipNivel3Megaman()
+        {
+            Robo Bot = new Megaman(Chip.Nivel3);
+            Assert.AreEqual(Bot.ToString(), "Nome: Vida: 100, Ataque: 8, Defesa: 1");
+        }
+        [TestMethod]
+        public void ChipNivel1Protoman()
+        {
+            Robo Bot = new Protoman(Chip.Nivel1);
+            Assert.AreEqual(Bot.ToString(), "Nome: Vida: 100, Ataque: 4, Defesa: 2");
+        }
+        public void ChipNivel3Protoman()
+        {
+            Robo Bot = new Protoman(Chip.Nivel3);
+            Assert.AreEqual(Bot.ToString(), "Nome: Vida: 100, Ataque: 7, Defesa: 3");
+        }
+        [TestMethod]
+        public void ChipNivel1Rush()
+        {
+            Robo Bot = new Rush(Chip.Nivel1);
+            Assert.AreEqual(Bot.ToString(), "Nome: Vida: 100, Ataque: 3, Defesa: 3");
+        }
+        public void ChipNivel3Rush()
+        {
+            Robo Bot = new Rush(Chip.Nivel3);
+            Assert.AreEqual(Bot.ToString(), "Nome: Vida: 100, Ataque: 5, Defesa: 4");
+        }
     }
 }

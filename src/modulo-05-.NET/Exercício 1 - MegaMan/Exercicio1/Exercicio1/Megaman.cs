@@ -8,9 +8,12 @@ namespace ExercicioMegaman
 {
     public class Megaman : Robo
     {
-        public Megaman() : base()
+        public Megaman() : this(Chip.Nivel2)
         {
-            Ataque = 6;
+        }
+        public Megaman(Chip nivel) : base(nivel)
+        {
+            Ataque++;
         }
 
         public override void Atacar(Robo robo)

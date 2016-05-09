@@ -10,9 +10,12 @@ namespace ExercicioMegaman
     {
         private int mortesCont;
 
-        public Protoman() : base()
+        public Protoman() : this(Chip.Nivel2)
         {
-            Defesa = 2;
+        }
+        public Protoman(Chip nivel) : base(nivel)
+        {
+            Defesa += 2;
         }
 
         public override void Atacar(Robo robo)

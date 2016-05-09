@@ -9,12 +9,15 @@ namespace ExercicioMegaman
     public class Rush : Robo,IUpgrade
     {
         private int upgradeDefesa;
-        public Rush() : base()
+        public Rush() : this(Chip.Nivel2)
         {
-            Ataque = 4;
-            Defesa = 3;
-            upgradeDefesa = 3;
-            Upgrade = 2;
+        }
+        public Rush(Chip nivel) : base(nivel)
+        {
+            Ataque--;
+            Defesa += 3;
+            upgradeDefesa = Defesa;
+            Upgrade--;
         }
 
         public int UpgradeAtaque
