@@ -8,10 +8,12 @@ namespace ExercicioMegaman
 {
     public class Rush : Robo,IUpgrade
     {
+        private int upgradeDefesa;
         public Rush() : base()
         {
             Ataque = 4;
             Defesa = 3;
+            upgradeDefesa = 3;
             Upgrade = 2;
         }
 
@@ -27,7 +29,7 @@ namespace ExercicioMegaman
         {
             get
             {
-                return Defesa;
+                return upgradeDefesa;
             }
         }
     }

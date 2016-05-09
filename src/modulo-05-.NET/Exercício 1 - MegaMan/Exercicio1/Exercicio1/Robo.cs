@@ -29,12 +29,12 @@ namespace ExercicioMegaman
             robo.ReceberAtaque(Ataque);
         }
 
-        public virtual void ReceberAtaque(int _ataque)
+        public virtual void ReceberAtaque(int ataque)
         {
-            int _dano = _ataque - Defesa;
-            if (_dano > 0)
+            int dano = ataque - Defesa;
+            if (dano > 0)
             {
-                Vida -= _dano;
+                Vida -= dano;
             }
             if(Vida < 0)
             {

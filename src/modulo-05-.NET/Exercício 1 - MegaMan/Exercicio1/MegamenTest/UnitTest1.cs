@@ -206,6 +206,7 @@ namespace MegamanTest
             Robo Bot = new Megaman();
             IUpgrade Rush = new Rush();
             ((Robo)Rush).EquiparUpgrade(new CanhaoDePlasma());
+            ((Robo)Rush).EquiparUpgrade(new EscudoDeEnergia());
             Bot.EquiparUpgrade(Rush);
             Assert.AreEqual(Bot.ToString(), "Nome: Vida: 100, Ataque: 12, Defesa: 3");
         }

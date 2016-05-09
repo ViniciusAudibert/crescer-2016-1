@@ -20,9 +20,9 @@ namespace ExercicioMegaman
             base.Atacar(robo);
         }
 
-        public override void ReceberAtaque(int _ataque)
+        public override void ReceberAtaque(int ataque)
         {
-            base.ReceberAtaque(_ataque);
+            base.ReceberAtaque(ataque);
             if (Vida <= 0 && mortesCont == 0)
             {
                 Vida = 20;
