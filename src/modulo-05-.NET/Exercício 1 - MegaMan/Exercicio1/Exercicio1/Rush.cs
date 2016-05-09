@@ -19,7 +19,13 @@ namespace ExercicioMegaman
             upgradeDefesa = Defesa;
             Upgrade--;
         }
-
+        public override void Atacar(Robo robo)
+        {
+            if (robo.GetType() != typeof(Megaman))
+            {
+                base.Atacar(robo);
+            }
+        }
         public int UpgradeAtaque
         {
             get
