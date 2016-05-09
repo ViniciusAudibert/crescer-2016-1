@@ -16,9 +16,9 @@ namespace ExercicioMegaman
             Defesa = 2;
         }
 
-        public override void Atacar(Robo _robo)
+        public override void Atacar(Robo robo)
         {
-            base.Atacar(_robo);
+            base.Atacar(robo);
         }
 
         public override void ReceberAtaque(int _ataque)

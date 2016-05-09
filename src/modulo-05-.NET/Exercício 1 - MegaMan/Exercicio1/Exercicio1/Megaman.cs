@@ -13,13 +13,16 @@ namespace ExercicioMegaman
             Ataque = 6;
         }
 
-        public override void Atacar(Robo _robo)
+        public override void Atacar(Robo robo)
         {
             if(Vida < 30)
             {
-                _robo.ReceberAtaque(Ataque + 3);
+                robo.ReceberAtaque(Ataque + 3);
             }
-            base.Atacar(_robo);
+            else
+            {
+                base.Atacar(robo);
+            }
         }
     }
 }

@@ -24,9 +24,9 @@ namespace ExercicioMegaman
 
         protected int Upgrade { get; set; }
 
-        public virtual void Atacar(Robo _robo)
+        public virtual void Atacar(Robo robo)
         {
-            _robo.ReceberAtaque(Ataque);
+            robo.ReceberAtaque(Ataque);
         }
 
         public virtual void ReceberAtaque(int _ataque)

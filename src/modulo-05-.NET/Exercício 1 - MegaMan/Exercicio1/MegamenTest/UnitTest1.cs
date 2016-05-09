@@ -209,5 +209,19 @@ namespace MegamanTest
             Bot.EquiparUpgrade(Rush);
             Assert.AreEqual(Bot.ToString(), "Nome: Vida: 100, Ataque: 12, Defesa: 3");
         }
+        [TestMethod]
+        public void MegamenAtaqueComBonus()
+        {
+            Robo Bot = new Megaman();
+            Robo Bot2 = new Megaman();
+            for (int i = 0; i < 12; i++)
+            {
+                Bot.Atacar(Bot2);
+            }
+            Bot2.Atacar(Bot);
+            Bot2.Atacar(Bot);
+            Assert.AreEqual(Bot.ToString(), "Nome: Vida: 82, Ataque: 6, Defesa: 0");
+            Assert.AreEqual(Bot2.ToString(), "Nome: Vida: 28, Ataque: 6, Defesa: 0");
+        }
     }
 }
