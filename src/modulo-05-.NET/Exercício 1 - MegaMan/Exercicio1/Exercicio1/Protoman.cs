@@ -8,11 +8,10 @@ namespace ExercicioMegaman
 {
     public class Protoman : Robo
     {
-        private int MortesCont;
+        private int mortesCont;
 
         public Protoman() : base()
         {
-            this.MortesCont = 0;
             Defesa = 2;
         }
 
@@ -24,10 +23,10 @@ namespace ExercicioMegaman
         public override void ReceberAtaque(int _ataque)
         {
             base.ReceberAtaque(_ataque);
-            if (Vida <= 0 && MortesCont == 0)
+            if (Vida <= 0 && mortesCont == 0)
             {
                 Vida = 20;
-                MortesCont++;
+                mortesCont++;
                 Ataque = 7;
             }
         }
