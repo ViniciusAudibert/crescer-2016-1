@@ -83,54 +83,76 @@ namespace Repositorio
             Funcionarios.Add(margareteRicardo);
         }
 
+
         public IList<Funcionario> BuscarPorCargo(Cargo cargo)
         {
-            throw new NotImplementedException();
+            return Funcionarios.Where(funcionario => funcionario.Cargo.Titulo.Equals(cargo.Titulo)).ToList();
         }
 
         public IList<Funcionario> OrdenadosPorCargo()
         {
-            throw new NotImplementedException();
+            return Funcionarios.OrderBy(funcionario => funcionario.Cargo.Titulo).ThenBy(funcionario => funcionario.Nome).ToList();
         }
 
         public IList<Funcionario> BuscarPorNome(string nome)
         {
-            throw new NotImplementedException();
-        }        
+            return Funcionarios.Where(funcionario => funcionario.Nome.ToUpperInvariant().Contains(nome.ToUpperInvariant())).ToList();
+        }
 
         public IList<Funcionario> BuscarPorTurno(params TurnoTrabalho[] turnos)
         {
-            throw new NotImplementedException();
-        }        
+            return turnos.Count() == 0 ? Funcionarios :
+            Funcionarios.Where(funcionario => turnos.Contains(funcionario.TurnoTrabalho)).ToList();
+        }
 
         public IList<Funcionario> FiltrarPorIdadeAproximada(int idade)
         {
-            throw new NotImplementedException();
-        }        
+            var range = Enumerable.Range(idade - 5, 11);
+            return Funcionarios.Where(funcionario => Enumerable.Range(idade - 5, 11).Contains(DateTime.Today.Year - funcionario.DataNascimento.Year)).ToList();
+        }
 
         public double SalarioMedio(TurnoTrabalho? turno = null)
         {
-            throw new NotImplementedException();
+            return turno.HasValue ? Funcionarios.Where(funcionario => funcionario.TurnoTrabalho.Equals(turno)).Average(funcionario => funcionario.Cargo.Salario) : Funcionarios.Average(funcionario => funcionario.Cargo.Salario);
         }
 
         public IList<Funcionario> AniversariantesDoMes()
         {
-            throw new NotImplementedException();
+            return Funcionarios.Where(funcionario => funcionario.DataNascimento.Month.Equals(DateTime.Today.Month)).ToList();
         }
 
         public IList<dynamic> BuscaRapida()
         {
-            throw new NotImplementedException();
+            List<dynamic> listaFuncionarios = new List<dynamic>();
+            foreach (var funcionario in Funcionarios)
+            {
+                listaFuncionarios.Add(new { NomeFuncionario = funcionario.Nome, TituloCargo = funcionario.Cargo.Titulo });
+            }
+            return listaFuncionarios;
         }
 
         public IList<dynamic> QuantidadeFuncionariosPorTurno()
         {
-            throw new NotImplementedException();
+            List<dynamic> listaTurnos = new List<dynamic>();
+            var todosTurnos = Enum.GetValues(typeof(TurnoTrabalho)).Cast<TurnoTrabalho>();
+            foreach (var turno in todosTurnos)
+            {
+                listaTurnos.Add(new { Turno = turno, Quantidade = Funcionarios.Count(empregadoTurno => empregadoTurno.TurnoTrabalho.Equals(turno)) });
+            }
+            return listaTurnos;
         }
 
         public dynamic FuncionarioMaisComplexo()
         {
-            throw new NotImplementedException();
+            string vowels = "aeiou";
+            Funcionario empregado = Funcionarios.Where(funcionario => !funcionario.Cargo.Titulo.Contains("Desenvolvedor Júnior")).Where(funcionario => !funcionario.TurnoTrabalho.Equals(TurnoTrabalho.Tarde)).OrderByDescending(funcionario => funcionario.Nome.Where(name => !vowels.Contains(name)).Count()).First();
+            string data = empregado.DataNascimento.ToString("dd/MM/yyyy");
+            var reais = empregado.Cargo.Salario.ToString("c", new CultureInfo("pt-BR"));
+            var dolar = empregado.Cargo.Salario.ToString("c", new CultureInfo("en-US"));
+            var asd = Funcionarios.Count(cargo => cargo.Cargo.Titulo.Contains(empregado.Cargo.Titulo));
+            return new { Nome = empregado.Nome, DataNascimento = data, SalarioRS = reais, SalarioUS = dolar, QuantidadeMesmoCargo = Funcionarios.Count(cargo => cargo.Cargo.Titulo.Contains(empregado.Cargo.Titulo)) };
         }
     }
+
+
 }
