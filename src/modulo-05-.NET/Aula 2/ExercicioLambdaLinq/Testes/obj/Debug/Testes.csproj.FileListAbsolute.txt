@@ -8,3 +8,13 @@ C:\Users\Usuario\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLam
 C:\Users\Usuario\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\obj\Debug\Testes.csprojResolveAssemblyReference.cache
 C:\Users\Usuario\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\obj\Debug\Testes.dll
 C:\Users\Usuario\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\obj\Debug\Testes.pdb
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\bin\Debug\Testes.dll
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\bin\Debug\Testes.pdb
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\bin\Debug\Newtonsoft.Json.dll
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\bin\Debug\Repositorio.dll
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\bin\Debug\Repositorio.pdb
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\bin\Debug\Newtonsoft.Json.xml
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\obj\Debug\Testes.csprojResolveAssemblyReference.cache
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\obj\Debug\Testes.dll
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\Testes\obj\Debug\Testes.pdb

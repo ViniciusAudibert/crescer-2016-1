@@ -3,3 +3,8 @@ C:\Users\Usuario\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLam
 C:\Users\Usuario\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\RepositorioFuncionarios\obj\Debug\Repositorio.csprojResolveAssemblyReference.cache
 C:\Users\Usuario\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\RepositorioFuncionarios\obj\Debug\Repositorio.dll
 C:\Users\Usuario\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\RepositorioFuncionarios\obj\Debug\Repositorio.pdb
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\RepositorioFuncionarios\bin\Debug\Repositorio.dll
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\RepositorioFuncionarios\bin\Debug\Repositorio.pdb
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\RepositorioFuncionarios\obj\Debug\Repositorio.csprojResolveAssemblyReference.cache
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\RepositorioFuncionarios\obj\Debug\Repositorio.dll
+C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 2\ExercicioLambdaLinq\RepositorioFuncionarios\obj\Debug\Repositorio.pdb

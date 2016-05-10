@@ -96,7 +96,7 @@ namespace Repositorio
 
         public IList<Funcionario> BuscarPorNome(string nome)
         {
-            return Funcionarios.Where(funcionario => funcionario.Nome.ToUpperInvariant().Contains(nome.ToUpperInvariant())).ToList();
+            return Funcionarios.Where(funcionario => funcionario.Nome.IndexOf(nome,StringComparison.OrdinalIgnoreCase) >= 0).ToList();
         }
 
         public IList<Funcionario> BuscarPorTurno(params TurnoTrabalho[] turnos)
@@ -107,7 +107,6 @@ namespace Repositorio
 
         public IList<Funcionario> FiltrarPorIdadeAproximada(int idade)
         {
-            var range = Enumerable.Range(idade - 5, 11);
             return Funcionarios.Where(funcionario => Enumerable.Range(idade - 5, 11).Contains(DateTime.Today.Year - funcionario.DataNascimento.Year)).ToList();
         }
 
