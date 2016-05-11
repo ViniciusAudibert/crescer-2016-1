@@ -86,7 +86,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Estilos\alana.css" />
+    <Content Include="Content\Estilos\alice.css" />
+    <Content Include="Content\Estilos\alycio.css" />
+    <Content Include="Content\Estilos\andrews.css" />
+    <Content Include="Content\Estilos\arthur.css" />
+    <Content Include="Content\Estilos\calvingerling.css" />
+    <Content Include="Content\Estilos\davi.css" />
+    <Content Include="Content\Estilos\diuly.css" />
+    <Content Include="Content\Estilos\douglas.css" />
+    <Content Include="Content\Estilos\erico.css" />
+    <Content Include="Content\Estilos\fabriciorissetto.css" />
+    <Content Include="Content\Estilos\fernando.css" />
+    <Content Include="Content\Estilos\gustavo.css" />
+    <Content Include="Content\Estilos\hedo.css" />
+    <Content Include="Content\Estilos\leon.css" />
+    <Content Include="Content\Estilos\lucas.css" />
     <Content Include="Content\Estilos\main.css" />
+    <Content Include="Content\Estilos\marcelo.css" />
+    <Content Include="Content\Estilos\mauricio.css" />
+    <Content Include="Content\Estilos\michel.css" />
+    <Content Include="Content\Estilos\murillo.css" />
+    <Content Include="Content\Estilos\victor.css" />
+    <Content Include="Content\Estilos\victorribeiro.css" />
+    <Content Include="Content\Estilos\viniciusambrosi.css" />
+    <Content Include="Content\Estilos\viniciusAudibert.css" />
     <Content Include="Content\Imagens\back_site.jpg" />
     <Content Include="Content\Imagens\blanka.png" />
     <Content Include="Content\Imagens\perfil.jpg" />
@@ -97,6 +121,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ExemploController.cs" />
     <Compile Include="Controllers\StreetFighterController.cs" />
+    <Compile Include="Controllers\PokemonDigimonController.cs" />
     <Compile Include="Controllers\TesteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -118,6 +143,10 @@
     <Content Include="Views\StreetFighter\Index.cshtml" />
     <Content Include="Views\StreetFighter\FichaTecnica.cshtml" />
     <Content Include="Views\StreetFighter\Sobre.cshtml" />
+    <Content Include="Views\PokemonDigimon\Index.cshtml" />
+    <Content Include="Content\Estilos\BebasNeue.otf" />
+    <Content Include="Content\Estilos\Ketchum.otf" />
+    <Content Include="Content\Estilos\PokemonSolid.ttf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -8,7 +8,6 @@ namespace MVC.Controllers
 {
     public class TesteController : Controller
     {
-        // GET: Teste
         public ActionResult Index()
         {
             return View();
