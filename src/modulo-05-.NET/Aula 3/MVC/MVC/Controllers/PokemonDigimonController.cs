@@ -10,13 +10,8 @@ namespace MVC.Controllers
     {
         public ActionResult Index()
         {
-            var request = Request.QueryString["nome"];
-            if (request != null)
-                ViewBag.CSS = request;
-            else
-            {
-                ViewBag.CSS = "ViniciusAudibert";
-            }
+            ViewBag.CSS = Request.QueryString["nome"];            
+            
             return View();
         }
     }
