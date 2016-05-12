@@ -1,0 +1,90 @@
+﻿@model LojaNinja.Dominio.Pedido
+
+@{
+    ViewBag.Title = "Listagem2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>Pedido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataPedido)
+        </dt>
+
+        <dd>
+            @(Model.DataPedido.ToString("dd/MM/yyyy"))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataEntregaDesejada)
+        </dt>
+
+        <dd>
+            @(Model.DataEntregaDesejada.ToString("dd/MM;yyyy"))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeProduto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeProduto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @(Model.Valor.ToString("c", new System.Globalization.CultureInfo("pt-BR")))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PedidoUrgente)
+        </dt>
+
+        <dd>
+            @{ 
+                if (Model.PedidoUrgente)
+                {
+                    @:<i class="fa fa-check" aria-hidden="true"></i>
+                }
+                else
+                {
+                    @:<i class="fa fa-check" aria-hidden="true"></i>               
+                }
+             }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar", "Listagem")
+</p>
