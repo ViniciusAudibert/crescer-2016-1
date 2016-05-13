@@ -18,27 +18,53 @@ namespace LojaNinja.MVC.Controllers
             return View();
         }
 
+        public ActionResult Manter(int? id)
+        {
+            if (id.HasValue)
+            {
+                var pedido = repositorio.ObterPedidoPorId(id.Value);
+
+                var model = new PedidoModel()
+                //{
+                //    Id = pedido.Id,
+                //    DataEntrega = pedido.DataEntregaDesejada,
+                //    NomeCliente = pedido.NomeCliente,
+                //    //...
+                //}
+                ;
+
+                return View("Manter", model);
+            }
+            else
+            {
+                return View("Manter");
+            }
+        }
+
         public ActionResult Salvar(PedidoModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var pedido = new Pedido(model.DataEntrega,model.NomeProduto,model.Valor,model.TipoPagamento,model.NomeCliente,model.Cidade,model.Estado);
-                    repositorio.IncluirPedido(pedido);
-                } 
-                catch(ArgumentException ex)
+                    var pedido = new Pedido(model.DataEntrega, model.NomeProduto, model.Valor, model.TipoPagamento, model.NomeCliente, model.Cidade, model.Estado);
+
+                    //if (model.Id.HasValue)
+                    //    repositorio.AtualizarPedido(pedido);
+                    //else
+                        repositorio.IncluirPedido(pedido);
+
+                    ViewBag.MensagemSucesso = "Pedido salvo com sucesso!";
+                    return View("Detalhes", pedido);
+                }
+                catch (ArgumentException ex)
                 {
                     ModelState.AddModelError("", ex.Message);
-                    return View("Cadastro", model);
                 }
+            }
 
-                return View("Detalhes", model);
-            }
-            else
-            {
-                return View("Cadastro", model);
-            }
+            // return View("Manter", model);
+            return View("Cadastro");
         }
 
         public ActionResult Detalhes(int id)
@@ -48,11 +74,22 @@ namespace LojaNinja.MVC.Controllers
             return View(pedido);
         }
 
-        public ActionResult Listagem()
+        public ActionResult Listagem(string cliente, string produto)
         {
+            ViewBag.cliente = Request.QueryString["cliente"];
+            ViewBag.produto = Request.QueryString["produto"];
             var pedidos = repositorio.ObterPedidos();
 
             return View(pedidos);
+        }
+
+        public ActionResult Excluir(int id)
+        {
+            repositorio.ExcluirPedido(id);
+
+            ViewBag.Mensagem = "Pedido excluído!";
+
+            return View("Mensagem");
         }
     }
 }
