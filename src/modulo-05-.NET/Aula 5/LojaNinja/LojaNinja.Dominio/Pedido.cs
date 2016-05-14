@@ -29,6 +29,11 @@ namespace LojaNinja.Dominio
             DefineUrgenciaDoPedido(diasRestantesParaConcluirEntrega);
         }
 
+        public void AtualizarId(int idGerado)
+        {
+            this.Id = idGerado;
+        }
+
         /// <summary>
         /// Construtor utilizado para montar pedidos recuperados do repositório
         /// </summary>
@@ -66,14 +71,6 @@ namespace LojaNinja.Dominio
         private void DefineUrgenciaDoPedido(double diasRestantesParaConcluirEntrega)
         {
             PedidoUrgente = diasRestantesParaConcluirEntrega < 7;
-        }
-
-        public void AtualizarId(int id)
-        {
-            if (Id != 0)
-                throw new InvalidOperationException("Esse objeto já possuia Id, portanto ele já havia sido salvo no banco. Não é possível alterar esse valor.");
-
-            Id = id;
         }
     }
 }

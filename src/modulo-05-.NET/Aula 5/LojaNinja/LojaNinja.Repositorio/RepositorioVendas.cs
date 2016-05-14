@@ -30,7 +30,9 @@ namespace LojaNinja.Repositorio
         {
             lock (objetoLock)
             {
-                var utlimoId = this.ObterPedidos().Max(x => x.Id);
+                var utlimoId = 0;
+                if (ObterPedidos().Count > 1)
+                    utlimoId = this.ObterPedidos().Max(x => x.Id);
                 var idGerado = utlimoId + 1;
                 var novaLinha = ConvertePedidoEmLinhaCSV(pedido, idGerado);
 
@@ -57,12 +59,30 @@ namespace LojaNinja.Repositorio
 
         public void AtualizarPedido(Pedido pedido)
         {
-            //TODO: Implementar
+            var pedidos = ObterPedidos();
+            var cabecalho = File.ReadLines(PATH_ARQUIVO).First();
+            File.WriteAllText(PATH_ARQUIVO, string.Empty);
+            File.AppendAllText(PATH_ARQUIVO, cabecalho + Environment.NewLine);
+            foreach (var linha in pedidos)
+            {
+                if (linha.Id == pedido.Id)
+                    IncluirPedido(pedido);
+
+                else
+                    IncluirPedido(linha);
+            }
         }
 
         public void ExcluirPedido(int id)
         {
-            //TODO: Implementar
+            var linhas = ObterPedidos().Where(pedido => pedido.Id != id).ToList();
+            var cabecalho = File.ReadLines(PATH_ARQUIVO).First();
+            File.WriteAllText(PATH_ARQUIVO, string.Empty);
+            File.AppendAllText(PATH_ARQUIVO, cabecalho);
+            foreach (var linha in linhas)
+            {
+                IncluirPedido(linha);
+            }
         }
 
         private List<Pedido> ConverteLinhasEmPedidos(List<string> linhasArquivo)

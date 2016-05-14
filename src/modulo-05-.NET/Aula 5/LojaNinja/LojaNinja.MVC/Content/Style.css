@@ -1,0 +1,19 @@
+﻿#alerta{
+	width: 26%;
+	height: 100px;
+	position: absolute;
+	left: 50%;
+	right: 50%;
+	margin-left: -13%;
+    background-color: #FBFBFB;
+    box-shadow: 1px 1px 29px 2px;
+    padding-top: 20px;
+	min-height: 235px;
+	text-align: center;
+}
+
+#alerta>button{
+    position: absolute;
+	right: 10px;
+	bottom: 10px;
+}

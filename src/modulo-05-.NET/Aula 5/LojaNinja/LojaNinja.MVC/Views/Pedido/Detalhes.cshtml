@@ -41,6 +41,14 @@
             @(Model.Valor.ToString("c", new System.Globalization.CultureInfo("pt-BR")))
         </dd>
 
+		<dt>
+            @Html.DisplayNameFor(model => model.TipoPagamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPagamento)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.NomeCliente)
         </dt>
@@ -85,6 +93,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Voltar", "Listagem")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Lista de pedidos", "Listagem")
 </p>

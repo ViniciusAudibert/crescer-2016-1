@@ -19,6 +19,7 @@ namespace LojaNinja.MVC.Models
         [Required]
         public decimal Valor { get; set; }
         [Required]
+        [DisplayName("Tipo de pagamento")]
         public TipoPagamento TipoPagamento { get; set; }
         [Required]
         [DisplayName("Nome do cliente")]

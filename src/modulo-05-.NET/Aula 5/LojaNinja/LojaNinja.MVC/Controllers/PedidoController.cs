@@ -48,11 +48,7 @@ namespace LojaNinja.MVC.Controllers
                 try
                 {
                     var pedido = new Pedido(model.DataEntrega, model.NomeProduto, model.Valor, model.TipoPagamento, model.NomeCliente, model.Cidade, model.Estado);
-
-                    //if (model.Id.HasValue)
-                    //    repositorio.AtualizarPedido(pedido);
-                    //else
-                        repositorio.IncluirPedido(pedido);
+                    repositorio.IncluirPedido(pedido);
 
                     ViewBag.MensagemSucesso = "Pedido salvo com sucesso!";
                     return View("Detalhes", pedido);
@@ -63,7 +59,6 @@ namespace LojaNinja.MVC.Controllers
                 }
             }
 
-            // return View("Manter", model);
             return View("Cadastro");
         }
 
@@ -87,9 +82,8 @@ namespace LojaNinja.MVC.Controllers
         {
             repositorio.ExcluirPedido(id);
 
-            ViewBag.Mensagem = "Pedido excluído!";
-
-            return View("Mensagem");
+            TempData["alerta"] = "";
+            return RedirectToAction("Listagem");
         }
     }
 }
