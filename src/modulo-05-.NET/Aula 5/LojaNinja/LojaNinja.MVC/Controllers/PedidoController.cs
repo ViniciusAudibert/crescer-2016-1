@@ -72,18 +72,18 @@ namespace LojaNinja.MVC.Controllers
                 return View(pedidos);
             }
             else if (isClienteNull){
-                List<Pedido> produtoLista = repositorio.buscaProduto(produto);
+                List<Pedido> produtoLista = repositorio.BuscaProduto(produto);
                 return produtoLista == null ? View(pedidos) : View(produtoLista);
             }
             else if(isProdutoNull)
             {
-                List<Pedido> clienteLista = repositorio.buscaCliente(cliente);
+                List<Pedido> clienteLista = repositorio.BuscaCliente(cliente);
                 return clienteLista == null ? View(pedidos) : View(clienteLista);
             }
             else
             {
-                var buscaClienteEProduto = repositorio.buscaClienteEProduto(cliente,produto);
-                return buscaClienteEProduto == null ? View(pedidos) : View(buscaClienteEProduto);
+                var BuscaClienteEProduto = repositorio.BuscaClienteEProduto(cliente,produto);
+                return BuscaClienteEProduto == null ? View(pedidos) : View(BuscaClienteEProduto);
             }
         }
 
