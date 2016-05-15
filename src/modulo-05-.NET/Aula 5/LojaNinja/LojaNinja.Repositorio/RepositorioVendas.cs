@@ -57,15 +57,15 @@ namespace LojaNinja.Repositorio
                                 pedido.PedidoUrgente);
         }
 
-        public void AtualizarPedido(Pedido pedido)
+        public void AtualizarPedido(Pedido pedido,int? id)
         {
             var pedidos = ObterPedidos();
             var cabecalho = File.ReadLines(PATH_ARQUIVO).First();
             File.WriteAllText(PATH_ARQUIVO, string.Empty);
-            File.AppendAllText(PATH_ARQUIVO, cabecalho + Environment.NewLine);
+            File.AppendAllText(PATH_ARQUIVO, cabecalho);
             foreach (var linha in pedidos)
             {
-                if (linha.Id == pedido.Id)
+                if (linha.Id == id)
                     IncluirPedido(pedido);
 
                 else

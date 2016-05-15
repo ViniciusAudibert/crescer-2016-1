@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<LojaNinja.Dominio.Pedido>
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.titulo = "Listagem";
 }
+
 @if(TempData["alerta"] != null){
 	<div id="alerta">
 		<h3>O item foi excluido com sucesso</h3>
@@ -38,6 +39,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
+		<th>
+            @Html.DisplayNameFor(model => model.PedidoUrgente)
+        </th>
         <th></th>
     </tr>
 
@@ -68,6 +72,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
+			
+				@if (item.PedidoUrgente)
+				{
+					<td>
+						Sim
+					</td>
+				}
+				else
+				{
+					<td>
+						Não
+					</td>
+				}
+				
+            
             <td>
                 @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
                 @Html.ActionLink("Ver Detalhes", "Detalhes", new { id = item.Id }) |
