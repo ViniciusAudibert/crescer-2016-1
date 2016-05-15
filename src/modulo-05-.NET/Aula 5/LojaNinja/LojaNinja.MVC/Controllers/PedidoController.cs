@@ -63,10 +63,28 @@ namespace LojaNinja.MVC.Controllers
 
         public ActionResult Listagem(string cliente, string produto)
         {
-            ViewBag.cliente = Request.QueryString["cliente"];
-            ViewBag.produto = Request.QueryString["produto"];
             var pedidos = repositorio.ObterPedidos();
-            return View(pedidos);
+            var isClienteNull = String.IsNullOrWhiteSpace(cliente);
+            var isProdutoNull = String.IsNullOrWhiteSpace(produto);
+
+            if (isClienteNull && isProdutoNull)
+            {
+                return View(pedidos);
+            }
+            else if (isClienteNull){
+                List<Pedido> produtoLista = repositorio.buscaProduto(produto);
+                return produtoLista == null ? View(pedidos) : View(produtoLista);
+            }
+            else if(isProdutoNull)
+            {
+                List<Pedido> clienteLista = repositorio.buscaCliente(cliente);
+                return clienteLista == null ? View(pedidos) : View(clienteLista);
+            }
+            else
+            {
+                var buscaClienteEProduto = repositorio.buscaClienteEProduto(cliente,produto);
+                return buscaClienteEProduto == null ? View(pedidos) : View(buscaClienteEProduto);
+            }
         }
 
         public ActionResult Excluir(int id)

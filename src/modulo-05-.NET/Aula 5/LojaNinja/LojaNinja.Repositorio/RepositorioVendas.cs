@@ -112,5 +112,23 @@ namespace LojaNinja.Repositorio
 
             return listaPedidos;
         }
+
+        public List<Pedido> buscaCliente(String cliente)
+        {
+            var pedidos = ObterPedidos().Where(pedido => pedido.NomeCliente.IndexOf(cliente, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            return pedidos;
+        }
+
+        public List<Pedido> buscaProduto(String produto)
+        {
+            var pedidos = ObterPedidos().Where(pedido => pedido.NomeProduto.IndexOf(produto, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            return pedidos;
+        }
+        public List<Pedido> buscaClienteEProduto(String cliente,String produto)
+        {
+            var pedidos = ObterPedidos().Where(pedido => pedido.NomeProduto.IndexOf(produto,StringComparison.OrdinalIgnoreCase) >= 0 &&
+                                                         pedido.NomeCliente.IndexOf(cliente, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            return pedidos;
+        }
     }
 }
