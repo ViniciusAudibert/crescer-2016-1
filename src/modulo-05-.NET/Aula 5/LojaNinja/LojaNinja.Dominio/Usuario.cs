@@ -8,9 +8,17 @@ namespace LojaNinja.Dominio
 {
     public class Usuario
     {
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public string Nome { get; set; }
-        public string[] Permissoes { get; set; }
+        public Usuario(string Email,string Senha,string Nome, string[] Permissoes = null)
+        {
+            this.Email = Email;
+            this.Senha = Senha;
+            this.Nome = Nome;
+            this.Permissoes = Permissoes;
+        }
+
+        public string Email { get; private set; }
+        public string Senha { get; private set; }
+        public string Nome { get; private set; }
+        public string[] Permissoes { get; private set; }
     }
 }

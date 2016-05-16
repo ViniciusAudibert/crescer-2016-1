@@ -12,13 +12,7 @@ namespace LojaNinja.Repositorio
     {
         private List<Usuario> usuarios = new List<Usuario>()
         {
-            new Usuario()
-                {
-                    Email = "admin@admin.com",
-                    Senha = "63874adc5789a6e2e1fc51e40871dd53",
-                    Nome = "Administrador",
-                    Permissoes = new string[] { "ADMIN" }
-                }
+            new Usuario("admin@admin.com", "63874adc5789a6e2e1fc51e40871dd53", "Administrador",new string[] { "ADMIN" })
         };
 
         public List<Usuario> ObterUsuarios()

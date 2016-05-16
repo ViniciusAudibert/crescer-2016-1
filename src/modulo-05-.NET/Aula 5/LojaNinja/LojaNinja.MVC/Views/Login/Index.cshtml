@@ -1,4 +1,4 @@
-﻿@Model LojaNinja.MVC.Models.UsuarioLogado
+﻿@model LojaNinja.MVC.Models.Login.LoginViewModel
 
 @{
 	ViewBag.titulo = "Cadastro";
@@ -23,11 +23,11 @@
         @Html.LabelFor(m => m.Senha) <br />
         @Html.PasswordFor(m => m.Senha)
     </div>
-    <div class="form-group">
-        <input type="submit" value="Entrar" />
-    </div>
-}
 
+    <div class="form-group">
+        <input type="submit" class="btn btn-danger" value="Entrar" />
+        @Html.ActionLink("Cadastre-se","CadastroUsuario","Login",new { @class="btn btn-warning" })
+    </div>
 }
 
 

@@ -121,14 +121,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Filters\CWIToken.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginViewModel.cs" />
-    <Compile Include="Models\UsuarioLogadoModel.cs" />
-    <Compile Include="Models\PedidoModel.cs" />
+    <Compile Include="Models\Login\CadastroUsuarioModel.cs" />
+    <Compile Include="Models\Login\DisplaAttribute.cs" />
+    <Compile Include="Models\Login\LoginViewModel.cs" />
+    <Compile Include="Models\Login\UsuarioLogadoModel.cs" />
+    <Compile Include="Models\Pedido\PedidoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ServicoDeSessao.cs" />
   </ItemGroup>
@@ -141,7 +144,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Pedido\Detalhes.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Pedido\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\CadastroUsuario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -151,9 +155,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Login\" />
-    <Folder Include="Models\Pedido\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LojaNinja.Dominio\LojaNinja.Dominio.csproj">
