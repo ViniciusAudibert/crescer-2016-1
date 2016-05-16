@@ -1,5 +1,6 @@
 ﻿using LojaNinja.Dominio;
 using LojaNinja.MVC.Models;
+using LojaNinja.MVC.Services;
 using LojaNinja.Repositorio;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,25 @@ namespace LojaNinja.MVC.Controllers
     public class PedidoController : Controller
     {
         private RepositorioVendas repositorio = new RepositorioVendas();
+        private UsuarioServico usuarioServico;
+
+        public PedidoController()
+        {
+            usuarioServico = new UsuarioServico(
+                    new UsuarioRepositorio()
+                );
+        }
+
+        [HttpGet]
+        public ActionResult Index()
+        {
+            if (!ServicoDeSessao.EstaLogado)
+            {
+                return View();
+            }
+
+            return RedirectToAction("Listagem");
+        }
 
         public ActionResult Cadastro()
         {
