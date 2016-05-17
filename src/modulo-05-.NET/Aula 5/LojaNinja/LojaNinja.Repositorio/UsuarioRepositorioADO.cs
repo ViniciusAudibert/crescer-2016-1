@@ -41,14 +41,55 @@ namespace LojaNinja.Repositorio
             }
         }
 
-        public void CadastrarUsuario(Usuario usuario)
+        public void CadastrarUsuario(string email,string senha,string nome,string[] permissoes)
         {
-            throw new NotImplementedException();
+            string connectionString = ConfigurationManager.ConnectionStrings["ConectionDB"].ConnectionString;
+
+            using (var conexao = new SqlConnection(connectionString))
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    string sql = "INSERT INTO usuario(Email,Senha,Nome) VALUES(p_email,p_senha,p_nome)";
+
+                    var comando = new SqlCommand(sql, conexao);
+                    comando.Parameters.Add(new SqlParameter("p_email", email));
+                    comando.Parameters.Add(new SqlParameter("p_senha", senha));
+                    comando.Parameters.Add(new SqlParameter("p_senha", nome));
+
+                    conexao.Open();
+
+                    comando.ExecuteNonQuery();
+                }
+            }
         }
 
         public List<Usuario> ObterUsuarios()
         {
             throw new NotImplementedException();
+        }
+
+        public bool ExisteUsuario(string email)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConectionDB"].ConnectionString;
+
+            using (var conexao = new SqlConnection(connectionString))
+            {
+                string sql = "SELECT * FROM user WHERE email=@p_email";
+
+                var comando = new SqlCommand(sql, conexao);
+                comando.Parameters.Add(new SqlParameter("p_email", email));
+
+                conexao.Open();
+
+                SqlDataReader leitor = comando.ExecuteReader();
+
+                string emailUsuario = null;
+                if (leitor.Read())
+                {
+                    emailUsuario = leitor["Email"].ToString();
+                }
+                return String.IsNullOrWhiteSpace(emailUsuario);
+            }
         }
     }
 }

@@ -13,19 +13,11 @@ namespace LojaNinja.MVC.Filters
     {
         private string[] _permissoesRequeridas = null;
 
-        public CWIToken()
-        {
-            _permissoesRequeridas = String.IsNullOrWhiteSpace(this.Roles) ?
-                                        null :
-                                        this.Roles.Split(',');
-        }
-
         private bool TemAutorizacao
         {
             get
             {
                 UsuarioLogadoModel usuarioLogado = ServicoDeSessao.UsuarioLogado;
-
                 if (this._permissoesRequeridas != null)
                 {
                     foreach (string permissao in _permissoesRequeridas)
@@ -52,6 +44,9 @@ namespace LojaNinja.MVC.Filters
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
+			_permissoesRequeridas = String.IsNullOrWhiteSpace(this.Roles) ?
+                null :
+                this.Roles.Split(',');
             bool estaAutenticadoEAutorizado = this.AuthorizeCore(filterContext.HttpContext);
 
             if (!estaAutenticadoEAutorizado)

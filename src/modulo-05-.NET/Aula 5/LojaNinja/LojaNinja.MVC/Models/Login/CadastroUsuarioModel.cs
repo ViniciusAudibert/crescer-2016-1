@@ -9,26 +9,23 @@ namespace LojaNinja.MVC.Models.Login
 {
     public class CadastroUsuarioModel
     {
-        public CadastroUsuarioModel(string email,string senha,string nome)
+        public CadastroUsuarioModel()
         {
-            this.Email = email;
-            this.Senha = senha;
-            this.Nome = nome;
-            this.Permissoes = new string[]{ "DEFAULT" };
+            this.Permissoes = new string[] { "DEFAULT" };
         }
 
         [Required]
         [DisplayName("E-mail")]
         [StringLength(100)]
         [EmailAddress]
-        public string Email { get; private set; }
+        public string Email { get; set; }
         [Required]
         [StringLength(8)]
         [PasswordPropertyText]
-        public string Senha { get; private set; }
+        public string Senha { get; set; }
         [Required]
         [StringLength(100)]
-        public string Nome { get; private set; }
+        public string Nome { get; set; }
         public string[] Permissoes { get; private set; }
     }
 }

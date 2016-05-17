@@ -5,6 +5,7 @@ using LojaNinja.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -28,7 +29,7 @@ namespace LojaNinja.MVC.Controllers
             {
                 return View();
             }
-            return RedirectToAction("Listagem","Pedido");
+            return RedirectToAction("Listagem", "Pedido");
         }
 
         [HttpPost]
@@ -46,7 +47,7 @@ namespace LojaNinja.MVC.Controllers
                 {
                     var usuarioLogadoModel = new UsuarioLogadoModel(usuarioEncontrado);
                     ServicoDeSessao.CriarSessao(usuarioLogadoModel);
-                    return RedirectToAction("Listagem","Pedido");
+                    return RedirectToAction("Listagem", "Pedido");
                 }
                 else
                 {
@@ -60,6 +61,40 @@ namespace LojaNinja.MVC.Controllers
         public ActionResult CadastroUsuario()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Cadastrar(CadastroUsuarioModel cadastroUsuarioModel)
+        {
+            if (ModelState.IsValid)
+            {
+                bool usuarioExistente = usuarioServico.BuscarUsuarioPorEmail(cadastroUsuarioModel.Email);
+
+                if (!usuarioExistente && ValidacaoSenha(cadastroUsuarioModel.Senha))
+                {
+                    usuarioServico.CadastrarUsuario(
+                        new Usuario(cadastroUsuarioModel.Email,
+                                    cadastroUsuarioModel.Senha,
+                                    cadastroUsuarioModel.Nome
+                        )
+                    );
+
+                    return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("INVALID_USER", "Esse email já foi usado");
+                }
+            }
+
+            return View("Index");
+        }
+
+        private bool ValidacaoSenha(string senha)
+        {
+            var regex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$");
+            return regex.IsMatch(senha);
         }
     }
 }
