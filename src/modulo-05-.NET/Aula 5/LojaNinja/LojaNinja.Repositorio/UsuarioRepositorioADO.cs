@@ -18,7 +18,7 @@ namespace LojaNinja.Repositorio
 
             using (var conexao = new SqlConnection(connectionString))
             {
-                string sql = "SELECT * FROM user WHERE email=@p_email and senha=@p_senha";
+                string sql = "SELECT * FROM Usuario WHERE email=@p_email and senha=@p_senha";
 
                 var comando = new SqlCommand(sql, conexao);
                 comando.Parameters.Add(new SqlParameter("p_email", email));
@@ -49,16 +49,17 @@ namespace LojaNinja.Repositorio
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    string sql = "INSERT INTO usuario(Email,Senha,Nome) VALUES(p_email,p_senha,p_nome)";
+                    string sql = "INSERT INTO Usuario(Email,Senha,Nome) VALUES(@p_email,@p_senha,@p_nome)";
 
                     var comando = new SqlCommand(sql, conexao);
                     comando.Parameters.Add(new SqlParameter("p_email", email));
                     comando.Parameters.Add(new SqlParameter("p_senha", senha));
-                    comando.Parameters.Add(new SqlParameter("p_senha", nome));
+                    comando.Parameters.Add(new SqlParameter("p_nome", nome));
 
                     conexao.Open();
 
                     comando.ExecuteNonQuery();
+                    scope.Complete();
                 }
             }
         }
@@ -74,7 +75,7 @@ namespace LojaNinja.Repositorio
 
             using (var conexao = new SqlConnection(connectionString))
             {
-                string sql = "SELECT * FROM user WHERE email=@p_email";
+                string sql = "SELECT * FROM Usuario WHERE email=@p_email";
 
                 var comando = new SqlCommand(sql, conexao);
                 comando.Parameters.Add(new SqlParameter("p_email", email));
@@ -88,7 +89,7 @@ namespace LojaNinja.Repositorio
                 {
                     emailUsuario = leitor["Email"].ToString();
                 }
-                return String.IsNullOrWhiteSpace(emailUsuario);
+                return !String.IsNullOrWhiteSpace(emailUsuario);
             }
         }
     }

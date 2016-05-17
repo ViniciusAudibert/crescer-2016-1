@@ -20,7 +20,6 @@ namespace LojaNinja.MVC.Models.Login
         [EmailAddress]
         public string Email { get; set; }
         [Required]
-        [StringLength(8)]
         [PasswordPropertyText]
         public string Senha { get; set; }
         [Required]

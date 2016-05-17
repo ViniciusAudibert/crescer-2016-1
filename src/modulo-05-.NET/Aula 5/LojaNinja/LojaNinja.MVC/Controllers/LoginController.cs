@@ -71,20 +71,27 @@ namespace LojaNinja.MVC.Controllers
             {
                 bool usuarioExistente = usuarioServico.BuscarUsuarioPorEmail(cadastroUsuarioModel.Email);
 
-                if (!usuarioExistente && ValidacaoSenha(cadastroUsuarioModel.Senha))
-                {
-                    usuarioServico.CadastrarUsuario(
-                        new Usuario(cadastroUsuarioModel.Email,
-                                    cadastroUsuarioModel.Senha,
-                                    cadastroUsuarioModel.Nome
-                        )
-                    );
-
-                    return RedirectToAction("Index", "Login");
-                }
+                if (!usuarioExistente)
+                    if (ValidacaoSenha(cadastroUsuarioModel.Senha))
+                    { 
+                        usuarioServico.CadastrarUsuario(
+                            new Usuario(cadastroUsuarioModel.Email,
+                                        cadastroUsuarioModel.Senha,
+                                        cadastroUsuarioModel.Nome
+                            )
+                        );
+                        ViewBag.Cadastro = "Cadastrado com sucesso!";
+                        return RedirectToAction("Index", "Login");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("INVALID_USER", "A senha deve ter pelo menos 8 caracteres uma letra minuscula, uma maiuscula e um numero");
+                        return View("CadastroUsuario");
+                    }
                 else
                 {
                     ModelState.AddModelError("INVALID_USER", "Esse email já foi usado");
+                    return View("CadastroUsuario");
                 }
             }
 
