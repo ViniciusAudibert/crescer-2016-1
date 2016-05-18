@@ -12,7 +12,7 @@ namespace LojaNinja.Repositorio
     {
         private List<Usuario> usuarios = new List<Usuario>()
         {
-            new Usuario("admin@admin.com", "63874adc5789a6e2e1fc51e40871dd53", "Administrador",new string[] { "ADMIN" })
+            new Usuario("admin@admin.com", "63874adc5789a6e2e1fc51e40871dd53", "Administrador",new List<Permissao>(){ new Permissao() { Permissoes = "ADMIN" } })
         };
 
         public List<Usuario> ObterUsuarios()
@@ -30,9 +30,9 @@ namespace LojaNinja.Repositorio
             return usuarios.FirstOrDefault(c => c.Email.Equals(email) && c.Senha.Equals(senha));
         }
 
-        public void CadastrarUsuario(string email, string senha, string nome, string[] permissoes)
+        public void CadastrarUsuario(Usuario usuario, string senha)
         {
-            usuarios.Add(new Usuario(email,senha,nome,permissoes));
+            usuarios.Add(new Usuario(usuario.Nome,usuario.Senha,usuario.Nome,usuario.Permissoes));
         }
 
         public bool ExisteUsuario(string email)

@@ -1,7 +1,8 @@
 ﻿@model LojaNinja.MVC.Models.Login.LoginViewModel
 
 @{
-	ViewBag.titulo = "Cadastro";
+    ViewBag.titulo = "Cadastro";
+    TempData["Usuario"] = "Faça Login";
 }
 
 @section scripts{
@@ -16,7 +17,7 @@
     <h3>Login</h3>
     <hr />
     <div class="cadastro">
-        <p>@ViewBag.Cadastro</p>
+        <label class="label label-success">@TempData["Cadastro"]</label>
     </div>
     <div>
         @Html.ValidationSummary(excludePropertyErrors: false)

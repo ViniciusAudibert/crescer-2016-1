@@ -14,12 +14,17 @@ namespace LojaNinja.MVC.Controllers
     public class PedidoController : Controller
     {
         private RepositorioVendas repositorio = new RepositorioVendas();
-  
+
+        [CWIToken]
+        [HttpGet]
         public ActionResult Cadastro()
         {
+            TempData["Usuario"] = ServicoDeSessao.UsuarioLogado;
             return View();
         }
 
+        [CWIToken]
+        [HttpPost]
         public ActionResult Salvar(PedidoModel model)
         {
             if (ModelState.IsValid)
@@ -57,8 +62,11 @@ namespace LojaNinja.MVC.Controllers
             }
         }
 
+        [CWIToken]
+        [HttpGet]
         public ActionResult Detalhes(int id)
         {
+            TempData["Usuario"] = ServicoDeSessao.UsuarioLogado.Nome;
             var pedido = repositorio.ObterPedidoPorId(id);
             return View(pedido);
         }
@@ -70,6 +78,7 @@ namespace LojaNinja.MVC.Controllers
             var pedidos = repositorio.ObterPedidos();
             var isClienteNull = String.IsNullOrWhiteSpace(cliente);
             var isProdutoNull = String.IsNullOrWhiteSpace(produto);
+            TempData["Usuario"] = ServicoDeSessao.UsuarioLogado.Nome;
 
             if (isClienteNull && isProdutoNull)
             {
@@ -91,6 +100,8 @@ namespace LojaNinja.MVC.Controllers
             }
         }
 
+        [CWIToken]
+        [HttpPost]
         public ActionResult Excluir(int id)
         {
             repositorio.ExcluirPedido(id);
@@ -98,8 +109,11 @@ namespace LojaNinja.MVC.Controllers
             return RedirectToAction("Listagem");
         }
 
+        [CWIToken]
+        [HttpGet]
         public ActionResult Editar(int id)
         {
+            TempData["Usuario"] = ServicoDeSessao.UsuarioLogado.Nome;
             var pedido = repositorio.ObterPedidoPorId(id);
             PedidoModel pedidoModel = new PedidoModel
             {

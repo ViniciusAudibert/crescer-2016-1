@@ -29,10 +29,24 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="~/Pedido/Cadastro">Cadastrar</a></li>
-                    <li><a href="~/Pedido/Listagem">Produtos</a></li>
+                    <li><a href="~/Pedido/Cadastro">Cadastrar Produto</a></li>
+                    <li><a href="~/Pedido/Listagem">Lista de Produtos</a></li>
                 </ul>
-            </div>
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @TempData["Usuario"] <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Entrar", "Index", "Login")</li>
+                            <li>@Html.ActionLink("Cadastrar", "CadastroUsuario", "Login")</li>
+                            <li><a href="#">Ajuda</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Logout","Logout","Login")</li>
+                        </ul>
+                    </li>
+                </ul>
+</div>
         </div>
     </nav>
     <div class="container">

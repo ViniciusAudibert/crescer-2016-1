@@ -27,7 +27,7 @@ namespace LojaNinja.Dominio
         public void CadastrarUsuario(Usuario usuario)
         {
             var senhaCriptografada = Criptografar(usuario.Senha);
-            _usuarioRepositorio.CadastrarUsuario(usuario.Email,senhaCriptografada,usuario.Nome,usuario.Permissoes);
+            _usuarioRepositorio.CadastrarUsuario(usuario,senhaCriptografada);
         }
         public bool BuscarUsuarioPorEmail(string email)
         {

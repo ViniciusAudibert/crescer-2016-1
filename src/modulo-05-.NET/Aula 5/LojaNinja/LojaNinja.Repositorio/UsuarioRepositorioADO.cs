@@ -41,7 +41,7 @@ namespace LojaNinja.Repositorio
             }
         }
 
-        public void CadastrarUsuario(string email,string senha,string nome,string[] permissoes)
+        public void CadastrarUsuario(Usuario usuario, string senha)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ConectionDB"].ConnectionString;
 
@@ -52,9 +52,9 @@ namespace LojaNinja.Repositorio
                     string sql = "INSERT INTO Usuario(Email,Senha,Nome) VALUES(@p_email,@p_senha,@p_nome)";
 
                     var comando = new SqlCommand(sql, conexao);
-                    comando.Parameters.Add(new SqlParameter("p_email", email));
+                    comando.Parameters.Add(new SqlParameter("p_email", usuario.Email));
                     comando.Parameters.Add(new SqlParameter("p_senha", senha));
-                    comando.Parameters.Add(new SqlParameter("p_nome", nome));
+                    comando.Parameters.Add(new SqlParameter("p_nome", usuario.Nome));
 
                     conexao.Open();
 

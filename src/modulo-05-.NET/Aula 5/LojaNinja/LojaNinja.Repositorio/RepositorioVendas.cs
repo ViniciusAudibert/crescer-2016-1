@@ -10,7 +10,7 @@ namespace LojaNinja.Repositorio
 {
     public class RepositorioVendas
     {
-        private const string PATH_ARQUIVO = @"C:\Users\vinicius.audibert\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 5\LojaNinja\Vendas.txt";
+        private const string PATH_ARQUIVO = @"C:\Users\Usuario\Documents\crescer-2016-1\src\modulo-05-.NET\Aula 5\LojaNinja\Vendas.txt";
 
         private static readonly object objetoLock = new object();
 

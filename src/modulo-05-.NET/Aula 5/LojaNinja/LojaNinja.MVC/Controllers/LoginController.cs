@@ -80,7 +80,7 @@ namespace LojaNinja.MVC.Controllers
                                         cadastroUsuarioModel.Nome
                             )
                         );
-                        ViewBag.Cadastro = "Cadastrado com sucesso!";
+                        TempData["Cadastro"] = "Cadastrado com sucesso!";
                         return RedirectToAction("Index", "Login");
                     }
                     else
@@ -96,6 +96,12 @@ namespace LojaNinja.MVC.Controllers
             }
 
             return View("Index");
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index");
         }
 
         private bool ValidacaoSenha(string senha)

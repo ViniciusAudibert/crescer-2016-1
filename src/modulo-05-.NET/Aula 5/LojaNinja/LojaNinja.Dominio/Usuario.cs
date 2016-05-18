@@ -13,7 +13,7 @@ namespace LojaNinja.Dominio
 
         }
 
-        public Usuario(string Email,string Senha,string Nome, string[] Permissoes = null)
+        public Usuario(string Email,string Senha,string Nome, IList<Permissao> Permissoes = null)
         {
             this.Email = Email;
             this.Senha = Senha;
@@ -25,6 +25,6 @@ namespace LojaNinja.Dominio
         public string Email { get; set; }
         public string Senha { get; set; }
         public string Nome { get; set; }
-        public string[] Permissoes { get; set; }
+        public IList<Permissao> Permissoes { get; set; }
     }
 }
