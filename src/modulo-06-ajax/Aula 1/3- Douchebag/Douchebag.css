@@ -1,0 +1,9 @@
+#img-albuns>li{
+  display: inline-block;
+  margin: 21px 18px;
+}
+
+#img-albuns>li>img{
+  height: 300px;
+  width: 300px;
+}
