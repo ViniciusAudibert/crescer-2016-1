@@ -1,8 +1,38 @@
 ﻿'use strict';
 
+$(function () {
+    $('#txtDtNascimento').datepicker({
+        dateFormat: 'dd/mm/yy'
+    });
+
+    var $frmNovoCavaleiro = $('#frmNovoCavaleiro');
+    $frmNovoCavaleiro.submit(function (e) {
+
+        var cavaleiro = converterFormParaCavaleiro($frmNovoCavaleiro);
+        $.ajax({
+            url: urlCavaleiroCadastrar,
+            type: "POST",
+            data: cavaleiro
+        });
+
+        $frmNovoCavaleiro[0].reset();
+
+        return e.preventDefault();
+    });
+
+    var $novasImagens = $('#novasImagens');
+
+    $('#btnAdicionarImg').click(function () {
+        var $novoLi = gerarElementoLiComInputs();
+        $novasImagens.append($novoLi);
+    });
+
+    $('#btnAdicionarGolpe').click(function () {
+        $('#novosGolpes').append(gerarElementoLiComInputTexto());
+    });
+})
+
 var lastId = 0;
-
-
 
 function CavaleiroIndexView(options) {
     options = options || {};
@@ -30,23 +60,7 @@ CavaleiroIndexView.prototype.render = function () {
                         self.criarHtmlCavaleiro(cava)
                     );
                     if (cava.Id >= lastId) { lastId = cava.Id; }
-                });
-                setInterval(function () {
-                    $.ajax({ url: urlCavaleiroGet, type: 'GET' }).done(function (res) {
-                        var novosCavaleiros = 0;
-                        res.data.forEach(function (cavaleiro) {
-                            if (cavaleiro.Id > lastId) {
-                                novosCavaleiros++;
-                                self.cavaleirosUi.append(
-                                        self.criarHtmlCavaleiro(cavaleiro)
-                                    );
-                                lastId = cavaleiro.Id;
-                            }
-                        })
-                        if (novosCavaleiros > 0)
-                            notificacaoNovosCavaleiros(novosCavaleiros);
-                    });
-                }, 5000);
+                });         
             },
             function onError(res) {
                 self.errorToast.show(res.status + ' - ' + res.statusText);
@@ -175,4 +189,65 @@ function notificacaoNovosCavaleiros(quantidade) {
             new Notification('', options);
         }
     })
+};
+
+function converterFormParaCavaleiro($form) {
+
+    var formData = new FormData($form[0]);
+
+    var data = $('#txtDtNascimento').datepicker('getDate');
+
+    var novasImagens = [];
+    $('#novasImagens li').each(function (i) {
+        novasImagens.push({
+            url: $(this).find('input[name=urlImagem]').val(),
+            isThumb: $(this).find('input[name=isThumb]').is(':checked')
+        });
+    });
+
+    var novosGolpes = [];
+    $('#novosGolpes li').each(function (i) {
+        novosGolpes.push({ texto: $(this).find('input[name=golpe]').val() } );
+    });
+
+    var nascimento = { texto: formData.get('localNascimento') };
+    var treinamento = { texto: formData.get('localTreinamento') };
+    //garante que o numero mandado nao tenha mais que duas casas decimais
+    var peso = Math.round((parseFloat(formData.get('pesoKg')) * 2.20462262) * 100)/100;
+
+    return {
+        nome: formData.get('nome'),
+        alturaCm: parseFloat(formData.get('alturaMetros')) * 100,
+        pesoLb: peso,
+        signo: formData.get('signo'),
+        tipoSanguineo: formData.get('tipoSanguineo'),
+        dataNascimento: data.toISOString(),
+        golpes: novosGolpes,
+        localNascimento: nascimento,
+        localTreinamento: treinamento,
+        imagens: novasImagens      
+    };
+};
+
+function gerarElementoLiComInputs() {
+    var $novoTxt = $('<input>').attr('name', 'urlImagem').attr('type', 'text').attr('placeholder', 'Ex: bit.ly/shiryu.png');
+    var $novoCheckbox =
+      $('<label>').append(
+        $('<input>')
+        .attr('type', 'checkbox')
+        .attr('name', 'isThumb')
+        .attr('checked', 'checked')
+      ).append('É thumbnail?');
+    return $('<li>').append($novoTxt).append($novoCheckbox);
+};
+
+function gerarElementoLiComInputTexto() {
+    var $novoTxt = $('<input>').attr('name', 'golpe').attr('type', 'text').attr('placeholder', 'Ex: Pó de diamante');
+    return $('<li>').append($novoTxt);
+};
+
+function obterThumb(cavaleiro) {
+    return cavaleiro.imagens.filter(function (i) {
+        return i.isThumb;
+    })[0];
 };

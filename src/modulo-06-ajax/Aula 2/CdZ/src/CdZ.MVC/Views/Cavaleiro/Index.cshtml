@@ -39,18 +39,18 @@
     <label for="slSigno">Signo</label>
     <select id="slSigno" name="signo">
         <option selected>Selecione</option>
-        <option value="Áries">Áries</option>
-        <option value="Touro">Touro</option>
-        <option value="Gêmeos">Gêmeos</option>
-        <option value="Câncer">Câncer</option>
-        <option value="Leão">Leão</option>
-        <option value="Virgem">Virgem</option>
-        <option value="Libra">Libra</option>
-        <option value="Escorpião">Escorpião</option>
-        <option value="Sagitário">Sagitário</option>
-        <option value="Capricórnio">Capricórnio</option>
-        <option value="Aquário">Aquário</option>
-        <option value="Peixes">Peixes</option>
+        <option value="1">Áries</option>
+        <option value="2">Touro</option>
+        <option value="3">Gêmeos</option>
+        <option value="4">Câncer</option>
+        <option value="5">Leão</option>
+        <option value="6">Virgem</option>
+        <option value="7">Libra</option>
+        <option value="8">Escorpião</option>
+        <option value="9">Sagitário</option>
+        <option value="10">Capricórnio</option>
+        <option value="11">Aquário</option>
+        <option value="12">Peixes</option>
     </select>
     <!-- localNascimento -->
     <label for="txtLocalNascimento">Local de nascimento</label>
@@ -74,6 +74,7 @@
 <script>
     var urlCavaleiroPost = '@Url.Action("Post")';
     var urlCavaleiroGet = '@Url.Action("Get")';
+    var urlCavaleiroCadastrar = '@Url.Action("CadastrarCavaleiro")';
 </script>
 
 @section scripts {
