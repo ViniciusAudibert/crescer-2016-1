@@ -1,5 +1,9 @@
 ﻿'use strict';
 
+var lastId = 0;
+
+
+
 function CavaleiroIndexView(options) {
     options = options || {};
     this.errorToast = options.errorToast;
@@ -25,7 +29,24 @@ CavaleiroIndexView.prototype.render = function () {
                     self.cavaleirosUi.append(
                         self.criarHtmlCavaleiro(cava)
                     );
+                    if (cava.Id >= lastId) { lastId = cava.Id; }
                 });
+                setInterval(function () {
+                    $.ajax({ url: urlCavaleiroGet, type: 'GET' }).done(function (res) {
+                        var novosCavaleiros = 0;
+                        res.data.forEach(function (cavaleiro) {
+                            if (cavaleiro.Id > lastId) {
+                                novosCavaleiros++;
+                                self.cavaleirosUi.append(
+                                        self.criarHtmlCavaleiro(cavaleiro)
+                                    );
+                                lastId = cavaleiro.Id;
+                            }
+                        })
+                        if (novosCavaleiros > 0)
+                            notificacaoNovosCavaleiros(novosCavaleiros);
+                    });
+                }, 5000);
             },
             function onError(res) {
                 self.errorToast.show(res.status + ' - ' + res.statusText);
@@ -78,7 +99,7 @@ CavaleiroIndexView.prototype.excluirCavaleiroNoServidor = function (e) {
         });
 };
 
-CavaleiroIndexView.prototype.editarCavaleiroNoServidor = function(e) {
+CavaleiroIndexView.prototype.editarCavaleiroNoServidor = function (e) {
     var cavaleiroId = e.data.id;
     var self = e.data.self;
     self.cavaleiros.buscar(cavaleiroId)
@@ -142,4 +163,16 @@ function simularAtualizacaoHardCoded() {
         cavaleiroHardCoded.Imagens[1].Url = 'https://cloud.githubusercontent.com/assets/526075/15443410/6e9ba586-1ebe-11e6-8b90-64aca9e18a32.png';
         cavaleiroHardCoded.Imagens[1].IsThumb = false;
     }
+};
+
+function notificacaoNovosCavaleiros(quantidade) {
+    Notification.requestPermission().then(function (result) {
+        if (result === 'granted') {
+            var options = {
+                body: quantidade + (quantidade > 1 ? ' cavaleiros foram adicionados' : ' cavaleiro foi adicionado'),
+                icon: 'https://store-images.s-microsoft.com/image/apps.9373.9007199266533775.1fd0f66e-da51-4adb-bf76-6ed14c1f3ece.f3fd714a-5ef4-4ddf-b67f-22af9463c034?w=96&h=96&q=60'
+            }
+            new Notification('', options);
+        }
+    })
 };
