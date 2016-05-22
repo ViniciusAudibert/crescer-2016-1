@@ -1044,9 +1044,7 @@ th {
 .glyphicon-triangle-top:before {
   content: "\e253";
 }
-.glyphicon-
-
-:before {
+.glyphicon-console:before {
   content: "\e254";
 }
 .glyphicon-superscript:before {
