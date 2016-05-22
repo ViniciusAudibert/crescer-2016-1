@@ -1,6 +1,23 @@
 ﻿'use strict';
 
 $(function () {
+        setInterval(function () {
+            $.ajax({ url: urlCavaleiroGet, type: 'GET' }).done(function (res) {
+                var novosCavaleiros = 0;
+                res.data.forEach(function (cavaleiro) {
+                    if (cavaleiro.Id > lastId) {
+                        novosCavaleiros++;
+                        options.cavaleirosUi.append(
+                                options.criarHtmlCavaleiro(cavaleiro)
+                            );
+                        lastId = cavaleiro.Id;
+                    }
+                })
+                if (novosCavaleiros > 0)
+                    notificacaoNovosCavaleiros(novosCavaleiros);
+            });
+        }, 5000);
+
     $('#txtDtNascimento').datepicker({
         dateFormat: 'dd/mm/yy'
     });
@@ -33,6 +50,7 @@ $(function () {
 })
 
 var lastId = 0;
+var options;
 
 function CavaleiroIndexView(options) {
     options = options || {};
@@ -50,6 +68,7 @@ function CavaleiroIndexView(options) {
 
 CavaleiroIndexView.prototype.render = function () {
     var self = this;
+    options = this;
 
     // 1 - Carregar lista de cavaleiros na tela
     this.cavaleiros.todos()
