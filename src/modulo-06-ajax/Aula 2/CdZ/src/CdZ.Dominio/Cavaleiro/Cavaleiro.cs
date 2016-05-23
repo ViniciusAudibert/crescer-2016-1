@@ -5,7 +5,7 @@ namespace CdZ.Dominio
 {
     public class Cavaleiro
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
         public double AlturaCm { get; set; }
         public double PesoLb { get; set; }

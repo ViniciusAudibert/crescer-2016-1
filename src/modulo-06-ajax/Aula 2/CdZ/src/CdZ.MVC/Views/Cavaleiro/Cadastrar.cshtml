@@ -1,0 +1,149 @@
+﻿@model CdZ.MVC.Models.Cavaleiro.CavaleiroViewModel
+
+@{
+    ViewBag.Title = "Cadastrar Cavaleiro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/Custom/overrides-validacao.js"></script>
+    <script src="~/Scripts/Views/CavaleiroIndexView.js"></script>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+
+@using (Html.BeginForm("Post", "Cavaleiro", FormMethod.Post, new { id = "frmNovoCavaleiro" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoSanguineo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(x => x.TipoSanguineo, "Selecione", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TipoSanguineo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control", id = "txtDtNascimento" } })
+                @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AlturaCm, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AlturaCm, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AlturaCm, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PesoLb, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.PesoLb, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PesoLb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Signo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(x => x.Signo, "Selecione", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Signo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Local Nascimento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.LocalNascimento.Id)
+                @Html.EditorFor(model => model.LocalNascimento.Texto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LocalNascimento.Texto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Local Treinamento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.LocalTreinamento.Id)
+                @Html.EditorFor(model => model.LocalTreinamento.Texto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LocalTreinamento.Texto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @try
+        {
+            foreach (var golpe in Model.Golpes)
+            {
+                @Html.Partial("~/Views/Cavaleiro/_Golpes.cshtml", golpe)
+            }
+        }
+        catch
+        {
+        }
+
+        <div id="new-golpe">
+
+        </div>
+
+        @try
+        {
+            foreach (var imagem in Model.Imagens)
+            {
+                @Html.Partial("~/Views/Cavaleiro/_Imagens.cshtml", imagem)
+            }
+        }
+        catch
+        {
+        }
+
+        <div id="new-img">
+
+        </div>
+
+        <div class="form-group">
+            <button id="btnAdicionarGolpe" type="button">Adicionar golpe</button>
+            <button id="btnAdicionarImg" type="button">Adicionar imagem</button>
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-danger">Cadastrar!</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="form-group" style="display:none" id="golpe-form">
+    <label class="control-label col-md-2" for="Golpe">Golpes</label>
+    <div class="col-md-10 golpes">
+        <input class="form-control" name="golpe" type="text">
+    </div>
+</div>
+
+<div class="form-group" style="display:none" id="img-form">
+    <label class="control-label col-md-2" for="imagem">Imagem</label>
+    <div class="col-md-10 imagens">
+        <input name="urlImagem" type="text">
+        <input name="isThumb" type="checkbox"> É thumbnail?
+    </div>
+</div>

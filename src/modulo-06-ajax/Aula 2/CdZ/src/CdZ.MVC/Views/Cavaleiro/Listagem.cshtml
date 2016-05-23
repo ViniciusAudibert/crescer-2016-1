@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Listagem Cavaleiros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts {
+    <script src="~/Scripts/Views/Listagem.js"></script>
+}
+
+<h3>
+    Listagem de cavaleiros
+    <a href="@Url.Action("Cadastrar", "Cavaleiro")">Cadastrar</a>
+</h3>
+
+@Html.Action("List")
+
+<ul id="cavaleiros"></ul>
+
+<div style="display:none" id="info_cava">
+    <table>
+        <tr>
+            <th>Id:</th>
+            <td id="id_id"></td>
+        </tr>
+        <tr>
+            <th>Nome:</th>
+            <td id="id_nome"></td>
+        </tr>
+        <tr>
+            <th>Peso:</th>
+            <td id="id_peso"></td>
+        </tr>
+        <tr>
+            <th>Altura:</th>
+            <td id="id_altura"></td>
+        </tr>
+        <tr>
+            <th>Data Nascimento:</th>
+            <td id="id_nascimento"></td>
+        </tr>
+        <tr>
+            <th>Signo:</th>
+            <td id="id_signo"></td>
+        </tr>
+        <tr>
+            <th>Tipo Sanguíneo:</th>
+            <td id="id_tipo_sanguineo"></td>
+        </tr>
+        <tr>
+            <th>Local Nascimento:</th>
+            <td id="id_local_nascimento"></td>
+        </tr>
+        <tr>
+            <th>Local Treinamento:</th>
+            <td id="id_local_treinamento"></td>
+        </tr>
+        <tr>
+            <th>Golpes:</th>
+            <td id="id_golpes"></td>
+        </tr>
+        <tr>
+            <th>Imagens:</th>
+            <td id="id_imagens"></td>
+        </tr>
+    </table>
+</div>

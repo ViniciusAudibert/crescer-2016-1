@@ -1,4 +1,7 @@
-﻿<marquee>Preencha os campos abaixo para cadastrar um novo cavaleiro de Atena!</marquee>
+﻿@model PagedList.IPagedList<CdZ.MVC.Models.Cavaleiro.CavaleiroViewModel>
+@using PagedList.Mvc;
+
+<marquee>Preencha os campos abaixo para cadastrar um novo cavaleiro de Atena!</marquee>
 <div id="toastErro" class="feedback-toast span12" style="display: none;">
     <div class="alert alert-error">
         <a class="close">x</a>
@@ -70,6 +73,23 @@
 <button id="btnCriar">Criar fake!</button>
 <div id="detalhes-cavaleiro"></div>
 <ul id="cavaleiros"></ul>
+
+<div id="container-cavaleiros">
+    <ul>
+        @foreach (var cavaleiro in Model)
+        {
+            <li data-id-cavaleiro="@cavaleiro.Id">
+                <span class="info">
+                    @cavaleiro.Nome
+                    <img src="@cavaleiro.UrlThumb">
+                </span>              
+            </li>
+        }
+    </ul>
+    <div id="contentPager">
+        @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+    </div>
+</div>
 
 <script>
     var urlCavaleiroPost = '@Url.Action("Post")';

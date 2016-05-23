@@ -1,6 +1,7 @@
 ﻿using CdZ.Dominio;
 using CdZ.MVC.Models.Cavaleiro;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CdZ.MVC.Extensions
 {
@@ -12,14 +13,16 @@ namespace CdZ.MVC.Extensions
         /// </summary>
         public static CavaleiroViewModel FromModel(this Cavaleiro cavaleiro)
         {
-            return new CavaleiroViewModel
+           string urlThumb = cavaleiro.Imagens.Where(_ => _.IsThumb).Select(_ => _.Url).FirstOrDefault();
+
+           return new CavaleiroViewModel
             {
                 Id = cavaleiro.Id,
                 Nome = cavaleiro.Nome,
                 AlturaCm = cavaleiro.AlturaCm,
-                DataNascimentoObj = cavaleiro.DataNascimento,
+                DataNascimento = cavaleiro.DataNascimento,
                 Golpes = cavaleiro.Golpes.FromModel(),
-                Imagens = cavaleiro.Imagens.FromModel(),
+                UrlThumb = urlThumb != null ? urlThumb : "https://gamurs.com/images/48322143-e971-4f32-9f13-e5d7aba6d516.png",
                 LocalNascimento = cavaleiro.LocalNascimento != null ? cavaleiro.LocalNascimento.FromModel() : null,
                 LocalTreinamento = cavaleiro.LocalTreinamento != null ? cavaleiro.LocalTreinamento.FromModel() : null,
                 PesoLb = cavaleiro.PesoLb,

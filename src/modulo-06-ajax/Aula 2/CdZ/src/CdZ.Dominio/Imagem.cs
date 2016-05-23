@@ -30,5 +30,9 @@ namespace CdZ.Dominio
         {
             Id = id;
         }
+        public void AtualizarId(int id)
+        {
+            Id = id;
+        }
     }
 }

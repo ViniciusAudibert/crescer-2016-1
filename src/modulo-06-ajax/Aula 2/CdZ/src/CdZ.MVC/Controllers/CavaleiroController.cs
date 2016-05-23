@@ -9,7 +9,7 @@ using System.Net;
 using System.Linq;
 using System.Web.Mvc;
 using System;
-using System.Web.Script.Serialization;
+using PagedList;
 
 namespace CdZ.MVC.Controllers
 {
@@ -21,7 +21,15 @@ namespace CdZ.MVC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return View("Listagem");
+        }
+
+        [HttpGet]
+        public ActionResult List(int? page)
+        {
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+            return PartialView("_ListagemCaveleiros", _cavaleiros.Todos().FromModel().ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]
@@ -33,30 +41,6 @@ namespace CdZ.MVC.Controllers
             */
             //System.Threading.Thread.Sleep(3000);
             return Json(new { data = _cavaleiros.Todos().FromModel() }, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult CadastrarCavaleiro(CavaleiroViewModel cavaleiroForm)
-        {
-            IList<Golpe> golpes = cavaleiroForm.Golpes.Select(_ => new Golpe(_.Nome)).ToList();
-            IList<Imagem> imagens = cavaleiroForm.Imagens.Select(_ => new Imagem(_.Url, _.IsThumb)).ToList();
-            Local localNascimento = new Local(cavaleiroForm.LocalNascimento.Texto);
-            Local localTreinamento = new Local(cavaleiroForm.LocalTreinamento.Texto);
-            DateTime dataNascimento = StringExtensions.FromISOToDateTime(cavaleiroForm.DataNascimento);
-
-            Cavaleiro cavaleiro = new Cavaleiro(cavaleiroForm.Nome,
-                                                cavaleiroForm.AlturaCm,
-                                                cavaleiroForm.PesoLb,
-                                                dataNascimento,
-                                                cavaleiroForm.Signo,
-                                                cavaleiroForm.TipoSanguineo,
-                                                localNascimento,
-                                                localTreinamento,
-                                                golpes,
-                                                imagens);
-            _cavaleiros.Adicionar(cavaleiro);
-            TempData["cadastroSucesso"] = "Cavaleiro Cadastrado com sucesso!";
-
-            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -89,6 +73,20 @@ namespace CdZ.MVC.Controllers
         {
             _cavaleiros.Atualizar(cavaleiro.ToModel());
             return NoContentJsonVazio();
+        }
+
+        [HttpGet]
+        public ViewResult Editar(int id)
+        {
+            var cavaleiroViewModel = new CavaleiroViewModel();
+            cavaleiroViewModel.CavaleiroParaViewModel(_cavaleiros.Buscar(id));
+            return View("cadastrar", cavaleiroViewModel);
+        }
+
+        [HttpGet]
+        public ViewResult Cadastrar()
+        {
+            return View();
         }
 
         private JsonResult NoContentJsonVazio()

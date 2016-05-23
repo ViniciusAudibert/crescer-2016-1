@@ -10,16 +10,18 @@
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" type="text/css" href="http://code.divshot.com/geo-bootstrap/swatch/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Custom/principal.css" rel="stylesheet" />
+    <link href="https://code.jquery.com/ui/1.11.4/themes/black-tie/jquery-ui.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 </head>
 <body>
-    <div id="spinner" style="display: none;" class="spinner"></div>
+
+    <div id="spinner" style="display: none; position: fixed; width:100%; height:100%; background: rgba(0,0,0,.5) url(http://i.imgur.com/Q3obLBL.gif) center center no-repeat;"></div>
+
     @if (ServicoDeSessao.EstaLogado)
     {
         <header>
@@ -32,27 +34,24 @@
     }
 
     <h1 class="site-title">Dakishimeta kokoro no kosumo</h1>
-    <div class="container"> 
+    <div class="container">
         @RenderBody()
     </div>
     <script>
-        $(document)
-            .ajaxSend(function () {
-                $('#spinner').show();
-            })
-            .ajaxComplete(function () {
-                $('#spinner').hide();
-            })
-            .ajaxError(function () {
-                console.log('Tratador de erros genérico.', arguments);
-            });
-
-        $.ajaxSetup({
-            //timeout: 2000
+        $(document).ajaxSend(function () {
+           $('#spinner').show();
+        }).ajaxComplete(function () {
+           $('#spinner').hide();
         });
-
     </script>
-    <script src="~/Scripts/Components/FeedbackToast.js"></script>
-    @RenderSection("scripts", false)   
+    <script>
+        var urlCavaleiroGet = '@Url.Action("Get")';
+        var urlCavaleiroPost = '@Url.Action("Post")';
+        var urlCavaleiroDelete = '@Url.Action("Delete")';
+        var urlCavaleiroEdit = '@Url.Action("Editar")';
+        var urlCavaleiroGetId = '@Url.Action("GetById")';
+        var urlCavalieroBase = '@Url.Action("Index")';
+    </script>
+    @RenderSection("scripts", false)
 </body>
 </html>

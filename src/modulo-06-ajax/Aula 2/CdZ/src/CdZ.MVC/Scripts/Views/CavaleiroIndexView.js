@@ -1,22 +1,22 @@
 ﻿'use strict';
 
 $(function () {
-        setInterval(function () {
-            $.ajax({ url: urlCavaleiroGet, type: 'GET' }).done(function (res) {
-                var novosCavaleiros = 0;
-                res.data.forEach(function (cavaleiro) {
-                    if (cavaleiro.Id > lastId) {
-                        novosCavaleiros++;
-                        options.cavaleirosUi.append(
-                                options.criarHtmlCavaleiro(cavaleiro)
-                            );
-                        lastId = cavaleiro.Id;
-                    }
-                })
-                if (novosCavaleiros > 0)
-                    notificacaoNovosCavaleiros(novosCavaleiros);
-            });
-        }, 5000);
+        //setInterval(function () {
+        //    $.ajax({ url: urlCavaleiroGet, type: 'GET' }).done(function (res) {
+        //        var novosCavaleiros = 0;
+        //        res.data.forEach(function (cavaleiro) {
+        //            if (cavaleiro.Id > lastId) {
+        //                novosCavaleiros++;
+        //                options.cavaleirosUi.append(
+        //                        options.criarHtmlCavaleiro(cavaleiro)
+        //                    );
+        //                lastId = cavaleiro.Id;
+        //            }
+        //        })
+        //        if (novosCavaleiros > 0)
+        //            notificacaoNovosCavaleiros(novosCavaleiros);
+        //    });
+        //}, 5000);
 
     $('#txtDtNascimento').datepicker({
         dateFormat: 'dd/mm/yy'
@@ -27,7 +27,7 @@ $(function () {
 
         var cavaleiro = converterFormParaCavaleiro($frmNovoCavaleiro);
         $.ajax({
-            url: urlCavaleiroCadastrar,
+            url: urlCavaleiroPost,
             type: "POST",
             data: cavaleiro
         });
@@ -37,178 +37,30 @@ $(function () {
         return e.preventDefault();
     });
 
-    var $novasImagens = $('#novasImagens');
-
     $('#btnAdicionarImg').click(function () {
         var $novoLi = gerarElementoLiComInputs();
-        $novasImagens.append($novoLi);
+        $('#new-img').append($novoLi);
     });
 
     $('#btnAdicionarGolpe').click(function () {
-        $('#novosGolpes').append(gerarElementoLiComInputTexto());
+        var $novoLi = gerarElementoLiComInputsTexto();
+        $('#new-golpe').append($novoLi);
     });
 })
 
-var lastId = 0;
-var options;
+//var lastId = 0;
 
-function CavaleiroIndexView(options) {
-    options = options || {};
-    this.errorToast = options.errorToast;
-    this.successToast = options.successToast;
-    this.cavaleirosUi = options.cavaleirosUi;
-    this.cavaleiros = new Cavaleiros({
-        urlGet: options.urlCavaleiroGet,
-        urlGetById: options.urlCavaleiroGetById,
-        urlPost: options.urlCavaleiroPost,
-        urlDelete: options.urlCavaleiroDelete,
-        urlPut: options.urlCavaleiroPut
-    });
-};
-
-CavaleiroIndexView.prototype.render = function () {
-    var self = this;
-    options = this;
-
-    // 1 - Carregar lista de cavaleiros na tela
-    this.cavaleiros.todos()
-        .then(
-            function onSuccess(res) {
-                res.data.forEach(function (cava) {
-                    self.cavaleirosUi.append(
-                        self.criarHtmlCavaleiro(cava)
-                    );
-                    if (cava.Id >= lastId) { lastId = cava.Id; }
-                });         
-            },
-            function onError(res) {
-                self.errorToast.show(res.status + ' - ' + res.statusText);
-            }
-        );
-
-    // 2 - Registra evento de clique para inserção do cavaleiro fake
-    // TODO - remover quando colocar o bind dos campos do formulário
-    $('#btnCriar').click(function () {
-        self.cavaleiros.inserir(cavaleiroHardCoded).done(function (res) {
-            // Aqui estamos otendo os detalhes atualizados do cavaleiro recém inserido.
-            // Notem o custo de fazer toda separação conceitual (uma action para cada tipo de operação no banco, etc).
-            // Poderíamos ter retornado no resultado do POST a entidade atualizada invés de apenas o id, concordam?
-            self.cavaleiros.buscar(res.id)
-                .done(function (detalhe) {
-                    cavaleiroHardCoded = detalhe.data;
-                });
-        });
-    });
-};
-
-CavaleiroIndexView.prototype.criarHtmlCavaleiro = function (cava) {
-    return $('<li>')
-        .append(cava.Nome)
-        .append(
-            $('<button>')
-                // o segundo parâmetro são parâmetros que podemos enviar para o evento jQuery
-                // posteriormente recuperamos com event.data (vide abaixo)
-                // estamos enviando o valor de this pois o contexto é perdido (eventos são assíncronos)
-                .on('click', { id: cava.Id, self: this }, this.editarCavaleiroNoServidor)
-                .text('Editar')
-        )
-        .append(
-            $('<button>')
-                // o segundo parâmetro são parâmetros que podemos enviar para o evento jQuery
-                // posteriormente recuperamos com event.data (vide abaixo)
-                // estamos enviando o valor de this pois o contexto é perdido (eventos são assíncronos)
-                .on('click', { id: cava.Id, self: this }, this.excluirCavaleiroNoServidor)
-                .text('Excluir')
-        );
-};
-
-CavaleiroIndexView.prototype.excluirCavaleiroNoServidor = function (e) {
-    // dispensamos o uso do atributo 'data-cavaleiro-id' utilizando event.data:
-    // pirou? rtfm => http://api.jquery.com/event.data/
-    var self = e.data.self;
-    self.cavaleiros.excluir(e.data.id)
-        .done(function (res) {
-            self.successToast.show('Excluído com sucesso!');
-        });
-};
-
-CavaleiroIndexView.prototype.editarCavaleiroNoServidor = function (e) {
-    var cavaleiroId = e.data.id;
-    var self = e.data.self;
-    self.cavaleiros.buscar(cavaleiroId)
-        .done(function (detalhe) {
-            // TODO: Implementar atualização a partir de um formulário ou campos na tela, e não hard-coded
-            cavaleiroHardCoded = detalhe.data;
-            simularAtualizacaoHardCoded();
-            self.cavaleiros.editar(cavaleiroHardCoded)
-                .done(function (res) {
-                    self.successToast.show('Cavaleiro atualizado com sucesso!');
-                });
-        });
-};
-
-// TODO: remover cavaleiro hard-coded quando fizer bind do formulário.
-var cavaleiroHardCoded = {
-    Nome: 'Xiru ' + new Date().getTime(),
-    AlturaCm: 187,
-    Signo: 7,
-    TipoSanguineo: 1,
-    // Estamos enviando a data UTC (sem timezone) para que seja corretamente armazenada e posteriormente exibida de acordo com o fuso-horário da aplicação cliente que consumir os dados
-    DataNascimento: new Date(Date.UTC(2001, 1, 15)).toISOString(),
-    Golpes: [{ Nome: 'Cólera do Dragão' }, { Nome: 'Cólera dos 100 dragões' }],
-    LocalNascimento: {
-        Texto: 'Beijing'
-    },
-    LocalTreinamento: {
-        Texto: '5 picos de rosan'
-    },
-    Imagens: [{
-        Url: 'http://images.uncyc.org/pt/3/37/Shiryumestrepokemon.jpg',
-        IsThumb: true
-    }, {
-        Url: 'http://images.uncyc.org/pt/thumb/5/52/Shyryugyarados.jpg/160px-Shyryugyarados.jpg',
-        IsThumb: false
-    }]
-};
-
-// TODO: Implementar atualização a partir de um formulário ou campos na tela, e não hard-coded
-function simularAtualizacaoHardCoded() {
-    cavaleiroHardCoded.Nome = 'Novo nome após update ' + new Date().getTime();
-    cavaleiroHardCoded.AlturaCm = 205;
-    cavaleiroHardCoded.Signo = 3;
-    cavaleiroHardCoded.TipoSanguineo = 2;
-    // Estamos enviando a data UTC (sem timezone) para que seja corretamente armazenada e posteriormente exibida de acordo com o fuso-horário da aplicação cliente que consumir os dados
-    cavaleiroHardCoded.DataNascimento = new Date(Date.UTC(2010, 9, 10)).toISOString();
-    if (cavaleiroHardCoded.Golpes.length > 0) {
-        cavaleiroHardCoded.Golpes[0] = cavaleiroHardCoded.Golpes[0] || {};
-        cavaleiroHardCoded.Golpes[0].Nome = 'Voadora do Sub-Zero Brasileiro'
-        cavaleiroHardCoded.Golpes[1] = cavaleiroHardCoded.Golpes[1] || {};
-        cavaleiroHardCoded.Golpes[1].Nome = 'Cólera dos 42 dragões';
-        cavaleiroHardCoded.Golpes[2] = { Nome: 'Novo golpe aterrador' };
-    }
-    cavaleiroHardCoded.LocalNascimento.Texto = 'Porto Alegre';
-    cavaleiroHardCoded.LocalTreinamento.Texto = 'Alvorada';
-    if (cavaleiroHardCoded.Imagens.length > 0) {
-        cavaleiroHardCoded.Imagens[0] = cavaleiroHardCoded.Imagens[0] || {};
-        cavaleiroHardCoded.Imagens[0].Url = 'https://cloud.githubusercontent.com/assets/526075/15443404/5c97dde6-1ebe-11e6-8ae6-83372051dda7.png';
-        cavaleiroHardCoded.Imagens[0].IsThumb = true;
-        cavaleiroHardCoded.Imagens[1] = cavaleiroHardCoded.Imagens[1] || {};
-        cavaleiroHardCoded.Imagens[1].Url = 'https://cloud.githubusercontent.com/assets/526075/15443410/6e9ba586-1ebe-11e6-8b90-64aca9e18a32.png';
-        cavaleiroHardCoded.Imagens[1].IsThumb = false;
-    }
-};
-
-function notificacaoNovosCavaleiros(quantidade) {
-    Notification.requestPermission().then(function (result) {
-        if (result === 'granted') {
-            var options = {
-                body: quantidade + (quantidade > 1 ? ' cavaleiros foram adicionados' : ' cavaleiro foi adicionado'),
-                icon: 'https://store-images.s-microsoft.com/image/apps.9373.9007199266533775.1fd0f66e-da51-4adb-bf76-6ed14c1f3ece.f3fd714a-5ef4-4ddf-b67f-22af9463c034?w=96&h=96&q=60'
-            }
-            new Notification('', options);
-        }
-    })
-};
+//function notificacaoNovosCavaleiros(quantidade) {
+//    Notification.requestPermission().then(function (result) {
+//        if (result === 'granted') {
+//            var options = {
+//                body: quantidade + (quantidade > 1 ? ' cavaleiros foram adicionados' : ' cavaleiro foi adicionado'),
+//                icon: 'https://store-images.s-microsoft.com/image/apps.9373.9007199266533775.1fd0f66e-da51-4adb-bf76-6ed14c1f3ece.f3fd714a-5ef4-4ddf-b67f-22af9463c034?w=96&h=96&q=60'
+//            }
+//            new Notification('', options);
+//        }
+//    })
+//};
 
 function converterFormParaCavaleiro($form) {
 
@@ -226,20 +78,20 @@ function converterFormParaCavaleiro($form) {
 
     var novosGolpes = [];
     $('#novosGolpes li').each(function (i) {
-        novosGolpes.push({ texto: $(this).find('input[name=golpe]').val() } );
+        novosGolpes.push({ texto: $(this).find('input[name=Golpes]').val() });
     });
 
-    var nascimento = { texto: formData.get('localNascimento') };
-    var treinamento = { texto: formData.get('localTreinamento') };
+    var nascimento = { texto: formData.get('LocalNascimento') };
+    var treinamento = { texto: formData.get('LocalTreinamento') };
     //garante que o numero mandado nao tenha mais que duas casas decimais
-    var peso = Math.round((parseFloat(formData.get('pesoKg')) * 2.20462262) * 100)/100;
+    var peso = Math.round((parseFloat(formData.get('PesoLb')) * 2.20462262) * 100) / 100;
 
     return {
-        nome: formData.get('nome'),
-        alturaCm: parseFloat(formData.get('alturaMetros')) * 100,
+        nome: formData.get('Nome'),
+        alturaCm: parseFloat(formData.get('AlturaCm')) * 100,
         pesoLb: peso,
-        signo: formData.get('signo'),
-        tipoSanguineo: formData.get('tipoSanguineo'),
+        signo: formData.get('Signo'),
+        tipoSanguineo: formData.get('TipoSanguineo'),
         dataNascimento: data.toISOString(),
         golpes: novosGolpes,
         localNascimento: nascimento,
@@ -249,24 +101,9 @@ function converterFormParaCavaleiro($form) {
 };
 
 function gerarElementoLiComInputs() {
-    var $novoTxt = $('<input>').attr('name', 'urlImagem').attr('type', 'text').attr('placeholder', 'Ex: bit.ly/shiryu.png');
-    var $novoCheckbox =
-      $('<label>').append(
-        $('<input>')
-        .attr('type', 'checkbox')
-        .attr('name', 'isThumb')
-        .attr('checked', 'checked')
-      ).append('É thumbnail?');
-    return $('<li>').append($novoTxt).append($novoCheckbox);
+    return $('#golpe-form').clone();
 };
 
-function gerarElementoLiComInputTexto() {
-    var $novoTxt = $('<input>').attr('name', 'golpe').attr('type', 'text').attr('placeholder', 'Ex: Pó de diamante');
-    return $('<li>').append($novoTxt);
-};
-
-function obterThumb(cavaleiro) {
-    return cavaleiro.imagens.filter(function (i) {
-        return i.isThumb;
-    })[0];
+function gerarElementoLiComInputsTexto() {
+    return $('#img-form').clone();
 };
