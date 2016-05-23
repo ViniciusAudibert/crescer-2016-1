@@ -1,22 +1,22 @@
 ﻿'use strict';
 
 $(function () {
-        //setInterval(function () {
-        //    $.ajax({ url: urlCavaleiroGet, type: 'GET' }).done(function (res) {
-        //        var novosCavaleiros = 0;
-        //        res.data.forEach(function (cavaleiro) {
-        //            if (cavaleiro.Id > lastId) {
-        //                novosCavaleiros++;
-        //                options.cavaleirosUi.append(
-        //                        options.criarHtmlCavaleiro(cavaleiro)
-        //                    );
-        //                lastId = cavaleiro.Id;
-        //            }
-        //        })
-        //        if (novosCavaleiros > 0)
-        //            notificacaoNovosCavaleiros(novosCavaleiros);
-        //    });
-        //}, 5000);
+    //setInterval(function () {
+    //    $.ajax({ url: urlCavaleiroGet, type: 'GET' }).done(function (res) {
+    //        var novosCavaleiros = 0;
+    //        res.data.forEach(function (cavaleiro) {
+    //            if (cavaleiro.Id > lastId) {
+    //                novosCavaleiros++;
+    //                options.cavaleirosUi.append(
+    //                        options.criarHtmlCavaleiro(cavaleiro)
+    //                    );
+    //                lastId = cavaleiro.Id;
+    //            }
+    //        })
+    //        if (novosCavaleiros > 0)
+    //            notificacaoNovosCavaleiros(novosCavaleiros);
+    //    });
+    //}, 5000);
 
     $('#txtDtNascimento').datepicker({
         dateFormat: 'dd/mm/yy'
@@ -38,12 +38,12 @@ $(function () {
     });
 
     $('#btnAdicionarImg').click(function () {
-        var $novoLi = gerarElementoLiComInputs();
+        var $novoLi = gerarElementoLiComInputsImagens();
         $('#new-img').append($novoLi);
     });
 
     $('#btnAdicionarGolpe').click(function () {
-        var $novoLi = gerarElementoLiComInputsTexto();
+        var $novoLi = gerarElementoLiComInputsGolpes();
         $('#new-golpe').append($novoLi);
     });
 })
@@ -69,7 +69,7 @@ function converterFormParaCavaleiro($form) {
     var data = $('#txtDtNascimento').datepicker('getDate');
 
     var novasImagens = [];
-    $('#novasImagens li').each(function (i) {
+    $('#new-img>div').each(function (i) {
         novasImagens.push({
             url: $(this).find('input[name=urlImagem]').val(),
             isThumb: $(this).find('input[name=isThumb]').is(':checked')
@@ -77,12 +77,12 @@ function converterFormParaCavaleiro($form) {
     });
 
     var novosGolpes = [];
-    $('#novosGolpes li').each(function (i) {
-        novosGolpes.push({ texto: $(this).find('input[name=Golpes]').val() });
+    $('#new-golpe>div').each(function (i) {
+        novosGolpes.push({ nome: $(this).find('input[name=golpe]').val() });
     });
 
-    var nascimento = { texto: formData.get('LocalNascimento') };
-    var treinamento = { texto: formData.get('LocalTreinamento') };
+    var nascimento = { texto: formData.get('LocalNascimento.Texto') };
+    var treinamento = { texto: formData.get('LocalTreinamento.Texto') };
     //garante que o numero mandado nao tenha mais que duas casas decimais
     var peso = Math.round((parseFloat(formData.get('PesoLb')) * 2.20462262) * 100) / 100;
 
@@ -96,14 +96,21 @@ function converterFormParaCavaleiro($form) {
         golpes: novosGolpes,
         localNascimento: nascimento,
         localTreinamento: treinamento,
-        imagens: novasImagens      
+        imagens: novasImagens
     };
 };
 
-function gerarElementoLiComInputs() {
-    return $('#golpe-form').clone();
+function gerarElementoLiComInputsGolpes() {
+    return $('#golpe-form').clone().show();
 };
 
-function gerarElementoLiComInputsTexto() {
-    return $('#img-form').clone();
+function gerarElementoLiComInputsImagens() {
+    return $('#img-form').clone().show();
 };
+
+function excluirCavaleiro(button) {
+    var id = $(button).attr('data-id-cavaleiro')
+    $.ajax({ url: '/Cavaleiro/Delete/' + id, type: 'DELETE' }).done(function () {
+        alert('Cavaleiro excluido!')
+    })
+}

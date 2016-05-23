@@ -27,35 +27,4 @@ $(function () {
             }
         );
     });
-
-
-
-    $(document).on("click", "#contentPager a[href]", function () {
-        $.ajax({
-            url: $(this).attr("href"),
-            type: 'GET',
-            cache: false,
-            success: function (result) {
-                $('#content').html(result);
-            }
-        });
-        return false;
-    });
-
-    $(document).on("click", ".icon-deletar", function () {
-        var idCavaleiro = parseInt($(this).parent('li:first').attr('data-id-cavaleiro'));
-
-        $.ajax({
-            url: urlCavaleiroDelete,
-            data: { idCavaleiro: idCavaleiro },
-            type: 'DELETE',
-            success: function (response) {
-                $('[data-id-cavaleiro=' + idCavaleiro + ']').remove();
-                notificarCavaleiros('Cavaleiro excluído!');
-            },
-            error: function () {
-                alert('Erro ao deletar cavaleiro');
-            }
-        });
-    });
-});
+})

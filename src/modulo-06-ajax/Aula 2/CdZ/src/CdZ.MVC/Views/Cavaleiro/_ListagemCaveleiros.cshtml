@@ -9,17 +9,21 @@
             <li data-id-cavaleiro="@cavaleiro.Id">
                 <span class="info">
                     @cavaleiro.Nome
-                    <img src="@cavaleiro.UrlThumb">
+                    <img src="@cavaleiro.UrlThumb" class="imagens-lista">
                 </span>
                 <span>
-                    <a href="@Url.Action("Editar/" + @cavaleiro.Id)">
-                        Editar
-                    </a>
+                    <button>
+                        <a href="@Url.Action("Editar/" + @cavaleiro.Id)">
+                            Editar
+                        </a>
+                    </button>
                 </span>
-                <span class="icon-deletar">
-                    <a href="@Url.Action("Deletar/" + @cavaleiro.Id)">
-                        Deletar
-                    </a>
+                <span class="link-deletar">
+                    <button data-id-cavaleiro="@cavaleiro.Id" onclick="excluirCavaleiro(this)">
+                        <a>
+                            Deletar
+                        </a>
+                    </button>
                 </span>
             </li>
         }
