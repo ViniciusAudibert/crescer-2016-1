@@ -36,20 +36,18 @@ END;
 --o Ignore o case sensitive na validação.
 --o Se já existir a cidade+uf deve imprimir uma mensagem informando.
 DECLARE
-  vIDCIDADE INTEGER;
-  vCidade varchar2(20); 
-  vUF varchar2(2);
+  vCidade VARCHAR2(20);
+  vUF     VARCHAR2(2);
+  vCount  INTEGER;
 BEGIN
-
-vCidade := '&_Cidade';
-vUF := '&_UF';
-
-  SELECT IDCIDADE
-  INTO vIDCIDADE
+  vCidade := '&_Cidade';
+  vUF     := '&_UF';
+  SELECT COUNT(1)
+  INTO vCount
   FROM CIDADE
   WHERE LOWER(NOME) = LOWER(vCIDADE)
-  AND UF            = UPPER(vUF);
-  
+  AND UPPER(UF)     = UPPER(vUF);
+  if(vCount = 0) THEN
   INSERT
   INTO CIDADE
     (
@@ -59,11 +57,12 @@ vUF := '&_UF';
     )
     VALUES
     (
-      TR_SQ_CIDADE.nextval,
+      SQCIDADE.nextval,
       vCIDADE,
       vUF
     );
-EXCEPTION
-  WHEN no_data_found THEN
-    DBMS_OUTPUT_PUT_LINE('Essa cidade já existe');
+    COMMIT;
+    ELSE
+      DBMS_OUTPUT.PUT_LINE('Essa cidade já existe');
+    END IF;
 END;
