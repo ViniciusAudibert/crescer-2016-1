@@ -1,0 +1,74 @@
+CREATE FUNCTION ultimoConcursoId
+  RETURN NUMBER
+AS
+  vId NUMBER;
+BEGIN
+  SELECT MAX(IDCONCURSO) INTO vId FROM CONCURSO;
+
+  RETURN vId;
+END;
+
+CREATE OR REPLACE FUNCTION valorProximoConcurso
+  RETURN NUMBER
+AS
+  vValorTotal          NUMBER;
+  vId                  NUMBER;
+  vQuantidadeAcumulado NUMBER;
+  vValorAcumulado      NUMBER;
+BEGIN
+  vId                  := ULTIMOCONCURSOID;
+  vValorAcumulado      := 0;
+  vQuantidadeAcumulado := 0;
+  vValorTotal          := 0;
+
+  SELECT SUM(VALOR) INTO vValorTotal FROM APOSTA WHERE IDCONCURSO = vId;
+
+  SELECT ACUMULOU
+  INTO vQuantidadeAcumulado
+  FROM CONCURSO
+  WHERE IDCONCURSO = vId;
+
+IF(vQuantidadeAcumulado > 0) THEN
+  SELECT PREMIO_SENA INTO vValorAcumulado FROM CONCURSO WHERE IDCONCURSO = vId;
+  vValorTotal := vValorTotal + vValorAcumulado;
+END IF;
+  RETURN vValorTotal;
+END;
+
+CREATE FUNCTION geraProximaData RETURN DATE AS
+vDiaSemana NUMBER;
+vUltimaData DATE;
+vId NUMBER;
+BEGIN
+vId := ultimoConcursoId;
+
+SELECT TO_CHAR(DATA_SORTEIO,'D') INTO vDiaSemana FROM CONCURSO WHERE IDCONCURSO = vId;
+
+
+
+IF(vDiaSemana = 4) THEN
+SELECT (DATA_SORTEIO + 3) INTO vUltimaData FROM CONCURSO WHERE IDCONCURSO = vId;
+ELSE
+SELECT (DATA_SORTEIO + 4) INTO vUltimaData FROM CONCURSO WHERE IDCONCURSO = vId;
+END IF;
+/* Continuar */
+BEGIN
+DBMS_OUTPUT.PUT_LINE(valorProximoConcurso);
+END;
+
+/* CREATE PROCEDURE geraProximoConcurso
+AS
+vId NUMBER;
+vValorTotal NUMBER;
+vData CONCURSO.DATA_SORTEIO%TYPE;
+BEGIN
+SELECT MAX(IDCONCURSO) INTO vId FROM CONCURSO;
+SELECT SUM(VALOR)
+INTO vValorTotal
+FROM APOSTA
+WHERE IDCONCURSO = vId;
+DBMS_OUTPUT
+SELECT TO_CHAR(DATA_SORTEIO,'D') INTO vData FROM CONCURSO WHERE IDCONCURSO = vId;
+IF()
+END;
+*/
