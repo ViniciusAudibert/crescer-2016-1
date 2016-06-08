@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import org.joda.time.DateTime;
 
 public class MeuCalendarioUtil {
 
@@ -15,31 +16,12 @@ public class MeuCalendarioUtil {
         return dias[day.get(Calendar.DAY_OF_WEEK) - 1];
     }
 
-    public static String getTempoDecorrido(Date data) {
-        Calendar calendario = Calendar.getInstance();
-        calendario.setTime(data);
-
-        Calendar now = Calendar.getInstance();
-
-        int anos = now.get(Calendar.YEAR) - calendario.get(Calendar.YEAR);
-        int meses;
-        int dias;
-
-        if (now.get(Calendar.MONTH) >= calendario.get(Calendar.MONTH)) {
-            meses = now.get(Calendar.MONTH) - calendario.get(Calendar.MONTH);
-        } else {
-            meses = (now.get(Calendar.MONTH) + 12) - calendario.get(Calendar.MONTH);
-            anos--;
-        }
-
-        if (now.get(Calendar.DAY_OF_MONTH) >= calendario.get(Calendar.DAY_OF_MONTH)) {
-            dias = now.get(Calendar.DAY_OF_MONTH) - calendario.get(Calendar.DAY_OF_MONTH);
-        } else {
-            dias = (now.get(Calendar.DAY_OF_MONTH) + 30) - calendario.get(Calendar.DAY_OF_MONTH);
-            meses--;
-        }
-
-        return String.format("%d ano(s), %d mes(es) e %d dia(s)", anos, meses, dias);
+    public static String getTempoDecorrido(Date date) {
+        Calendar intervalo = Calendar.getInstance();
+        long diff = new Date().getTime() - date.getTime();
+        
+        intervalo.setTime(new Date(diff));
+        return String.format("%d ano(s), %d mes(es) e %d dia(s)", intervalo.get(Calendar.YEAR) - 1970, intervalo.get(Calendar.MONTH), intervalo.get(Calendar.DAY_OF_MONTH));
     }
 
     public static void main(String[] args) {

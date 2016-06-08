@@ -116,20 +116,19 @@ public class MeuCalendarioUtilTest {
     @Test
     public void testGetTempoDecorridoZero() {
         System.out.println("getTempoDecorrido");
-        Date data = new Date();
         String expResult = "0 ano(s), 0 mes(es) e 0 dia(s)";
-        String result = MeuCalendarioUtil.getTempoDecorrido(data);
+        Calendar data = Calendar.getInstance();
+        String result = MeuCalendarioUtil.getTempoDecorrido(data.getTime());
         assertEquals(expResult, result);
     }
 
     @Test
     public void testGetTempoDecorrido10Dias() {
         System.out.println("getTempoDecorrido");
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_MONTH, 10);
-        Date data = calendar.getTime();
         String expResult = "0 ano(s), 0 mes(es) e 10 dia(s)";
-        String result = MeuCalendarioUtil.getTempoDecorrido(data);
+        Calendar data = Calendar.getInstance();
+        data.add(Calendar.DAY_OF_MONTH, 20);
+        String result = MeuCalendarioUtil.getTempoDecorrido(data.getTime());
         assertEquals(expResult, result);
     }
 
