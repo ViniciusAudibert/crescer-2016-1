@@ -41,7 +41,7 @@ public class MeuCalendarioUtil {
 
         return String.format("%d ano(s), %d mes(es) e %d dia(s)", anos, meses, dias);
     }
-    
+
     public static void main(String[] args) {
         System.out.println("Metodos disponiveis na classe MeuCalendarioUtil\n");
 
