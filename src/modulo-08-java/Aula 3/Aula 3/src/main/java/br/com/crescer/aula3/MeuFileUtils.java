@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import java.util.Scanner;
 
 public class MeuFileUtils {
@@ -12,7 +13,7 @@ public class MeuFileUtils {
     public static void mk(String path) throws IOException {
         File file = new File(path);
 
-        if (file.isDirectory()) {
+        if (file.getAbsoluteFile().isDirectory()) {
             file.mkdir();
         } else {
             file.createNewFile();
@@ -58,16 +59,18 @@ public class MeuFileUtils {
 
     public static void main(String[] args) {
         String line = "";
-        while (line.equalsIgnoreCase("exit")) {
+        while (!line.equalsIgnoreCase("exit")) {
             Scanner s = new Scanner(System.in);
-
+            
+            System.out.print(new Date() + " - ");
             line = s.nextLine();
-
+            System.out.println();
+            
             if (line != null && line.length() > 5) {
                 String[] lineArray = line.split(" ");
                 String comando = lineArray[0];
                 String path = lineArray[1];
-                if (path.startsWith(" ${") && path.endsWith("}")) {
+                if (path.startsWith("${") && path.endsWith("}")) {
                     path = path.substring(2, path.length() - 1);
                     try {
                         switch (comando.toLowerCase()) {
