@@ -26,7 +26,7 @@ public class MeuSQLUtils {
         if (!file.exists()) {
             throw new FileNotFoundException();
         }
-        if (!file.getAbsoluteFile().toPath().endsWith(".sql")) {
+        if (!file.getAbsoluteFile().toString().endsWith(".sql")) {
             throw new IllegalArgumentException();
         }
         FileReader reader = new FileReader(file);
@@ -55,8 +55,8 @@ public class MeuSQLUtils {
                 try (final ResultSet resultSet = statement.executeQuery(comando)) {
                     ResultSetMetaData resultSetMT = resultSet.getMetaData();
 
-                    String col1 = resultSetMT.getColumnName(0);
-                    String col2 = resultSetMT.getColumnName(1);
+                    String col1 = resultSetMT.getColumnName(1);
+                    String col2 = resultSetMT.getColumnName(2);
 
                     arrayList.add(new ArrayList<>(Arrays.asList(col1, col2)));
                     while (resultSet.next()) {
@@ -84,7 +84,7 @@ public class MeuSQLUtils {
         if (!file.exists()) {
             throw new FileNotFoundException();
         }
-        if (!file.getAbsoluteFile().toPath().endsWith(".csv")) {
+        if (!file.getAbsoluteFile().toString().endsWith(".csv")) {
             throw new IllegalArgumentException();
         }
 
@@ -121,18 +121,25 @@ public class MeuSQLUtils {
     public static void exportCSV(String path) throws IllegalArgumentException, IOException {
         File file = new File(path);
 
-        if (!file.getAbsoluteFile().toPath().endsWith(".csv")) {
+        if (!file.getAbsoluteFile().toString().endsWith(".csv")) {
             throw new IllegalArgumentException();
         }
 
         FileWriter writer = new FileWriter(file);
         BufferedWriter buffer = new BufferedWriter(writer);
 
-        ArrayList<String> comandosList = (ArrayList<String>) listarColunasELinhas("SELECT * FROM PESSOAS").get(1);
+        ArrayList<List<String>> linhas = (ArrayList<List<String>>) listarColunasELinhas("SELECT * FROM PESSOA");
 
-        int arrayMetade = comandosList.size() / 2;
-        for (int i = 0; i < arrayMetade; i++) {
-            buffer.write(comandosList.get(i) + ";" + comandosList.get(arrayMetade + i));
+        ArrayList<String> colunas = (ArrayList<String>) linhas.get(0);
+        ArrayList<String> linhasID = (ArrayList<String>) linhas.get(1);
+        ArrayList<String> linhasNM = (ArrayList<String>) linhas.get(2);
+
+        buffer.write(colunas.get(0) + ";" + colunas.get(1));
+        buffer.newLine();
+        buffer.flush();
+
+        for (int i = 0; i < linhasID.size(); i++) {
+            buffer.write(linhasID.get(i) + ";" + linhasNM.get(i));
             buffer.newLine();
             buffer.flush();
         }
@@ -157,17 +164,16 @@ public class MeuSQLUtils {
             ArrayList<List<String>> colunasELinhas = (ArrayList<List<String>>) listarColunasELinhas("SELECT * FROM PESSOA");
 
             ArrayList<String> colunas = (ArrayList<String>) colunasELinhas.get(0);
-            ArrayList<String> linhas = (ArrayList<String>) colunasELinhas.get(1);
+            ArrayList<String> linhasID = (ArrayList<String>) colunasELinhas.get(1);
+            ArrayList<String> linhasNM = (ArrayList<String>) colunasELinhas.get(2);
 
-            System.out.println(colunas.get(0) + " " + colunas.get(1));
+            System.out.println(colunas.get(0) + " | " + colunas.get(1));
 
-            int arrayMetade = linhas.size() / 2;
-            for (int i = 0; i < arrayMetade; i++) {
-                System.out.println(linhas.get(i) + "     " + linhas.get(arrayMetade + i));
+            for (int i = 0; i < linhasID.size(); i++) {
+                System.out.println(linhasID.get(i) + "              " + linhasNM.get(i));
             }
 
-            importCSV("backup1.csv");
-
+            //importCSV("backup1.csv");
             exportCSV("newBackup.csv");
 
         } catch (FileNotFoundException e) {
