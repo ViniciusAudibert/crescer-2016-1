@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:body>
+        <ui:composition template="layout.xhtml">
+            <h:messages>
+
+            </h:messages>
+            <h:panelGrid id="grid">
+                <h:outputText id="out" value="#{hello.helloWorld}"/>
+                <h:inputText id="in" value="#{hello.helloWorld}" required="true">
+                    <f:ajax event="keypress" execute="@this" render="out" />
+                </h:inputText>
+            </h:panelGrid>
+        </ui:composition>            
+    </h:body>
+</html>

@@ -6,17 +6,11 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <body>
-        
-<!--        <h:outputText-->
-        
-        <h:form>
+        <ui:composition template="layout.xhtml">
             <h:commandLink value="hello" action="hello"/>
-        </h:form>
+        </ui:composition>
     </body>
 </html>

@@ -2,14 +2,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>Aula 7</title>
-    </h:head>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:body>
-        <h:form id="form">
+        <ui:composition template="layout.xhtml">
             <h:messages>
-                
+
             </h:messages>
             <h:panelGrid id="grid">
                 <h:outputText id="out" value="#{hello.helloWorld}"/>
@@ -17,9 +15,6 @@
                     <f:ajax event="keypress" execute="@this" render="out" />
                 </h:inputText>
             </h:panelGrid>
-            
-            <h:commandLink value="index" action="index"/>
-            
-        </h:form>
+        </ui:composition>            
     </h:body>
 </html>
