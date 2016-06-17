@@ -22,7 +22,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Cidade.findByIdcidade", query = "SELECT c FROM Cidade c WHERE c.idcidade = :idcidade"),
     @NamedQuery(name = "Cidade.findByNome", query = "SELECT c FROM Cidade c WHERE c.nome = :nome"),
     @NamedQuery(name = "Cidade.findByUf", query = "SELECT c FROM Cidade c WHERE c.uf = :uf")})
-public class Cidade implements Serializable {
+public class Cidade  extends SerializableID<Long> {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -51,10 +51,6 @@ public class Cidade implements Serializable {
         this.uf = uf;
     }
 
-    public long getIdcidade() {
-        return idcidade;
-    }
-
     public void setIdcidade(long idcidade) {
         this.idcidade = idcidade;
     }
@@ -78,6 +74,11 @@ public class Cidade implements Serializable {
     @Override
     public String toString() {
         return "br.com.crescer.entity.Cidade[ idcidade=" + idcidade + " ]";
+    }
+
+    @Override
+    public Long getId() {
+        return idcidade;
     }
     
 }
