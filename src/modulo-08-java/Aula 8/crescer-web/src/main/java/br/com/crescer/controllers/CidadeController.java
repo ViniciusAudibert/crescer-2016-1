@@ -40,6 +40,6 @@ public class CidadeController extends AbstractController<Cidade, CidadeService> 
     public String save() {
         super.saveOrUpdate(); 
         FacesUtils.addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro incluido com sucesso!", ""));
-        return "consultar_pessoa";
+        return "consultar_cidade";
     }
 }
