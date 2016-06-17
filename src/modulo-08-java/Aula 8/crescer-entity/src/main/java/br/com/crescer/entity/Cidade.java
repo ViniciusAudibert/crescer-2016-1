@@ -30,7 +30,7 @@ public class Cidade implements Serializable {
     @Basic(optional = false)
     @SequenceGenerator(name = "SEQ_CIDADE", sequenceName = "SEQ_CIDADE", allocationSize = 1)
     @Column(name = "IDCIDADE")
-    private BigDecimal idcidade;
+    private long idcidade;
     @Basic(optional = false)
     @Column(name = "NOME")
     private String nome;
@@ -41,21 +41,21 @@ public class Cidade implements Serializable {
     public Cidade() {
     }
 
-    public Cidade(BigDecimal idcidade) {
+    public Cidade(long idcidade) {
         this.idcidade = idcidade;
     }
 
-    public Cidade(BigDecimal idcidade, String nome, String uf) {
+    public Cidade(long idcidade, String nome, String uf) {
         this.idcidade = idcidade;
         this.nome = nome;
         this.uf = uf;
     }
 
-    public BigDecimal getIdcidade() {
+    public long getIdcidade() {
         return idcidade;
     }
 
-    public void setIdcidade(BigDecimal idcidade) {
+    public void setIdcidade(long idcidade) {
         this.idcidade = idcidade;
     }
 
@@ -73,26 +73,6 @@ public class Cidade implements Serializable {
 
     public void setUf(String uf) {
         this.uf = uf;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idcidade != null ? idcidade.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cidade)) {
-            return false;
-        }
-        Cidade other = (Cidade) object;
-        if ((this.idcidade == null && other.idcidade != null) || (this.idcidade != null && !this.idcidade.equals(other.idcidade))) {
-            return false;
-        }
-        return true;
     }
 
     @Override
