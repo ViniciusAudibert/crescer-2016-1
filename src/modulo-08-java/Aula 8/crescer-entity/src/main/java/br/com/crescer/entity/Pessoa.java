@@ -1,6 +1,6 @@
 package br.com.crescer.entity;
 
-import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +11,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Carlos H. Nonnemacher
@@ -21,7 +23,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p"),
     @NamedQuery(name = "Pessoa.findById", query = "SELECT p FROM Pessoa p WHERE p.id = :id"),
     @NamedQuery(name = "Pessoa.findByNome", query = "SELECT p FROM Pessoa p WHERE p.nome = :nome")})
-public class Pessoa implements Serializable {
+public class Pessoa extends SerializableID<Long> {
 
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = "SEQ_PESSOA")
@@ -34,6 +36,12 @@ public class Pessoa implements Serializable {
     @Column(name = "NM_PESSOA")
     private String nome;
 
+    @Temporal(TemporalType.DATE)
+    @Basic(optional = false)
+    @Column(name = "DT_NASCIMENTO_PESSOA")
+    private Date nascimento;
+
+    @Override
     public Long getId() {
         return id;
     }
@@ -48,6 +56,14 @@ public class Pessoa implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Date getNascimento() {
+        return nascimento;
+    }
+
+    public void setNascimento(Date nascimento) {
+        this.nascimento = nascimento;
     }
 
 }

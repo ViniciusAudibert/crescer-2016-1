@@ -34,6 +34,26 @@
                 <h:outputText value="#{bundle['page.search.results.empty']}" rendered="#{empty pessoas}" />
                 <h:dataTable value="#{pessoas}" var="p" styleClass="table table-hover table-striped" rendered="#{not empty pessoas}">
                     <h:column>
+                        <h:outputText value="#{p.id}"/>
+
+                        <div class="btn-group btn-group-xs">
+                            <button type="button" class="btn btn-danger disabled">
+                                <span class="glyphicon glyphicon-trash"/>
+                            </button>
+                            <button type="button" class="btn btn-xs btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <h:commandLink action="#{pessoaController.remove}" value="Excluir">
+                                        <f:setPropertyActionListener target="#{pessoaController.entity}" value="#{p}"/>
+                                    </h:commandLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </h:column>
+                    <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle['page.pessoa.id']}"/>
                         </f:facet>
@@ -47,11 +67,9 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value=""/>
+                            <h:outputText value="Nascimento"/>
                         </f:facet>
-                        <h:commandButton styleClass="btn btn-danger" value="Excluir" action="#{pessoaController.remove}" >
-                            <f:setPropertyActionListener target="#{pessoaController.entity}" value="#{p}" />
-                        </h:commandButton>
+                        <h:outputText value="#{p.nascimento}" converter="CapNascimento"/>
                     </h:column>
                 </h:dataTable>
             </ui:define>

@@ -33,7 +33,7 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <h:outputLabel for="username" value="#{bundle['page.template.username']}"/>
-                                    <h:inputText id="username" styleClass="form-control" label="#{bundle['page.template.username']}" value="#{bean.user.username}" required="true"/>
+                                    <h:inputText id="username" styleClass="form-control" label="#{bundle['page.template.username']}" value="#{bean.user.username}" required="true" validator="emailValidator"/>
                                 </div>
                                 <div class="form-group">
                                     <h:outputLabel for="password" value="#{bundle['page.template.password']}"/>

@@ -26,4 +26,8 @@ public class FacesUtils {
         getContext().addMessage(null, facesMessage);
     }
 
+    public static void addSuccessMessage(String message) {
+        addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, message, ""));
+    }
+
 }

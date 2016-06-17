@@ -36,6 +36,5 @@ public class PessoaController extends AbstractController<Pessoa, PessoaService> 
         FacesUtils.addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro incluido com sucesso!", ""));
         return "consultar_pessoa";
     }
-    
-    
+
 }

@@ -20,7 +20,14 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <h:outputLabel for="nome" value="#{bundle['page.pessoa.name']}"/>
-                            <h:inputText  id="nome" label="#{bundle['page.pessoa.name']}" value="#{pessoaController.entity.nome}" styleClass="form-control" rendered="true"/>
+                            <h:inputText  id="nome" label="#{bundle['page.pessoa.name']}" value="#{pessoaController.entity.nome}" styleClass="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel for="nascimento" value="Data Nascimento"/>
+                            <h:inputText id="nascimento" value="#{pessoaController.entity.nascimento}" styleClass="form-control">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:inputText>
+                            
                         </div>
                         <div class="form-group">
                             <div class="btn-group btn-group-sm">
