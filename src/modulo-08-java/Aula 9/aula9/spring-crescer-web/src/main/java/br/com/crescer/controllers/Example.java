@@ -5,7 +5,7 @@
  */
 package br.com.crescer.controllers;
 
-import br.com.crescer.Pessoa;
+import br.com.crescer.entity.Pessoa;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;

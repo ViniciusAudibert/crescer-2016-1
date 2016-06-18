@@ -1,6 +1,6 @@
 package br.com.crescer.controllers;
 
-import br.com.crescer.Pessoa;
+import br.com.crescer.entity.Pessoa;
 import br.com.crescer.services.PessoaService;
 import java.util.Date;
 import java.util.List;

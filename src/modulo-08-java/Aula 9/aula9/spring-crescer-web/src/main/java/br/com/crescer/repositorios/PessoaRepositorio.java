@@ -1,6 +1,6 @@
 package br.com.crescer.repositorios;
 
-import br.com.crescer.Pessoa;
+import br.com.crescer.entity.Pessoa;
 import org.springframework.data.repository.CrudRepository;
 
 /**
