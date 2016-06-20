@@ -44,6 +44,8 @@ and open the template in the editor.
                         <th>Nome</th>
                         <th>Idade</th>
                         <th>Data de nascimento</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,7 +54,8 @@ and open the template in the editor.
                         <td th:text="${p.nome}">Nome</td>
                         <td th:text="${p.idade}">Nome</td>
                         <td th:text="${p.dataNascimento}">Data</td>
-                        <td><a class="btn btn-warning" th:href="@{'/{id}/editar-pessoa'(id=${p.id})}">Editar</a></td>
+                        <td><a class="btn btn-warning" th:href="@{'/pessoa/{id}/editar-pessoa'(id=${p.id})}">Editar</a></td>
+                        <td><a class="btn btn-danger" th:href="@{'/pessoa/{id}/deletar-pessoa'(id=${p.id})}">Deletar</a></td>
                     </tr>
                 </tbody>
             </table>

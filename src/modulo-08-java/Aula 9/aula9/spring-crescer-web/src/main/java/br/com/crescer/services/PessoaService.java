@@ -33,6 +33,10 @@ public class PessoaService {
     public void save(Pessoa p) {
         this.pessoaRep.save(p);
     }
+    
+    public void delete(Long id){
+        this.pessoaRep.delete(id);
+    }
 
     public Pessoa findById(Long id) {
         return this.pessoaRep.findOne(id);
