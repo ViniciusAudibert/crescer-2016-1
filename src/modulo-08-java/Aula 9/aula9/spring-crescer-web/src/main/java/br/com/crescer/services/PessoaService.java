@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,8 +28,8 @@ public class PessoaService {
         return Stream.of(p).collect(Collectors.toList());
     }
 
-    public Iterable<Pessoa> toList() {
-        return this.pessoaRep.findAll();
+    public Page<Pessoa> toList(Pageable pageable) {
+        return this.pessoaRep.findAll(pageable);
     }
 
     public void save(Pessoa p) {

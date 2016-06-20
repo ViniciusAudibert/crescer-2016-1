@@ -60,5 +60,22 @@ and open the template in the editor.
                 </tbody>
             </table>
         </div>
+        <nav>
+            <ul class="pagination">
+                <li >
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li th:each="i : ${#numbers.sequence(0, totalPages -1)}">
+                    <a th:href="@{${'/pessoa'}(page=${i},size=${totalPages})}" th:text="${i}" />
+                    </li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </body>
 </html>

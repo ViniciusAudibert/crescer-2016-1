@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head th:fragment="head">
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.min.css"/>
+    </head>
+
+    <body>
+        <div th:fragment="paginator(list, page)">
+            <ul th:if="${not #lists.isEmpty(list)}" class="pagination">
+                <li th:class="${list.first} ? 'disabled' : ''">
+                    <a th:if="${not list.first}" th:href="@{${page}(page=${0},size=${list.size})}">
+                        <span class="glyphicon glyphicon-backward"></span>
+                    </a>
+                    <a th:if="${list.first}" href="javascript:void(0);">
+                        <span class="glyphicon glyphicon-backward"></span>
+                    </a>
+                </li>
+                <li th:each="i : ${#numbers.sequence(0, list.totalPages -1)}"  th:class="${list.number eq i} ? 'active' : ''">
+                    <a th:if="${not(list.number eq i)}" th:href="@{${page}(page=${i},size=${list.size})}" th:text="${i}"></a>
+                    <a th:if="${list.number eq i}" href="javascript:void(0);" th:text="${i}"></a>
+                </li>
+                <li th:class="${list.last} ? 'disabled' : ''">
+                    <a th:if="${not list.last}" th:href="@{${page}(page=${list.totalPages -1},size=${list.size})}">
+                        <span class="glyphicon glyphicon-forward"></span>
+                    </a>
+                    <a th:if="${list.last}" href="javascript:void(0);">
+                        <span class="glyphicon glyphicon-forward"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </body>
+</html>

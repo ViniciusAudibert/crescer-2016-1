@@ -6,9 +6,8 @@ import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,8 +29,9 @@ public class PessoaController {
     PessoaService service;
 
     @RequestMapping(value = "" ,method = RequestMethod.GET)
-    public String toConsulta(Model model) {
-        model.addAttribute("pessoas", service.toList());
+    public String toConsulta(Model model, Pageable pageable) {
+        model.addAttribute("pessoas", service.toList(pageable));
+        model.addAttribute("totalPages", 3);
         return "consulta-pessoa";
     }
     
