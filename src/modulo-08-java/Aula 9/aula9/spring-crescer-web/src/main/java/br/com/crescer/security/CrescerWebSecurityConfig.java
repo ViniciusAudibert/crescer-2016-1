@@ -35,7 +35,7 @@ public class CrescerWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/logout")
                 .deleteCookies("JSESSIONID")
-                .permitAll();
+                .permitAll().and().csrf().disable();
     }
 
     @Autowired

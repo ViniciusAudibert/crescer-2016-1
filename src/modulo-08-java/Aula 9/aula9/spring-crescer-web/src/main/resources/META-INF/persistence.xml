@@ -3,6 +3,7 @@
   <persistence-unit name="br.com.crescer_spring-crescer-web_jar_1.0.0.0PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.com.crescer.entity.Pessoa</class>
+    <class>br.com.crescer.entity.Usuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
       <property name="javax.persistence.jdbc.user" value="CRESCER16"/>
